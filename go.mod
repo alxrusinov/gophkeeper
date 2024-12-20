@@ -2,7 +2,10 @@ module github.com/alxrusinov/gophkeeper
 
 go 1.23.4
 
-require github.com/kataras/iris/v12 v12.2.11
+require (
+	github.com/kataras/iris/v12 v12.2.11
+	go.uber.org/zap v1.27.0
+)
 
 require (
 	github.com/BurntSushi/toml v1.3.2 // indirect
@@ -38,6 +41,7 @@ require (
 	github.com/vmihailenco/msgpack/v5 v5.4.1 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	github.com/yosssi/ace v0.0.5 // indirect
+	go.uber.org/multierr v1.10.0 // indirect
 	golang.org/x/crypto v0.22.0 // indirect
 	golang.org/x/exp v0.0.0-20240404231335-c0f41cb1a7a0 // indirect
 	golang.org/x/net v0.24.0 // indirect
