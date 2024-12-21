@@ -19,16 +19,29 @@ type Router struct {
 
 // Run - runner for router
 func (r *Router) Run(ctx context.Context) (err error) {
-	authRouter := r.app.Party("/auth")
+	authRouter := r.app.Party(authRouteGroup)
 
-	authRouter.Post("/register", r.Register)
-	authRouter.Post("/login", r.Login)
+	authRouter.Post(registerRoute, r.Register)
+	authRouter.Post(loginRoute, r.Login)
 
-	apiRouter := r.app.Party("/api")
+	apiRouter := r.app.Party(apiRouteGroup)
 
 	apiRouter.Use(iris.Compression)
 
-	apiRouter.Get("/notes", r.GetNotes)
+	apiRouter.Get(notesRoute, r.GetNotes)
+	apiRouter.Get(binariesRoute, r.GetBinaries)
+	apiRouter.Get(bankcardsRoute, r.GetBankCards)
+	apiRouter.Get(credentialsRoute, r.GetCredentials)
+
+	apiRouter.Post(noteRoute, r.GetNote)
+	apiRouter.Post(binaryRoute, r.GetBinary)
+	apiRouter.Post(bankcardRoute, r.GetBankCard)
+	apiRouter.Post(credentialRoute, r.GetCredential)
+
+	apiRouter.Delete(notesRoute, r.DeleteNote)
+	apiRouter.Delete(binariesRoute, r.DeleteBinary)
+	apiRouter.Delete(bankcardsRoute, r.DeleteBankCard)
+	apiRouter.Delete(credentialsRoute, r.DeleteCredentials)
 
 	err = r.app.Listen(r.baseURL)
 
