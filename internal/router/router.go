@@ -22,7 +22,7 @@ type Router struct {
 // Run - runner for router
 func (r *Router) Run(ctx context.Context) (err error) {
 	r.app.Use(iris.Compression)
-	authRouter := r.app.Party(httphandler.ApiRouteGroup)
+	authRouter := r.app.Party(httphandler.AuthRouteGroup)
 
 	authRouter.Post(httphandler.RegisterRoute, r.handler.Register)
 	authRouter.Post(httphandler.LoginRoute, r.handler.Login)
