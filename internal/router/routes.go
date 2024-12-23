@@ -8,6 +8,7 @@ const (
 const (
 	registerRoute    = "/register"
 	loginRoute       = "/login"
+	logoutRoute      = "/logout"
 	notesRoute       = "/notes"
 	bankcardsRoute   = "/bankcards"
 	binariesRoute    = "/binaries"

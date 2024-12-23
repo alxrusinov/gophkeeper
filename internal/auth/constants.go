@@ -4,10 +4,11 @@ import "time"
 
 // Define some constants for our secret keys and token expiration durations.
 const (
-	accessSecret         = "top-secret-access"
-	refreshSecret        = "top-secret-refresh"
+	accessSecret         = "signature_hmac_secret_shared_key"
+	refreshSecret        = "signature_hmac_secret_shared_keyh"
 	accessExpire         = 24 * time.Hour
 	refreshExpire        = 24 * 7 * time.Hour
-	accessEncriptionKey  = "some access sault"
-	refreshEncriptionKey = "some refresh sault"
+	accessEncriptionKey  = "signature_hmac_secret_shared_key"
+	refreshEncriptionKey = "signature_hmac_secret_shared_key"
+	sigKey               = "signature_hmac_secret_shared_key"
 )

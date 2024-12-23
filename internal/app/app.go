@@ -5,7 +5,9 @@ import (
 
 	"github.com/alxrusinov/gophkeeper/internal/logger"
 	"github.com/alxrusinov/gophkeeper/internal/model"
+	"github.com/alxrusinov/gophkeeper/internal/repository/mongo"
 	"github.com/alxrusinov/gophkeeper/internal/router"
+	"github.com/alxrusinov/gophkeeper/internal/usecase"
 )
 
 // App - aplication
@@ -33,7 +35,11 @@ func (app *App) Run(ctx context.Context) (err error) {
 		return err
 	}
 
-	server := router.NewRouter(app.config)
+	repo := mongo.NewMongo()
+
+	currentUsecase := usecase.NewUsecase(repo)
+
+	server := router.NewRouter(app.config, currentUsecase)
 
 	err = server.Run(ctx)
 

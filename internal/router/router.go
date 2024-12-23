@@ -3,6 +3,8 @@ package router
 import (
 	"context"
 
+	"github.com/alxrusinov/gophkeeper/internal/auth"
+	"github.com/alxrusinov/gophkeeper/internal/model"
 	"github.com/kataras/iris/v12"
 )
 
@@ -11,20 +13,33 @@ type Config interface {
 	GetBaseURL() string
 }
 
+// Usecase - interface of Usecase
+type Usecase interface {
+	// VerifyUser - return information about user, if user exists
+	// fact of user existing and error
+	VerifyUser(lg *model.Login) (*model.User, error)
+}
+
 // Router - router for server
 type Router struct {
 	app     *iris.Application
+	auth    *auth.Auth
+	usecase Usecase
 	baseURL string
 }
 
 // Run - runner for router
 func (r *Router) Run(ctx context.Context) (err error) {
+	r.app.Use(iris.Compression)
 	authRouter := r.app.Party(authRouteGroup)
 
 	authRouter.Post(registerRoute, r.Register)
 	authRouter.Post(loginRoute, r.Login)
+	authRouter.Post(logoutRoute, r.Logout)
 
 	apiRouter := r.app.Party(apiRouteGroup)
+
+	apiRouter.Use(r.AuthMiddleware())
 
 	apiRouter.Use(iris.Compression)
 
@@ -49,9 +64,11 @@ func (r *Router) Run(ctx context.Context) (err error) {
 }
 
 // NewRouter - create new instance of Router
-func NewRouter(cfg Config) *Router {
+func NewRouter(cfg Config, usecase Usecase) *Router {
 	router := &Router{
 		app:     iris.New(),
+		auth:    auth.NewAuth(),
+		usecase: usecase,
 		baseURL: cfg.GetBaseURL(),
 	}
 
