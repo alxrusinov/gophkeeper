@@ -18,6 +18,8 @@ type Usecase interface {
 	// VerifyUser - return information about user, if user exists
 	// fact of user existing and error
 	VerifyUser(lg *model.Login) (*model.User, error)
+	// CreateUser - create new user
+	CreateUser(lg *model.Login) (*model.User, error)
 }
 
 // Router - router for server
