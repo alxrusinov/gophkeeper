@@ -3,8 +3,7 @@ package router
 import (
 	"context"
 
-	"github.com/alxrusinov/gophkeeper/internal/auth"
-	"github.com/alxrusinov/gophkeeper/internal/model"
+	"github.com/alxrusinov/gophkeeper/internal/delivery/httphandler"
 	"github.com/kataras/iris/v12"
 )
 
@@ -13,52 +12,42 @@ type Config interface {
 	GetBaseURL() string
 }
 
-// Usecase - interface of Usecase
-type Usecase interface {
-	// VerifyUser - return information about user, if user exists
-	// fact of user existing and error
-	VerifyUser(lg *model.Login) (*model.User, error)
-	// CreateUser - create new user
-	CreateUser(lg *model.Login) (*model.User, error)
-}
-
 // Router - router for server
 type Router struct {
 	app     *iris.Application
-	auth    *auth.Auth
-	usecase Usecase
+	handler *httphandler.HttpHandler
 	baseURL string
 }
 
 // Run - runner for router
 func (r *Router) Run(ctx context.Context) (err error) {
 	r.app.Use(iris.Compression)
-	authRouter := r.app.Party(authRouteGroup)
+	authRouter := r.app.Party(httphandler.ApiRouteGroup)
 
-	authRouter.Post(registerRoute, r.Register)
-	authRouter.Post(loginRoute, r.Login)
-	authRouter.Post(logoutRoute, r.Logout)
+	authRouter.Post(httphandler.RegisterRoute, r.handler.Register)
+	authRouter.Post(httphandler.LoginRoute, r.handler.Login)
+	authRouter.Post(httphandler.LogoutRoute, r.handler.Logout)
 
-	apiRouter := r.app.Party(apiRouteGroup)
+	apiRouter := r.app.Party(httphandler.ApiRouteGroup)
 
-	apiRouter.Use(r.AuthMiddleware())
+	apiRouter.Use(r.handler.AuthMiddleware())
 
 	apiRouter.Use(iris.Compression)
 
-	apiRouter.Get(notesRoute, r.GetNotes)
-	apiRouter.Get(binariesRoute, r.GetBinaries)
-	apiRouter.Get(bankcardsRoute, r.GetBankCards)
-	apiRouter.Get(credentialsRoute, r.GetCredentials)
+	apiRouter.Get(httphandler.NotesRoute, r.handler.GetNotes)
+	apiRouter.Get(httphandler.BinariesRoute, r.handler.GetBinaries)
+	apiRouter.Get(httphandler.BankcardsRoute, r.handler.GetBankCards)
+	apiRouter.Get(httphandler.CredentialsRoute, r.handler.GetCredentials)
 
-	apiRouter.Post(noteRoute, r.GetNote)
-	apiRouter.Post(binaryRoute, r.GetBinary)
-	apiRouter.Post(bankcardRoute, r.GetBankCard)
-	apiRouter.Post(credentialRoute, r.GetCredential)
+	apiRouter.Post(httphandler.NoteRoute, r.handler.GetNote)
+	apiRouter.Post(httphandler.BinaryRoute, r.handler.GetBinary)
+	apiRouter.Post(httphandler.BankcardRoute, r.handler.GetBankCard)
+	apiRouter.Post(httphandler.CredentialRoute, r.handler.GetCredential)
 
-	apiRouter.Delete(notesRoute, r.DeleteNote)
-	apiRouter.Delete(binariesRoute, r.DeleteBinary)
-	apiRouter.Delete(bankcardsRoute, r.DeleteBankCard)
-	apiRouter.Delete(credentialsRoute, r.DeleteCredentials)
+	apiRouter.Delete(httphandler.NotesRoute, r.handler.DeleteNote)
+	apiRouter.Delete(httphandler.BinariesRoute, r.handler.DeleteBinary)
+	apiRouter.Delete(httphandler.BankcardsRoute, r.handler.DeleteBankCard)
+	apiRouter.Delete(httphandler.CredentialsRoute, r.handler.DeleteCredentials)
 
 	err = r.app.Listen(r.baseURL)
 
@@ -66,11 +55,10 @@ func (r *Router) Run(ctx context.Context) (err error) {
 }
 
 // NewRouter - create new instance of Router
-func NewRouter(cfg Config, usecase Usecase) *Router {
+func NewRouter(cfg Config, handler *httphandler.HttpHandler) *Router {
 	router := &Router{
 		app:     iris.New(),
-		auth:    auth.NewAuth(),
-		usecase: usecase,
+		handler: handler,
 		baseURL: cfg.GetBaseURL(),
 	}
 

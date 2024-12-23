@@ -1,4 +1,4 @@
-package router
+package httphandler
 
 import (
 	"net/http"
@@ -6,6 +6,6 @@ import (
 	"github.com/kataras/iris/v12"
 )
 
-func (r *Router) SetCredentials(ctx iris.Context) {
+func (h *HttpHandler) SetBinry(ctx iris.Context) {
 	ctx.StatusCode(http.StatusOK)
 }

@@ -1,4 +1,4 @@
-package router
+package httphandler
 
 import (
 	"net/http"
@@ -7,6 +7,6 @@ import (
 )
 
 // DeleteBankCard - deletes bank card
-func (r *Router) DeleteBankCard(ctx iris.Context) {
+func (h *HttpHandler) DeleteBankCard(ctx iris.Context) {
 	ctx.StatusCode(http.StatusOK)
 }

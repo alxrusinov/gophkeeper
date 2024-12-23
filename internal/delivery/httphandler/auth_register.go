@@ -1,4 +1,4 @@
-package router
+package httphandler
 
 import (
 	"net/http"
@@ -9,7 +9,7 @@ import (
 )
 
 // Register- method of registration new user
-func (r *Router) Register(ctx iris.Context) {
+func (h *HttpHandler) Register(ctx iris.Context) {
 	login := new(model.Login)
 
 	err := ctx.ReadJSON(login)
@@ -19,14 +19,14 @@ func (r *Router) Register(ctx iris.Context) {
 		return
 	}
 
-	user, err := r.usecase.CreateUser(login)
+	user, err := h.usecase.CreateUser(login)
 
 	if err != nil {
 		ctx.StopWithStatus(http.StatusInternalServerError)
 		return
 	}
 
-	accessToken, err := r.auth.GetAccessToken(user)
+	accessToken, err := h.auth.GetAccessToken(user)
 
 	if err != nil {
 		ctx.StopWithStatus(http.StatusInternalServerError)
@@ -34,10 +34,11 @@ func (r *Router) Register(ctx iris.Context) {
 	}
 
 	cookie := &http.Cookie{
-		Name:    userCookie,
-		Value:   accessToken,
-		Expires: time.Now().Add(r.auth.GetAccessTokenExp()),
-		Path:    apiRouteGroup,
+		Name:     userCookie,
+		Value:    accessToken,
+		Expires:  time.Now().Add(h.auth.GetAccessTokenExp()),
+		Path:     ApiRouteGroup,
+		HttpOnly: true,
 	}
 
 	ctx.SetCookie(cookie)

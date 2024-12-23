@@ -1,4 +1,4 @@
-package router
+package httphandler
 
 import (
 	"net/http"
@@ -7,6 +7,6 @@ import (
 )
 
 // DeleteBinary - deletes binary data
-func (r *Router) DeleteBinary(ctx iris.Context) {
+func (h *HttpHandler) DeleteBinary(ctx iris.Context) {
 	ctx.StatusCode(http.StatusOK)
 }

@@ -1,4 +1,4 @@
-package router
+package httphandler
 
 import (
 	"errors"
@@ -11,7 +11,7 @@ import (
 )
 
 // Login - method of loginng existing user
-func (r *Router) Login(ctx iris.Context) {
+func (h *HttpHandler) Login(ctx iris.Context) {
 	login := new(model.Login)
 	err := ctx.ReadJSON(login)
 
@@ -20,7 +20,7 @@ func (r *Router) Login(ctx iris.Context) {
 		return
 	}
 
-	user, err := r.usecase.VerifyUser(login)
+	user, err := h.usecase.VerifyUser(login)
 
 	if err != nil {
 		nonExistentErr := new(customerrors.NonexistentUser)
@@ -41,7 +41,7 @@ func (r *Router) Login(ctx iris.Context) {
 		return
 	}
 
-	tokenPair, err := r.auth.GetTokenPair(user)
+	tokenPair, err := h.auth.GetTokenPair(user)
 
 	if err != nil {
 		ctx.StopWithStatus(http.StatusInternalServerError)
@@ -49,10 +49,11 @@ func (r *Router) Login(ctx iris.Context) {
 	}
 
 	tokenCookie := &http.Cookie{
-		Name:    userCookie,
-		Value:   tokenPair.AccessToken,
-		Expires: time.Now().Add(r.auth.GetAccessTokenExp()),
-		Path:    apiRouteGroup,
+		Name:     userCookie,
+		Value:    tokenPair.AccessToken,
+		Expires:  time.Now().Add(h.auth.GetAccessTokenExp()),
+		Path:     ApiRouteGroup,
+		HttpOnly: true,
 	}
 
 	ctx.SetCookie(tokenCookie)

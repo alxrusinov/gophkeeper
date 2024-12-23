@@ -1,4 +1,4 @@
-package router
+package httphandler
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"github.com/kataras/iris/v12"
 )
 
-func (r *Router) GetNote(ctx iris.Context) {
+func (h *HttpHandler) GetNote(ctx iris.Context) {
 	fmt.Printf("USER - %#v", ctx.Values())
 	ctx.StatusCode(http.StatusOK)
 }

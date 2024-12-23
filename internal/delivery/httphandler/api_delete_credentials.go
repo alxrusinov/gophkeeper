@@ -1,4 +1,4 @@
-package router
+package httphandler
 
 import (
 	"net/http"
@@ -7,7 +7,7 @@ import (
 )
 
 // DeleteCredentials - deletes login and password data
-func (r *Router) DeleteCredentials(ctx iris.Context) {
+func (h *HttpHandler) DeleteCredentials(ctx iris.Context) {
 	ctx.StatusCode(http.StatusOK)
 
 }

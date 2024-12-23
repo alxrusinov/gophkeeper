@@ -1,4 +1,4 @@
-package router
+package httphandler
 
 import (
 	"github.com/alxrusinov/gophkeeper/internal/auth"
@@ -14,8 +14,8 @@ func extractTokenFromCookie(ctx iris.Context) string {
 }
 
 // AuthMiddleware - checks user authorization
-func (r *Router) AuthMiddleware() context.Handler {
-	verifier := r.auth.GetVerifier()
+func (h *HttpHandler) AuthMiddleware() context.Handler {
+	verifier := h.auth.GetVerifier()
 
 	verifier.Extractors = []jwt.TokenExtractor{extractTokenFromCookie}
 
