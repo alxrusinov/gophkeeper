@@ -6,7 +6,7 @@ import (
 	"github.com/kataras/iris/v12"
 )
 
-// Logout - logiut handler
+// Logout - logout handler
 func (h *HttpHandler) Logout(ctx iris.Context) {
 	ctx.RemoveCookie(userCookie)
 

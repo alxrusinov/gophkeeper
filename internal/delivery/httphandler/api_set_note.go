@@ -25,7 +25,7 @@ func (h *HttpHandler) SetNote(ctx iris.Context) {
 		return
 	}
 
-	addedNote, err := h.usecase.AddNote(note, user.ID)
+	addedNote, err := h.usecase.AddNote(ctx, note, user.ID)
 
 	if err != nil {
 		ctx.StopWithError(http.StatusInternalServerError, fmt.Errorf("note with title %s was not saved", note.Title))

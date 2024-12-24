@@ -20,7 +20,7 @@ func (h *HttpHandler) Login(ctx iris.Context) {
 		return
 	}
 
-	user, err := h.usecase.VerifyUser(login)
+	user, err := h.usecase.VerifyUser(ctx, login)
 
 	if err != nil {
 		nonExistentErr := new(customerrors.NonexistentUser)

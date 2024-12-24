@@ -12,11 +12,11 @@ import (
 )
 
 // VerifyUser - checks if user exists and has valid password
-func (m *Mongo) VerifyUser(lg *model.Login) (*model.User, error) {
+func (m *Mongo) VerifyUser(ctx context.Context, lg *model.Login) (*model.User, error) {
 	user := new(model.User)
 	login := new(model.Login)
 
-	result := m.client.Database(DataBase).Collection(UserCollection).FindOne(context.Background(), bson.M{"username": lg.Username})
+	result := m.client.Database(DataBase).Collection(UserCollection).FindOne(ctx, bson.M{"username": lg.Username})
 
 	err := result.Decode(user)
 

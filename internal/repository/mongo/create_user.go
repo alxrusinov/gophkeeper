@@ -9,10 +9,10 @@ import (
 )
 
 // CreateUser - create new user
-func (m *Mongo) CreateUser(lg *model.Login) (*model.User, error) {
+func (m *Mongo) CreateUser(ctx context.Context, lg *model.Login) (*model.User, error) {
 	users := m.client.Database(DataBase).Collection(UserCollection)
 
-	res, err := users.InsertOne(context.Background(), lg)
+	res, err := users.InsertOne(ctx, lg)
 
 	if err != nil {
 		return nil, err

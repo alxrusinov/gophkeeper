@@ -19,7 +19,7 @@ func (h *HttpHandler) Register(ctx iris.Context) {
 		return
 	}
 
-	user, err := h.usecase.CreateUser(login)
+	user, err := h.usecase.CreateUser(ctx, login)
 
 	if err != nil {
 		ctx.StopWithStatus(http.StatusInternalServerError)

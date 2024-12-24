@@ -1,8 +1,10 @@
 package httphandler
 
 import (
+	"errors"
 	"net/http"
 
+	"github.com/alxrusinov/gophkeeper/internal/customerrors"
 	"github.com/kataras/iris/v12"
 )
 
@@ -21,11 +23,19 @@ func (h *HttpHandler) GetNote(ctx iris.Context) {
 		return
 	}
 
-	note, err := h.usecase.GetNote(user.ID, noteID)
+	note, err := h.usecase.GetNote(ctx, user.ID, noteID)
 
 	if err != nil {
-		ctx.StopWithStatus(http.StatusNotFound)
+		notFoundErr := new(customerrors.NotFound)
+
+		if errors.As(err, &notFoundErr) {
+			ctx.StopWithStatus(http.StatusNotFound)
+			return
+		}
+
+		ctx.StopWithStatus(http.StatusInternalServerError)
 		return
+
 	}
 
 	note.UserID = ""

@@ -1,17 +1,23 @@
 package usecase
 
-import "github.com/alxrusinov/gophkeeper/internal/model"
+import (
+	"context"
+
+	"github.com/alxrusinov/gophkeeper/internal/model"
+)
 
 // Repository - interface of repository
 type Repository interface {
 	// CreateUser - create new user
-	CreateUser(lg *model.Login) (*model.User, error)
+	CreateUser(ctx context.Context, lg *model.Login) (*model.User, error)
 	// VerifyUser - checks if user exists and has valid password
-	VerifyUser(lg *model.Login) (*model.User, error)
+	VerifyUser(ctx context.Context, lg *model.Login) (*model.User, error)
 	// AddNote - adds new note for user
-	AddNote(note *model.Note, userID string) (*model.Note, error)
+	AddNote(ctx context.Context, note *model.Note, userID string) (*model.Note, error)
 	// GetNote - returns note for user by note id
-	GetNote(userID, noteID string) (*model.Note, error)
+	GetNote(ctx context.Context, userID, noteID string) (*model.Note, error)
+	// GetNotes - return notes for user by note id
+	GetNotes(ctx context.Context, userID string) ([]model.Note, error)
 }
 
 // Usecase implements httphandler.Usecase interface
