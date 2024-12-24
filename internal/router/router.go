@@ -39,10 +39,15 @@ func (r *Router) Run(ctx context.Context) (err error) {
 	apiRouter.Get(httphandler.BankcardsRoute, r.handler.GetBankCards)
 	apiRouter.Get(httphandler.CredentialsRoute, r.handler.GetCredentials)
 
-	apiRouter.Post(httphandler.NoteRoute, r.handler.GetNote)
-	apiRouter.Post(httphandler.BinaryRoute, r.handler.GetBinary)
-	apiRouter.Post(httphandler.BankcardRoute, r.handler.GetBankCard)
-	apiRouter.Post(httphandler.CredentialRoute, r.handler.GetCredential)
+	apiRouter.Post(httphandler.NotesRoute, r.handler.SetNote)
+	apiRouter.Post(httphandler.BinariesRoute, r.handler.SetBinary)
+	apiRouter.Post(httphandler.BankcardsRoute, r.handler.SetBankCard)
+	apiRouter.Post(httphandler.CredentialsRoute, r.handler.SetCredentials)
+
+	apiRouter.Get(httphandler.NoteRoute, r.handler.GetNote)
+	apiRouter.Get(httphandler.BinaryRoute, r.handler.GetBinary)
+	apiRouter.Get(httphandler.BankcardRoute, r.handler.GetBankCard)
+	apiRouter.Get(httphandler.CredentialRoute, r.handler.GetCredential)
 
 	apiRouter.Delete(httphandler.NotesRoute, r.handler.DeleteNote)
 	apiRouter.Delete(httphandler.BinariesRoute, r.handler.DeleteBinary)

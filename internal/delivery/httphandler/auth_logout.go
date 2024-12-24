@@ -8,15 +8,9 @@ import (
 
 // Logout - logiut handler
 func (h *HttpHandler) Logout(ctx iris.Context) {
-	err := ctx.Logout()
+	ctx.RemoveCookie(userCookie)
 
-	if err != nil {
-		ctx.StatusCode(http.StatusInternalServerError)
-		ctx.WriteString(err.Error())
-	} else {
-		ctx.StatusCode(http.StatusUnauthorized)
-		ctx.Writef("token invalidated, a new token is required to access the protected API")
-	}
+	ctx.StatusCode(http.StatusUnauthorized)
+	ctx.Writef("token invalidated, a new token is required to access the protected API")
 
-	ctx.StatusCode(http.StatusOK)
 }

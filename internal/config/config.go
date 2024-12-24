@@ -3,11 +3,13 @@ package config
 // Config - type config implements interface app.Config
 type Config struct {
 	baseURL string
+	dbURL   string
 }
 
 // ParseFlags - parsing flags and set values
 func (cfg *Config) parseFlags() (err error) {
 	cfg.baseURL = "localhost:8080"
+	cfg.dbURL = "mongodb://localhost:3000"
 	return err
 }
 
@@ -27,6 +29,11 @@ func (cfg *Config) Run() (err error) {
 // GetBaseURL - return base url
 func (cfg *Config) GetBaseURL() string {
 	return cfg.baseURL
+}
+
+// GetDbURL - return database url
+func (cfg *Config) GetDbURL() string {
+	return cfg.dbURL
 }
 
 // NewConfig - create new config

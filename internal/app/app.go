@@ -20,6 +20,7 @@ type App struct {
 type Config interface {
 	model.Runner
 	GetBaseURL() string
+	GetDbURL() string
 }
 
 // Run - method of running application
@@ -36,7 +37,15 @@ func (app *App) Run(ctx context.Context) (err error) {
 		return err
 	}
 
-	repo := mongo.NewMongo()
+	repo, err := mongo.NewMongo(ctx, app.config.GetDbURL())
+
+	if err != nil {
+		return err
+	}
+
+	defer func(ctx context.Context) error {
+		return repo.Disconnect(ctx)
+	}(ctx)
 
 	currentUsecase := usecase.NewUsecase(repo)
 

@@ -52,7 +52,7 @@ func (h *HttpHandler) Login(ctx iris.Context) {
 		Name:     userCookie,
 		Value:    tokenPair.AccessToken,
 		Expires:  time.Now().Add(h.auth.GetAccessTokenExp()),
-		Path:     ApiRouteGroup,
+		Path:     "/",
 		HttpOnly: true,
 	}
 

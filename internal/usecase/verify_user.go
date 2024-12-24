@@ -4,5 +4,5 @@ import "github.com/alxrusinov/gophkeeper/internal/model"
 
 // VerifyUser - checks if user exists and has valid password
 func (u *Usecase) VerifyUser(lg *model.Login) (*model.User, error) {
-	return new(model.User), nil
+	return u.repository.VerifyUser(lg)
 }
