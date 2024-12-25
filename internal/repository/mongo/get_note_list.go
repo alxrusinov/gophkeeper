@@ -8,8 +8,8 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// GetNotes - return notes for user by note id
-func (m *Mongo) GetNotes(ctx context.Context, userID string) ([]model.Note, error) {
+// GetNoteList - return notes for user by note id
+func (m *Mongo) GetNoteList(ctx context.Context, userID string) ([]model.Note, error) {
 
 	result := make([]model.Note, 0)
 

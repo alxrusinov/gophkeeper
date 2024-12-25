@@ -3,32 +3,32 @@ package httphandler
 const (
 	// AuthRouteGroup - group route is for authorization and
 	// registration new users
-	AuthRouteGroup = "/auth"
+	AuthRouteGroup string = "/auth"
 	// ApiRouteGroup - group route implements api
-	ApiRouteGroup = "/api"
+	ApiRouteGroup string = "/api"
 )
 
 const (
 	// RegisterRoute - route is for registration new user
-	RegisterRoute = "/register"
+	RegisterRoute string = "/register"
 	// LoginRoute - route for registration cew user
-	LoginRoute = "/login"
+	LoginRoute string = "/login"
 	// LogoutRoute - route for logout
-	LogoutRoute = "/logout"
+	LogoutRoute string = "/logout"
 	// NotesRoute - route for  notes
-	NotesRoute = "/notes"
+	NotesRoute string = "/notes"
 	// BankcardsRoute - route for  bank cards
-	BankcardsRoute = "/bankcards"
+	BankcardsRoute string = "/bankcards"
 	// BinariesRoute - route for  binary data
-	BinariesRoute = "/binaries"
+	BinariesRoute string = "/binaries"
 	// CredentialsRoute - route for  credentials
-	CredentialsRoute = "/credentials"
+	CredentialsRoute string = "/credentials"
 	// NoteRoute - route for  note
-	NoteRoute = "/notes/{id}"
+	NoteRoute string = "/notes/{id}"
 	// NotesRoute - route for bank card
-	BankcardRoute = "/bankcards/{id}"
+	BankcardRoute string = "/bankcards/{id}"
 	// BinaryRoute - route for  binary data
-	BinaryRoute = "/binaries/{id}"
+	BinaryRoute string = "/binaries/{id}"
 	// CredentialRoute - route for credentials
-	CredentialRoute = "/credentials/{id}"
+	CredentialRoute string = "/credentials/{id}"
 )

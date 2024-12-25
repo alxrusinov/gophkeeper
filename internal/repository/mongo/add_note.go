@@ -19,7 +19,7 @@ func (m *Mongo) AddNote(ctx context.Context, note *model.Note, userID string) (*
 	if id, ok := insertedResult.InsertedID.(primitive.ObjectID); ok {
 		return &model.Note{
 			ID:     id.Hex(),
-			UserID: note.UserID,
+			UserID: "",
 			Data:   note.Data,
 			Title:  note.Title,
 			Meta:   note.Meta,

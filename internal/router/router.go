@@ -34,10 +34,10 @@ func (r *Router) Run(ctx context.Context) (err error) {
 
 	apiRouter.Use(iris.Compression)
 
-	apiRouter.Get(httphandler.NotesRoute, r.handler.GetNotes)
-	apiRouter.Get(httphandler.BinariesRoute, r.handler.GetBinaries)
-	apiRouter.Get(httphandler.BankcardsRoute, r.handler.GetBankCards)
-	apiRouter.Get(httphandler.CredentialsRoute, r.handler.GetCredentials)
+	apiRouter.Get(httphandler.NotesRoute, r.handler.GetNoteList)
+	apiRouter.Get(httphandler.BinariesRoute, r.handler.GetBinaryList)
+	apiRouter.Get(httphandler.BankcardsRoute, r.handler.GetBankCardList)
+	apiRouter.Get(httphandler.CredentialsRoute, r.handler.GetCredentialsList)
 
 	apiRouter.Post(httphandler.NotesRoute, r.handler.SetNote)
 	apiRouter.Post(httphandler.BinariesRoute, r.handler.SetBinary)
@@ -47,7 +47,7 @@ func (r *Router) Run(ctx context.Context) (err error) {
 	apiRouter.Get(httphandler.NoteRoute, r.handler.GetNote)
 	apiRouter.Get(httphandler.BinaryRoute, r.handler.GetBinary)
 	apiRouter.Get(httphandler.BankcardRoute, r.handler.GetBankCard)
-	apiRouter.Get(httphandler.CredentialRoute, r.handler.GetCredential)
+	apiRouter.Get(httphandler.CredentialRoute, r.handler.GetCredentials)
 
 	apiRouter.Delete(httphandler.NotesRoute, r.handler.DeleteNote)
 	apiRouter.Delete(httphandler.BinariesRoute, r.handler.DeleteBinary)

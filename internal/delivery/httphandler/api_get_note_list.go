@@ -9,7 +9,7 @@ import (
 	"github.com/kataras/iris/v12"
 )
 
-func (h *HttpHandler) GetNotes(ctx iris.Context) {
+func (h *HttpHandler) GetNoteList(ctx iris.Context) {
 	user, err := h.auth.GetUserFromContext(ctx)
 
 	if err != nil {
@@ -17,7 +17,7 @@ func (h *HttpHandler) GetNotes(ctx iris.Context) {
 		return
 	}
 
-	notes, err := h.usecase.GetNotes(ctx, user.ID)
+	notes, err := h.usecase.GetNoteList(ctx, user.ID)
 
 	if err != nil {
 		notFoundErr := new(customerrors.NotFound)
