@@ -26,6 +26,12 @@ type Usecase interface {
 	GetCredentials(ctx context.Context, userID string, credsID string) (*model.Credentials, error)
 	// GetCredentialsList - return all credentials for user
 	GetCredentialsList(ctx context.Context, userID string) ([]model.Credentials, error)
+	// AddBankCard - adds new bank card for user
+	AddBankCard(ctx context.Context, card *model.BankCard) (*model.BankCard, error)
+	// GetBankCard - return bank card for user
+	GetBankCard(ctx context.Context, userID string, cardID string) (*model.BankCard, error)
+	// GetBankCardList - return all bank cards for user
+	GetBankCardList(ctx context.Context, userID string) ([]model.BankCard, error)
 }
 
 // HttpHandler - handler for http router

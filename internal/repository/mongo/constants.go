@@ -11,4 +11,6 @@ const (
 	CredentialsCollection = "creds"
 	// BinaryCollection - collection of binary data
 	BinaryCollection = "data"
+	// BankCardCollection - collection of bank cards data
+	BankCardCollection = "cards"
 )
