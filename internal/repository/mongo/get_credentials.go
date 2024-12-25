@@ -23,7 +23,7 @@ func (m *Mongo) GetCredentials(ctx context.Context, userID string, credsID strin
 
 	filter := bson.D{{Key: "user_id", Value: userID}, {Key: "_id", Value: credsIDFilter}}
 
-	err = m.client.Database(DataBase).Collection(NoteCollection).FindOne(ctx, filter, options.FindOne().SetProjection(bson.M{"user_id": 0})).Decode(result)
+	err = m.client.Database(DataBase).Collection(CredentialsCollection).FindOne(ctx, filter, options.FindOne().SetProjection(bson.M{"user_id": 0})).Decode(result)
 
 	if err != nil {
 		return nil, &customerrors.NotFound{Err: fmt.Errorf("note with id %s does not exist", credsID)}
