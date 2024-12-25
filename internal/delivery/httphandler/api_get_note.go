@@ -38,8 +38,6 @@ func (h *HttpHandler) GetNote(ctx iris.Context) {
 
 	}
 
-	note.UserID = ""
-
 	ctx.StatusCode(http.StatusOK)
 	ctx.JSON(note)
 }

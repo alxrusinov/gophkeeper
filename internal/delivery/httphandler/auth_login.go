@@ -59,4 +59,6 @@ func (h *HttpHandler) Login(ctx iris.Context) {
 	ctx.SetCookie(tokenCookie)
 
 	ctx.StatusCode(http.StatusOK)
+
+	ctx.JSON(user.ID)
 }

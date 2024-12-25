@@ -14,6 +14,7 @@ func (a *Auth) GetUserFromContext(ctx iris.Context) (*model.User, error) {
 	if err := token.Claims(&claims); err != nil {
 		return nil, err
 	}
+
 	user := &model.User{
 		ID:       claims.UserID,
 		Username: claims.Subject,

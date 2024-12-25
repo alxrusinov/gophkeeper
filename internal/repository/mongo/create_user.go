@@ -20,7 +20,7 @@ func (m *Mongo) CreateUser(ctx context.Context, lg *model.Login) (*model.User, e
 
 	if userID, ok := res.InsertedID.(primitive.ObjectID); ok {
 		return &model.User{
-			ID:       userID.String(),
+			ID:       userID.Hex(),
 			Username: lg.Username,
 		}, nil
 	}

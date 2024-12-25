@@ -13,12 +13,12 @@ import (
 
 // VerifyUser - checks if user exists and has valid password
 func (m *Mongo) VerifyUser(ctx context.Context, lg *model.Login) (*model.User, error) {
-	user := new(model.User)
+	userDoc := new(model.UserDocument)
 	login := new(model.Login)
 
 	result := m.client.Database(DataBase).Collection(UserCollection).FindOne(ctx, bson.M{"username": lg.Username})
 
-	err := result.Decode(user)
+	err := result.Decode(userDoc)
 
 	if err != nil {
 		if errors.Is(err, mongo.ErrNoDocuments) {
@@ -36,6 +36,8 @@ func (m *Mongo) VerifyUser(ctx context.Context, lg *model.Login) (*model.User, e
 	if lg.Password != login.Password {
 		return nil, &customerrors.UnverifiedUser{Err: fmt.Errorf("login or password is wrong")}
 	}
+
+	user := model.UserFromUserDocument(*userDoc)
 
 	return user, nil
 }
