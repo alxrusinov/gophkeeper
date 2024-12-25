@@ -9,7 +9,7 @@ import (
 )
 
 // AddCredentials - adds new credentials for user
-func (m *Mongo) AddCredentials(ctx context.Context, creds *model.Credentials, userID string) (*model.Credentials, error) {
+func (m *Mongo) AddCredentials(ctx context.Context, creds *model.Credentials) (*model.Credentials, error) {
 	insertedResult, err := m.client.Database(DataBase).Collection(CredentialsCollection).InsertOne(ctx, creds)
 
 	if err != nil {

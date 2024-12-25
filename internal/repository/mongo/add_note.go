@@ -9,7 +9,7 @@ import (
 )
 
 // AddNote - adds new note for user
-func (m *Mongo) AddNote(ctx context.Context, note *model.Note, userID string) (*model.Note, error) {
+func (m *Mongo) AddNote(ctx context.Context, note *model.Note) (*model.Note, error) {
 	insertedResult, err := m.client.Database(DataBase).Collection(NoteCollection).InsertOne(ctx, note)
 
 	if err != nil {

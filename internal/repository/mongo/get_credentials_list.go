@@ -12,7 +12,7 @@ import (
 func (m *Mongo) GetCredentialsList(ctx context.Context, userID string) ([]model.Credentials, error) {
 	result := make([]model.Credentials, 0)
 
-	filter := bson.D{{Key: "userr_id", Value: userID}}
+	filter := bson.D{{Key: "user_id", Value: userID}}
 
 	cursor, err := m.client.Database(DataBase).Collection(CredentialsCollection).Find(ctx, filter, options.Find().SetProjection(bson.M{"user_id": 0}))
 

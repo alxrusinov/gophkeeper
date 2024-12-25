@@ -9,9 +9,9 @@ import (
 )
 
 func (h *HttpHandler) GetCredentials(ctx iris.Context) {
-	noteID := ctx.Params().Get("id")
+	credID := ctx.Params().Get("id")
 
-	if noteID == "" {
+	if credID == "" {
 		ctx.StopWithStatus(http.StatusNotFound)
 		return
 	}
@@ -23,7 +23,7 @@ func (h *HttpHandler) GetCredentials(ctx iris.Context) {
 		return
 	}
 
-	creds, err := h.usecase.GetCredentials(ctx, user.ID, noteID)
+	creds, err := h.usecase.GetCredentials(ctx, user.ID, credID)
 
 	if err != nil {
 		notFoundErr := new(customerrors.NotFound)

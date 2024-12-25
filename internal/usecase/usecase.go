@@ -13,15 +13,17 @@ type Repository interface {
 	// VerifyUser - checks if user exists and has valid password
 	VerifyUser(ctx context.Context, lg *model.Login) (*model.User, error)
 	// AddNote - adds new note for user
-	AddNote(ctx context.Context, note *model.Note, userID string) (*model.Note, error)
+	AddNote(ctx context.Context, note *model.Note) (*model.Note, error)
 	// GetNote - returns note for user by note id
 	GetNote(ctx context.Context, userID, noteID string) (*model.Note, error)
 	// GetNotes - return notes for user by note id
 	GetNoteList(ctx context.Context, userID string) ([]model.Note, error)
 	// AddCredentials - adds new credentials for user
-	AddCredentials(ctx context.Context, creds *model.Credentials, userID string) (*model.Credentials, error)
+	AddCredentials(ctx context.Context, creds *model.Credentials) (*model.Credentials, error)
 	// GetCredentilas - return credentials for user
 	GetCredentials(ctx context.Context, userID string, credsID string) (*model.Credentials, error)
+	// GetCredentialsList - return all credentials for user
+	GetCredentialsList(ctx context.Context, userID string) ([]model.Credentials, error)
 }
 
 // Usecase implements httphandler.Usecase interface

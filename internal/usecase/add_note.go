@@ -7,6 +7,6 @@ import (
 )
 
 // AddNote - adds new note for user
-func (u *Usecase) AddNote(ctx context.Context, note *model.Note, userID string) (*model.Note, error) {
-	return u.repository.AddNote(ctx, note, userID)
+func (u *Usecase) AddNote(ctx context.Context, note *model.Note) (*model.Note, error) {
+	return u.repository.AddNote(ctx, note)
 }

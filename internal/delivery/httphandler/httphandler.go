@@ -19,11 +19,13 @@ type Usecase interface {
 	// GetNotes - return notes for user by note id
 	GetNoteList(ctx context.Context, userID string) ([]model.Note, error)
 	// AddNote - adds new note for user
-	AddNote(ctx context.Context, note *model.Note, userID string) (*model.Note, error)
+	AddNote(ctx context.Context, note *model.Note) (*model.Note, error)
 	// AddCredentials - adds new credentials for user
-	AddCredentials(ctx context.Context, creds *model.Credentials, userID string) (*model.Credentials, error)
+	AddCredentials(ctx context.Context, creds *model.Credentials) (*model.Credentials, error)
 	// GetCredentials - return credentials for user
 	GetCredentials(ctx context.Context, userID string, credsID string) (*model.Credentials, error)
+	// GetCredentialsList - return all credentials for user
+	GetCredentialsList(ctx context.Context, userID string) ([]model.Credentials, error)
 }
 
 // HttpHandler - handler for http router

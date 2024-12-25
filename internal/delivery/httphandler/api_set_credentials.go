@@ -25,7 +25,9 @@ func (h *HttpHandler) SetCredentials(ctx iris.Context) {
 		return
 	}
 
-	addedCreds, err := h.usecase.AddCredentials(ctx, creds, user.ID)
+	creds.UserID = user.ID
+
+	addedCreds, err := h.usecase.AddCredentials(ctx, creds)
 
 	if err != nil {
 		ctx.StopWithError(http.StatusInternalServerError, fmt.Errorf("credentils with title %s was not saved", creds.Title))
