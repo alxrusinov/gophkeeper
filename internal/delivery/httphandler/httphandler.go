@@ -32,6 +32,12 @@ type Usecase interface {
 	GetBankCard(ctx context.Context, userID string, cardID string) (*model.BankCard, error)
 	// GetBankCardList - return all bank cards for user
 	GetBankCardList(ctx context.Context, userID string) ([]model.BankCard, error)
+	// AddBinary - adds new binaey data for user
+	AddBinary(ctx context.Context, data *model.Binary) (*model.Binary, error)
+	// GetBinary - return binary data for user
+	GetBinary(ctx context.Context, userID string, binID string) (*model.Binary, error)
+	// GetBinaryList - return all binary data for user
+	GetBinaryList(ctx context.Context, userID string) ([]model.Binary, error)
 }
 
 // HttpHandler - handler for http router
