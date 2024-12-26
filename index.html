@@ -1,0 +1,2514 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>app: Go Coverage Report</title>
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">github.com/alxrusinov/gophkeeper/internal/app/app.go (0.0%)</option>
+				
+				<option value="file1">github.com/alxrusinov/gophkeeper/internal/auth/auth.go (0.0%)</option>
+				
+				<option value="file2">github.com/alxrusinov/gophkeeper/internal/auth/get_access_token.go (0.0%)</option>
+				
+				<option value="file3">github.com/alxrusinov/gophkeeper/internal/auth/get_access_token_exp.go (0.0%)</option>
+				
+				<option value="file4">github.com/alxrusinov/gophkeeper/internal/auth/get_refresh_token.go (0.0%)</option>
+				
+				<option value="file5">github.com/alxrusinov/gophkeeper/internal/auth/get_sig_key.go (0.0%)</option>
+				
+				<option value="file6">github.com/alxrusinov/gophkeeper/internal/auth/get_tokenpair_user.go (0.0%)</option>
+				
+				<option value="file7">github.com/alxrusinov/gophkeeper/internal/auth/get_user_from_context.go (0.0%)</option>
+				
+				<option value="file8">github.com/alxrusinov/gophkeeper/internal/auth/get_verifier.go (0.0%)</option>
+				
+				<option value="file9">github.com/alxrusinov/gophkeeper/internal/auth/refresh_user_tokens.go (0.0%)</option>
+				
+				<option value="file10">github.com/alxrusinov/gophkeeper/internal/config/config.go (0.0%)</option>
+				
+				<option value="file11">github.com/alxrusinov/gophkeeper/internal/customerrors/nonexistent_user.go (0.0%)</option>
+				
+				<option value="file12">github.com/alxrusinov/gophkeeper/internal/customerrors/notfound.go (0.0%)</option>
+				
+				<option value="file13">github.com/alxrusinov/gophkeeper/internal/customerrors/unverified_user.go (0.0%)</option>
+				
+				<option value="file14">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/api_delete_bank_card.go (0.0%)</option>
+				
+				<option value="file15">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/api_delete_binary.go (0.0%)</option>
+				
+				<option value="file16">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/api_delete_credentials.go (0.0%)</option>
+				
+				<option value="file17">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/api_delete_note.go (0.0%)</option>
+				
+				<option value="file18">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/api_get_bank_card.go (0.0%)</option>
+				
+				<option value="file19">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/api_get_bank_card_list.go (0.0%)</option>
+				
+				<option value="file20">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/api_get_binary.go (0.0%)</option>
+				
+				<option value="file21">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/api_get_binary_list.go (0.0%)</option>
+				
+				<option value="file22">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/api_get_credentials.go (0.0%)</option>
+				
+				<option value="file23">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/api_get_credentials_list.go (0.0%)</option>
+				
+				<option value="file24">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/api_get_note.go (0.0%)</option>
+				
+				<option value="file25">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/api_get_note_list.go (0.0%)</option>
+				
+				<option value="file26">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/api_set_bank_card.go (0.0%)</option>
+				
+				<option value="file27">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/api_set_binary.go (0.0%)</option>
+				
+				<option value="file28">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/api_set_credentials.go (0.0%)</option>
+				
+				<option value="file29">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/api_set_note.go (0.0%)</option>
+				
+				<option value="file30">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/auth_login.go (0.0%)</option>
+				
+				<option value="file31">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/auth_logout.go (0.0%)</option>
+				
+				<option value="file32">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/auth_middleware.go (0.0%)</option>
+				
+				<option value="file33">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/auth_register.go (0.0%)</option>
+				
+				<option value="file34">github.com/alxrusinov/gophkeeper/internal/delivery/httphandler/httphandler.go (0.0%)</option>
+				
+				<option value="file35">github.com/alxrusinov/gophkeeper/internal/logger/logger.go (0.0%)</option>
+				
+				<option value="file36">github.com/alxrusinov/gophkeeper/internal/model/bank_card.go (0.0%)</option>
+				
+				<option value="file37">github.com/alxrusinov/gophkeeper/internal/model/binary.go (0.0%)</option>
+				
+				<option value="file38">github.com/alxrusinov/gophkeeper/internal/model/credentials.go (0.0%)</option>
+				
+				<option value="file39">github.com/alxrusinov/gophkeeper/internal/model/note.go (0.0%)</option>
+				
+				<option value="file40">github.com/alxrusinov/gophkeeper/internal/model/user.go (0.0%)</option>
+				
+				<option value="file41">github.com/alxrusinov/gophkeeper/internal/repository/mongo/add_binary.go (0.0%)</option>
+				
+				<option value="file42">github.com/alxrusinov/gophkeeper/internal/repository/mongo/add_card.go (0.0%)</option>
+				
+				<option value="file43">github.com/alxrusinov/gophkeeper/internal/repository/mongo/add_credentials.go (0.0%)</option>
+				
+				<option value="file44">github.com/alxrusinov/gophkeeper/internal/repository/mongo/add_note.go (0.0%)</option>
+				
+				<option value="file45">github.com/alxrusinov/gophkeeper/internal/repository/mongo/create_user.go (0.0%)</option>
+				
+				<option value="file46">github.com/alxrusinov/gophkeeper/internal/repository/mongo/get_binary.go (0.0%)</option>
+				
+				<option value="file47">github.com/alxrusinov/gophkeeper/internal/repository/mongo/get_binary_list.go (0.0%)</option>
+				
+				<option value="file48">github.com/alxrusinov/gophkeeper/internal/repository/mongo/get_card.go (0.0%)</option>
+				
+				<option value="file49">github.com/alxrusinov/gophkeeper/internal/repository/mongo/get_card_list.go (0.0%)</option>
+				
+				<option value="file50">github.com/alxrusinov/gophkeeper/internal/repository/mongo/get_credentials.go (0.0%)</option>
+				
+				<option value="file51">github.com/alxrusinov/gophkeeper/internal/repository/mongo/get_credentials_list.go (0.0%)</option>
+				
+				<option value="file52">github.com/alxrusinov/gophkeeper/internal/repository/mongo/get_note.go (0.0%)</option>
+				
+				<option value="file53">github.com/alxrusinov/gophkeeper/internal/repository/mongo/get_note_list.go (0.0%)</option>
+				
+				<option value="file54">github.com/alxrusinov/gophkeeper/internal/repository/mongo/mongo.go (0.0%)</option>
+				
+				<option value="file55">github.com/alxrusinov/gophkeeper/internal/repository/mongo/verify_user.go (0.0%)</option>
+				
+				<option value="file56">github.com/alxrusinov/gophkeeper/internal/router/router.go (0.0%)</option>
+				
+				<option value="file57">github.com/alxrusinov/gophkeeper/internal/usecase/add_binary.go (0.0%)</option>
+				
+				<option value="file58">github.com/alxrusinov/gophkeeper/internal/usecase/add_card.go (0.0%)</option>
+				
+				<option value="file59">github.com/alxrusinov/gophkeeper/internal/usecase/add_credentials.go (0.0%)</option>
+				
+				<option value="file60">github.com/alxrusinov/gophkeeper/internal/usecase/add_note.go (0.0%)</option>
+				
+				<option value="file61">github.com/alxrusinov/gophkeeper/internal/usecase/create_user.go (0.0%)</option>
+				
+				<option value="file62">github.com/alxrusinov/gophkeeper/internal/usecase/get_binary.go (0.0%)</option>
+				
+				<option value="file63">github.com/alxrusinov/gophkeeper/internal/usecase/get_binary_list.go (0.0%)</option>
+				
+				<option value="file64">github.com/alxrusinov/gophkeeper/internal/usecase/get_card.go (0.0%)</option>
+				
+				<option value="file65">github.com/alxrusinov/gophkeeper/internal/usecase/get_card_list.go (0.0%)</option>
+				
+				<option value="file66">github.com/alxrusinov/gophkeeper/internal/usecase/get_credentials.go (0.0%)</option>
+				
+				<option value="file67">github.com/alxrusinov/gophkeeper/internal/usecase/get_credentilas_list.go (0.0%)</option>
+				
+				<option value="file68">github.com/alxrusinov/gophkeeper/internal/usecase/get_note.go (0.0%)</option>
+				
+				<option value="file69">github.com/alxrusinov/gophkeeper/internal/usecase/get_note_list.go (0.0%)</option>
+				
+				<option value="file70">github.com/alxrusinov/gophkeeper/internal/usecase/usecase.go (0.0%)</option>
+				
+				<option value="file71">github.com/alxrusinov/gophkeeper/internal/usecase/verify_user.go (0.0%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">not covered</span>
+				<span class="cov8">covered</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">package app
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/delivery/httphandler"
+        "github.com/alxrusinov/gophkeeper/internal/logger"
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "github.com/alxrusinov/gophkeeper/internal/repository/mongo"
+        "github.com/alxrusinov/gophkeeper/internal/router"
+        "github.com/alxrusinov/gophkeeper/internal/usecase"
+)
+
+// App - aplication
+type App struct {
+        config Config
+}
+
+// Config - interface for config
+type Config interface {
+        model.Runner
+        GetBaseURL() string
+        GetDbURL() string
+}
+
+// Run - method of running application
+func (app *App) Run(ctx context.Context) (err error) <span class="cov0" title="0">{
+        err = app.config.Run()
+
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+
+        <span class="cov0" title="0">err = logger.InitLogger()
+
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+
+        <span class="cov0" title="0">repo, err := mongo.NewMongo(ctx, app.config.GetDbURL())
+
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+
+        <span class="cov0" title="0">defer func(ctx context.Context) error </span><span class="cov0" title="0">{
+                return repo.Disconnect(ctx)
+        }</span>(ctx)
+
+        <span class="cov0" title="0">currentUsecase := usecase.NewUsecase(repo)
+
+        handler := httphandler.NewHttpHandler(currentUsecase)
+
+        server := router.NewRouter(app.config, handler)
+
+        err = server.Run(ctx)
+
+        return err</span>
+}
+
+// NewApp - create new application
+func NewApp(config Config) *App <span class="cov0" title="0">{
+        application := &amp;App{config: config}
+
+        return application
+}</span>
+</pre>
+		
+		<pre class="file" id="file1" style="display: none">package auth
+
+import (
+        "github.com/kataras/iris/v12/middleware/jwt"
+)
+
+// Auth - authenticator with jwt token
+type Auth struct {
+        accessSigner   *jwt.Signer
+        refreshSigner  *jwt.Signer
+        accessVerifier *jwt.Verifier
+}
+
+// NewAuth - new instance of Auth
+func NewAuth() *Auth <span class="cov0" title="0">{
+        auth := &amp;Auth{
+                accessSigner:   jwt.NewSigner(jwt.HS256, accessSecret, accessExpire).WithEncryption([]byte(accessEncriptionKey), nil),
+                refreshSigner:  jwt.NewSigner(jwt.HS256, refreshSecret, refreshExpire).WithEncryption([]byte(refreshEncriptionKey), nil),
+                accessVerifier: jwt.NewVerifier(jwt.HS256, accessSecret).WithDecryption([]byte(accessEncriptionKey), nil),
+        }
+
+        return auth
+}</span>
+</pre>
+		
+		<pre class="file" id="file2" style="display: none">package auth
+
+import (
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "github.com/kataras/iris/v12/middleware/jwt"
+)
+
+// GetAccessToken - generate access token
+func (a *Auth) GetAccessToken(user *model.User) (string, error) <span class="cov0" title="0">{
+        accessClaims := Claims{
+                Claims: jwt.Claims{Subject: user.Username},
+                UserID: user.ID,
+        }
+
+        accessToken, err := a.accessSigner.Sign(accessClaims)
+
+        return string(accessToken), err
+}</span>
+</pre>
+		
+		<pre class="file" id="file3" style="display: none">package auth
+
+import "time"
+
+// GetAccessTokenExp - return expiring of access token
+func (a *Auth) GetAccessTokenExp() time.Duration <span class="cov0" title="0">{
+        return accessExpire
+}</span>
+</pre>
+		
+		<pre class="file" id="file4" style="display: none">package auth
+
+import (
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "github.com/kataras/iris/v12/middleware/jwt"
+)
+
+// GetAccessToken - generate access token
+func (a *Auth) GetRefreshToken(user *model.User) (string, error) <span class="cov0" title="0">{
+        refreshClaims := Claims{
+                Claims: jwt.Claims{Subject: user.Username},
+                UserID: user.ID,
+        }
+
+        refreshToken, err := a.refreshSigner.Sign(refreshClaims)
+
+        return string(refreshToken), err
+}</span>
+</pre>
+		
+		<pre class="file" id="file5" style="display: none">package auth
+
+// GetSigKey - returns sig aky  as []byte
+func (a *Auth) GetSigKey() []byte <span class="cov0" title="0">{
+        return []byte(sigKey)
+}</span>
+</pre>
+		
+		<pre class="file" id="file6" style="display: none">package auth
+
+import "github.com/alxrusinov/gophkeeper/internal/model"
+
+// GetTokenPair - return new token pair for user
+func (a *Auth) GetTokenPair(user *model.User) (*model.TokenPair, error) <span class="cov0" title="0">{
+        accessToken, err := a.GetAccessToken(user)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">refreshToken, err := a.GetRefreshToken(user)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">tokenPair := &amp;model.TokenPair{
+                AccessToken:  accessToken,
+                RefreshToken: refreshToken,
+                Exp:          int64(accessExpire.Seconds()),
+        }
+
+        return tokenPair, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file7" style="display: none">package auth
+
+import (
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "github.com/kataras/iris/v12"
+        "github.com/kataras/iris/v12/middleware/jwt"
+)
+
+// GetUserIDFromContext extracts userID from context
+func (a *Auth) GetUserFromContext(ctx iris.Context) (*model.User, error) <span class="cov0" title="0">{
+        token := jwt.GetVerifiedToken(ctx)
+
+        var claims Claims
+        if err := token.Claims(&amp;claims); err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">user := &amp;model.User{
+                ID:       claims.UserID,
+                Username: claims.Subject,
+        }
+
+        return user, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file8" style="display: none">package auth
+
+import "github.com/kataras/iris/v12/middleware/jwt"
+
+// GetVerifier - return custom jwt verifier
+func (a *Auth) GetVerifier() *jwt.Verifier <span class="cov0" title="0">{
+        return a.accessVerifier
+}</span>
+</pre>
+		
+		<pre class="file" id="file9" style="display: none">package auth
+
+import (
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "github.com/kataras/iris/v12"
+)
+
+// RefreshUserTokens refreshes access and refresh user tokens
+func (a *Auth) RefreshUserTokens(ctx iris.Context) (*model.TokenPair, error) <span class="cov0" title="0">{
+        user, err := a.GetUserFromContext(ctx)
+
+        accessToken, err := a.GetAccessToken(user)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">refreshToken, err := a.GetRefreshToken(user)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">tokenPair := &amp;model.TokenPair{
+                AccessToken:  accessToken,
+                RefreshToken: refreshToken,
+                Exp:          int64(accessExpire.Seconds()),
+        }
+
+        return tokenPair, nil</span>
+
+}
+</pre>
+		
+		<pre class="file" id="file10" style="display: none">package config
+
+// Config - type config implements interface app.Config
+type Config struct {
+        baseURL string
+        dbURL   string
+}
+
+// ParseFlags - parsing flags and set values
+func (cfg *Config) parseFlags() (err error) <span class="cov0" title="0">{
+        cfg.baseURL = "localhost:8080"
+        cfg.dbURL = "mongodb://localhost:3000"
+        return err
+}</span>
+
+// ParseConfigFile - parsing config file and set values
+func (cfg *Config) parseConfigFile() (err error) <span class="cov0" title="0">{
+        return err
+}</span>
+
+// Run - parse config files, env and flags - initializes config
+func (cfg *Config) Run() (err error) <span class="cov0" title="0">{
+        err = cfg.parseConfigFile()
+        err = cfg.parseFlags()
+
+        return err
+}</span>
+
+// GetBaseURL - return base url
+func (cfg *Config) GetBaseURL() string <span class="cov0" title="0">{
+        return cfg.baseURL
+}</span>
+
+// GetDbURL - return database url
+func (cfg *Config) GetDbURL() string <span class="cov0" title="0">{
+        return cfg.dbURL
+}</span>
+
+// NewConfig - create new config
+func NewConfig() *Config <span class="cov0" title="0">{
+        cfg := &amp;Config{}
+
+        return cfg
+}</span>
+</pre>
+		
+		<pre class="file" id="file11" style="display: none">package customerrors
+
+// NonexistentUser - error if user does not exist
+type NonexistentUser struct {
+        Err error
+}
+
+// Unwrap - implements unwrap method of error
+func (err *NonexistentUser) Unwrap() error <span class="cov0" title="0">{
+        return err.Err
+}</span>
+
+// Error - implements error method of error
+func (err *NonexistentUser) Error() string <span class="cov0" title="0">{
+        return err.Err.Error()
+}</span>
+</pre>
+		
+		<pre class="file" id="file12" style="display: none">package customerrors
+
+// NotFound - error if source does not find
+type NotFound struct {
+        Err error
+}
+
+// Unwrap - implements unwrap method of error
+func (err *NotFound) Unwrap() error <span class="cov0" title="0">{
+        return err.Err
+}</span>
+
+// Error - implements error method of error
+func (err *NotFound) Error() string <span class="cov0" title="0">{
+        return err.Err.Error()
+}</span>
+</pre>
+		
+		<pre class="file" id="file13" style="display: none">package customerrors
+
+// UnverifiedUser - error if user does not verify
+type UnverifiedUser struct {
+        Err error
+}
+
+// Unwrap - implements unwrap method of error
+func (err *UnverifiedUser) Unwrap() error <span class="cov0" title="0">{
+        return err.Err
+}</span>
+
+// Error - implements error method of error
+func (err *UnverifiedUser) Error() string <span class="cov0" title="0">{
+        return err.Err.Error()
+}</span>
+</pre>
+		
+		<pre class="file" id="file14" style="display: none">package httphandler
+
+import (
+        "net/http"
+
+        "github.com/kataras/iris/v12"
+)
+
+// DeleteBankCard - deletes bank card
+func (h *HttpHandler) DeleteBankCard(ctx iris.Context) <span class="cov0" title="0">{
+        ctx.StatusCode(http.StatusOK)
+}</span>
+</pre>
+		
+		<pre class="file" id="file15" style="display: none">package httphandler
+
+import (
+        "net/http"
+
+        "github.com/kataras/iris/v12"
+)
+
+// DeleteBinary - deletes binary data
+func (h *HttpHandler) DeleteBinary(ctx iris.Context) <span class="cov0" title="0">{
+        ctx.StatusCode(http.StatusOK)
+}</span>
+</pre>
+		
+		<pre class="file" id="file16" style="display: none">package httphandler
+
+import (
+        "net/http"
+
+        "github.com/kataras/iris/v12"
+)
+
+// DeleteCredentials - deletes login and password data
+func (h *HttpHandler) DeleteCredentials(ctx iris.Context) <span class="cov0" title="0">{
+        ctx.StatusCode(http.StatusOK)
+
+}</span>
+</pre>
+		
+		<pre class="file" id="file17" style="display: none">package httphandler
+
+import (
+        "net/http"
+
+        "github.com/kataras/iris/v12"
+)
+
+func (h *HttpHandler) DeleteNote(ctx iris.Context) <span class="cov0" title="0">{
+        ctx.StatusCode(http.StatusOK)
+}</span>
+</pre>
+		
+		<pre class="file" id="file18" style="display: none">package httphandler
+
+import (
+        "errors"
+        "net/http"
+
+        "github.com/alxrusinov/gophkeeper/internal/customerrors"
+        "github.com/kataras/iris/v12"
+)
+
+func (h *HttpHandler) GetBankCard(ctx iris.Context) <span class="cov0" title="0">{
+        cardID := ctx.Params().Get("id")
+
+        if cardID == "" </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusNotFound)
+                return
+        }</span>
+
+        <span class="cov0" title="0">user, err := h.auth.GetUserFromContext(ctx)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusUnauthorized)
+                return
+        }</span>
+
+        <span class="cov0" title="0">card, err := h.usecase.GetBankCard(ctx, user.ID, cardID)
+
+        if err != nil </span><span class="cov0" title="0">{
+                notFoundErr := new(customerrors.NotFound)
+
+                if errors.As(err, &amp;notFoundErr) </span><span class="cov0" title="0">{
+                        ctx.StopWithStatus(http.StatusNotFound)
+                        return
+                }</span>
+
+                <span class="cov0" title="0">ctx.StopWithStatus(http.StatusInternalServerError)
+                return</span>
+
+        }
+
+        <span class="cov0" title="0">ctx.StatusCode(http.StatusOK)
+        ctx.JSON(card)</span>
+}
+</pre>
+		
+		<pre class="file" id="file19" style="display: none">package httphandler
+
+import (
+        "errors"
+        "net/http"
+
+        "github.com/alxrusinov/gophkeeper/internal/customerrors"
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "github.com/kataras/iris/v12"
+)
+
+func (h *HttpHandler) GetBankCardList(ctx iris.Context) <span class="cov0" title="0">{
+
+        user, err := h.auth.GetUserFromContext(ctx)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusUnauthorized)
+                return
+        }</span>
+
+        <span class="cov0" title="0">cardList, err := h.usecase.GetBankCardList(ctx, user.ID)
+
+        if err != nil </span><span class="cov0" title="0">{
+                notFoundErr := new(customerrors.NotFound)
+
+                if errors.As(err, &amp;notFoundErr) </span><span class="cov0" title="0">{
+                        ctx.StatusCode(http.StatusOK)
+                        ctx.JSON([]model.BankCard{})
+                        return
+                }</span>
+
+                <span class="cov0" title="0">ctx.StopWithStatus(http.StatusInternalServerError)
+                return</span>
+        }
+
+        <span class="cov0" title="0">ctx.StatusCode(http.StatusOK)
+        ctx.JSON(cardList)</span>
+}
+</pre>
+		
+		<pre class="file" id="file20" style="display: none">package httphandler
+
+import (
+        "errors"
+        "net/http"
+
+        "github.com/alxrusinov/gophkeeper/internal/customerrors"
+        "github.com/kataras/iris/v12"
+)
+
+func (h *HttpHandler) GetBinary(ctx iris.Context) <span class="cov0" title="0">{
+        binID := ctx.Params().Get("id")
+
+        if binID == "" </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusNotFound)
+                return
+        }</span>
+
+        <span class="cov0" title="0">user, err := h.auth.GetUserFromContext(ctx)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusUnauthorized)
+                return
+        }</span>
+
+        <span class="cov0" title="0">bin, err := h.usecase.GetBinary(ctx, user.ID, binID)
+
+        if err != nil </span><span class="cov0" title="0">{
+                notFoundErr := new(customerrors.NotFound)
+
+                if errors.As(err, &amp;notFoundErr) </span><span class="cov0" title="0">{
+                        ctx.StopWithStatus(http.StatusNotFound)
+                        return
+                }</span>
+
+                <span class="cov0" title="0">ctx.StopWithStatus(http.StatusInternalServerError)
+                return</span>
+
+        }
+
+        <span class="cov0" title="0">ctx.StatusCode(http.StatusOK)
+        ctx.JSON(bin)</span>
+}
+</pre>
+		
+		<pre class="file" id="file21" style="display: none">package httphandler
+
+import (
+        "errors"
+        "net/http"
+
+        "github.com/alxrusinov/gophkeeper/internal/customerrors"
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "github.com/kataras/iris/v12"
+)
+
+func (h *HttpHandler) GetBinaryList(ctx iris.Context) <span class="cov0" title="0">{
+
+        user, err := h.auth.GetUserFromContext(ctx)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusUnauthorized)
+                return
+        }</span>
+
+        <span class="cov0" title="0">binList, err := h.usecase.GetCredentialsList(ctx, user.ID)
+
+        if err != nil </span><span class="cov0" title="0">{
+                notFoundErr := new(customerrors.NotFound)
+
+                if errors.As(err, &amp;notFoundErr) </span><span class="cov0" title="0">{
+                        ctx.StatusCode(http.StatusOK)
+                        ctx.JSON([]model.Binary{})
+                        return
+                }</span>
+
+                <span class="cov0" title="0">ctx.StopWithStatus(http.StatusInternalServerError)
+                return</span>
+        }
+
+        <span class="cov0" title="0">ctx.StatusCode(http.StatusOK)
+        ctx.JSON(binList)</span>
+}
+</pre>
+		
+		<pre class="file" id="file22" style="display: none">package httphandler
+
+import (
+        "errors"
+        "net/http"
+
+        "github.com/alxrusinov/gophkeeper/internal/customerrors"
+        "github.com/kataras/iris/v12"
+)
+
+func (h *HttpHandler) GetCredentials(ctx iris.Context) <span class="cov0" title="0">{
+        credID := ctx.Params().Get("id")
+
+        if credID == "" </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusNotFound)
+                return
+        }</span>
+
+        <span class="cov0" title="0">user, err := h.auth.GetUserFromContext(ctx)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusUnauthorized)
+                return
+        }</span>
+
+        <span class="cov0" title="0">creds, err := h.usecase.GetCredentials(ctx, user.ID, credID)
+
+        if err != nil </span><span class="cov0" title="0">{
+                notFoundErr := new(customerrors.NotFound)
+
+                if errors.As(err, &amp;notFoundErr) </span><span class="cov0" title="0">{
+                        ctx.StopWithStatus(http.StatusNotFound)
+                        return
+                }</span>
+
+                <span class="cov0" title="0">ctx.StopWithStatus(http.StatusInternalServerError)
+                return</span>
+
+        }
+
+        <span class="cov0" title="0">ctx.StatusCode(http.StatusOK)
+        ctx.JSON(creds)</span>
+}
+</pre>
+		
+		<pre class="file" id="file23" style="display: none">package httphandler
+
+import (
+        "errors"
+        "net/http"
+
+        "github.com/alxrusinov/gophkeeper/internal/customerrors"
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "github.com/kataras/iris/v12"
+)
+
+func (h *HttpHandler) GetCredentialsList(ctx iris.Context) <span class="cov0" title="0">{
+
+        user, err := h.auth.GetUserFromContext(ctx)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusUnauthorized)
+                return
+        }</span>
+
+        <span class="cov0" title="0">credsList, err := h.usecase.GetCredentialsList(ctx, user.ID)
+
+        if err != nil </span><span class="cov0" title="0">{
+                notFoundErr := new(customerrors.NotFound)
+
+                if errors.As(err, &amp;notFoundErr) </span><span class="cov0" title="0">{
+                        ctx.StatusCode(http.StatusOK)
+                        ctx.JSON([]model.Credentials{})
+                        return
+                }</span>
+
+                <span class="cov0" title="0">ctx.StopWithStatus(http.StatusInternalServerError)
+                return</span>
+        }
+
+        <span class="cov0" title="0">ctx.StatusCode(http.StatusOK)
+        ctx.JSON(credsList)</span>
+}
+</pre>
+		
+		<pre class="file" id="file24" style="display: none">package httphandler
+
+import (
+        "errors"
+        "net/http"
+
+        "github.com/alxrusinov/gophkeeper/internal/customerrors"
+        "github.com/kataras/iris/v12"
+)
+
+func (h *HttpHandler) GetNote(ctx iris.Context) <span class="cov0" title="0">{
+        noteID := ctx.Params().Get("id")
+
+        if noteID == "" </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusNotFound)
+                return
+        }</span>
+
+        <span class="cov0" title="0">user, err := h.auth.GetUserFromContext(ctx)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusUnauthorized)
+                return
+        }</span>
+
+        <span class="cov0" title="0">note, err := h.usecase.GetNote(ctx, user.ID, noteID)
+
+        if err != nil </span><span class="cov0" title="0">{
+                notFoundErr := new(customerrors.NotFound)
+
+                if errors.As(err, &amp;notFoundErr) </span><span class="cov0" title="0">{
+                        ctx.StopWithStatus(http.StatusNotFound)
+                        return
+                }</span>
+
+                <span class="cov0" title="0">ctx.StopWithStatus(http.StatusInternalServerError)
+                return</span>
+
+        }
+
+        <span class="cov0" title="0">ctx.StatusCode(http.StatusOK)
+        ctx.JSON(note)</span>
+}
+</pre>
+		
+		<pre class="file" id="file25" style="display: none">package httphandler
+
+import (
+        "errors"
+        "net/http"
+
+        "github.com/alxrusinov/gophkeeper/internal/customerrors"
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "github.com/kataras/iris/v12"
+)
+
+func (h *HttpHandler) GetNoteList(ctx iris.Context) <span class="cov0" title="0">{
+        user, err := h.auth.GetUserFromContext(ctx)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusUnauthorized)
+                return
+        }</span>
+
+        <span class="cov0" title="0">notes, err := h.usecase.GetNoteList(ctx, user.ID)
+
+        if err != nil </span><span class="cov0" title="0">{
+                notFoundErr := new(customerrors.NotFound)
+
+                if errors.As(err, &amp;notFoundErr) </span><span class="cov0" title="0">{
+                        ctx.StatusCode(http.StatusOK)
+                        ctx.JSON([]model.Note{})
+                        return
+                }</span>
+
+                <span class="cov0" title="0">ctx.StopWithStatus(http.StatusInternalServerError)
+                return</span>
+        }
+
+        <span class="cov0" title="0">ctx.StatusCode(http.StatusOK)
+        ctx.JSON(notes)</span>
+}
+</pre>
+		
+		<pre class="file" id="file26" style="display: none">package httphandler
+
+import (
+        "fmt"
+        "net/http"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "github.com/kataras/iris/v12"
+)
+
+func (h *HttpHandler) SetBankCard(ctx iris.Context) <span class="cov0" title="0">{
+        user, err := h.auth.GetUserFromContext(ctx)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusUnauthorized)
+                return
+        }</span>
+
+        <span class="cov0" title="0">card := new(model.BankCard)
+
+        err = ctx.ReadJSON(card)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusBadRequest)
+                return
+        }</span>
+
+        <span class="cov0" title="0">card.UserID = user.ID
+
+        addedCard, err := h.usecase.AddBankCard(ctx, card)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithError(http.StatusInternalServerError, fmt.Errorf("card with title %s was not saved", card.Title))
+        }</span>
+
+        <span class="cov0" title="0">ctx.StatusCode(http.StatusOK)
+        ctx.JSON(addedCard)</span>
+}
+</pre>
+		
+		<pre class="file" id="file27" style="display: none">package httphandler
+
+import (
+        "fmt"
+        "net/http"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "github.com/kataras/iris/v12"
+)
+
+func (h *HttpHandler) SetBinary(ctx iris.Context) <span class="cov0" title="0">{
+        user, err := h.auth.GetUserFromContext(ctx)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusUnauthorized)
+                return
+        }</span>
+
+        <span class="cov0" title="0">binary := new(model.Binary)
+
+        err = ctx.ReadJSON(binary)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusBadRequest)
+                return
+        }</span>
+
+        <span class="cov0" title="0">binary.UserID = user.ID
+
+        added, err := h.usecase.AddBinary(ctx, binary)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithError(http.StatusInternalServerError, fmt.Errorf("credentils with title %s was not saved", added.Title))
+        }</span>
+
+        <span class="cov0" title="0">ctx.StatusCode(http.StatusCreated)
+        ctx.JSON(added)</span>
+}
+</pre>
+		
+		<pre class="file" id="file28" style="display: none">package httphandler
+
+import (
+        "fmt"
+        "net/http"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "github.com/kataras/iris/v12"
+)
+
+func (h *HttpHandler) SetCredentials(ctx iris.Context) <span class="cov0" title="0">{
+        user, err := h.auth.GetUserFromContext(ctx)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusUnauthorized)
+                return
+        }</span>
+
+        <span class="cov0" title="0">creds := new(model.Credentials)
+
+        err = ctx.ReadJSON(creds)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusBadRequest)
+                return
+        }</span>
+
+        <span class="cov0" title="0">creds.UserID = user.ID
+
+        addedCreds, err := h.usecase.AddCredentials(ctx, creds)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithError(http.StatusInternalServerError, fmt.Errorf("credentils with title %s was not saved", creds.Title))
+        }</span>
+
+        <span class="cov0" title="0">ctx.StatusCode(http.StatusCreated)
+        ctx.JSON(addedCreds)</span>
+}
+</pre>
+		
+		<pre class="file" id="file29" style="display: none">package httphandler
+
+import (
+        "fmt"
+        "net/http"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "github.com/kataras/iris/v12"
+)
+
+func (h *HttpHandler) SetNote(ctx iris.Context) <span class="cov0" title="0">{
+        user, err := h.auth.GetUserFromContext(ctx)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusUnauthorized)
+                return
+        }</span>
+
+        <span class="cov0" title="0">note := new(model.Note)
+
+        err = ctx.ReadJSON(note)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusBadRequest)
+                return
+        }</span>
+
+        <span class="cov0" title="0">note.UserID = user.ID
+
+        addedNote, err := h.usecase.AddNote(ctx, note)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithError(http.StatusInternalServerError, fmt.Errorf("note with title %s was not saved", note.Title))
+        }</span>
+
+        <span class="cov0" title="0">ctx.StatusCode(http.StatusCreated)
+        ctx.JSON(addedNote)</span>
+}
+</pre>
+		
+		<pre class="file" id="file30" style="display: none">package httphandler
+
+import (
+        "errors"
+        "net/http"
+        "time"
+
+        "github.com/alxrusinov/gophkeeper/internal/customerrors"
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "github.com/kataras/iris/v12"
+)
+
+// Login - method of loginng existing user
+func (h *HttpHandler) Login(ctx iris.Context) <span class="cov0" title="0">{
+        login := new(model.Login)
+        err := ctx.ReadJSON(login)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusInternalServerError)
+                return
+        }</span>
+
+        <span class="cov0" title="0">user, err := h.usecase.VerifyUser(ctx, login)
+
+        if err != nil </span><span class="cov0" title="0">{
+                nonExistentErr := new(customerrors.NonexistentUser)
+
+                if ok := errors.As(err, &amp;nonExistentErr); ok </span><span class="cov0" title="0">{
+                        ctx.StopWithStatus(http.StatusUnauthorized)
+                        return
+                }</span>
+
+                <span class="cov0" title="0">unverifiedErr := new(customerrors.UnverifiedUser)
+
+                if ok := errors.As(err, &amp;unverifiedErr); ok </span><span class="cov0" title="0">{
+                        ctx.StopWithStatus(http.StatusUnauthorized)
+                        return
+                }</span>
+
+                <span class="cov0" title="0">ctx.StopWithStatus(http.StatusInternalServerError)
+                return</span>
+        }
+
+        <span class="cov0" title="0">tokenPair, err := h.auth.GetTokenPair(user)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusInternalServerError)
+                return
+        }</span>
+
+        <span class="cov0" title="0">tokenCookie := &amp;http.Cookie{
+                Name:     userCookie,
+                Value:    tokenPair.AccessToken,
+                Expires:  time.Now().Add(h.auth.GetAccessTokenExp()),
+                Path:     "/",
+                HttpOnly: true,
+        }
+
+        ctx.SetCookie(tokenCookie)
+
+        ctx.StatusCode(http.StatusOK)
+
+        ctx.JSON(user.ID)</span>
+}
+</pre>
+		
+		<pre class="file" id="file31" style="display: none">package httphandler
+
+import (
+        "net/http"
+
+        "github.com/kataras/iris/v12"
+)
+
+// Logout - logout handler
+func (h *HttpHandler) Logout(ctx iris.Context) <span class="cov0" title="0">{
+        ctx.RemoveCookie(userCookie)
+
+        ctx.StatusCode(http.StatusUnauthorized)
+        ctx.Writef("token invalidated, a new token is required to access the protected API")
+
+}</span>
+</pre>
+		
+		<pre class="file" id="file32" style="display: none">package httphandler
+
+import (
+        "github.com/alxrusinov/gophkeeper/internal/auth"
+        "github.com/kataras/iris/v12"
+        "github.com/kataras/iris/v12/context"
+        "github.com/kataras/iris/v12/middleware/jwt"
+)
+
+func extractTokenFromCookie(ctx iris.Context) string <span class="cov0" title="0">{
+        token := ctx.GetCookie(userCookie)
+
+        return token
+}</span>
+
+// AuthMiddleware - checks user authorization
+func (h *HttpHandler) AuthMiddleware() context.Handler <span class="cov0" title="0">{
+        verifier := h.auth.GetVerifier()
+
+        verifier.Extractors = []jwt.TokenExtractor{extractTokenFromCookie}
+
+        verifyMiddleware := verifier.Verify(func() interface{} </span><span class="cov0" title="0">{
+                return new(auth.Claims)
+        }</span>)
+
+        <span class="cov0" title="0">return verifyMiddleware</span>
+}
+</pre>
+		
+		<pre class="file" id="file33" style="display: none">package httphandler
+
+import (
+        "net/http"
+        "time"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "github.com/kataras/iris/v12"
+)
+
+// Register- method of registration new user
+func (h *HttpHandler) Register(ctx iris.Context) <span class="cov0" title="0">{
+        login := new(model.Login)
+
+        err := ctx.ReadJSON(login)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusBadRequest)
+                return
+        }</span>
+
+        <span class="cov0" title="0">user, err := h.usecase.CreateUser(ctx, login)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusInternalServerError)
+                return
+        }</span>
+
+        <span class="cov0" title="0">accessToken, err := h.auth.GetAccessToken(user)
+
+        if err != nil </span><span class="cov0" title="0">{
+                ctx.StopWithStatus(http.StatusInternalServerError)
+                return
+        }</span>
+
+        <span class="cov0" title="0">cookie := &amp;http.Cookie{
+                Name:     userCookie,
+                Value:    accessToken,
+                Expires:  time.Now().Add(h.auth.GetAccessTokenExp()),
+                Path:     "/",
+                HttpOnly: true,
+        }
+
+        ctx.SetCookie(cookie)
+        ctx.StatusCode(http.StatusCreated)</span>
+}
+</pre>
+		
+		<pre class="file" id="file34" style="display: none">package httphandler
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/auth"
+        "github.com/alxrusinov/gophkeeper/internal/model"
+)
+
+// Usecase - interface of Usecase
+type Usecase interface {
+        // VerifyUser - return information about user, if user exists
+        // fact of user existing and error
+        VerifyUser(ctx context.Context, lg *model.Login) (*model.User, error)
+        // CreateUser - create new user
+        CreateUser(ctx context.Context, lg *model.Login) (*model.User, error)
+        // GetNote - return note for user by note id
+        GetNote(ctx context.Context, userID string, noteID string) (*model.Note, error)
+        // GetNotes - return notes for user by note id
+        GetNoteList(ctx context.Context, userID string) ([]model.Note, error)
+        // AddNote - adds new note for user
+        AddNote(ctx context.Context, note *model.Note) (*model.Note, error)
+        // AddCredentials - adds new credentials for user
+        AddCredentials(ctx context.Context, creds *model.Credentials) (*model.Credentials, error)
+        // GetCredentials - return credentials for user
+        GetCredentials(ctx context.Context, userID string, credsID string) (*model.Credentials, error)
+        // GetCredentialsList - return all credentials for user
+        GetCredentialsList(ctx context.Context, userID string) ([]model.Credentials, error)
+        // AddBankCard - adds new bank card for user
+        AddBankCard(ctx context.Context, card *model.BankCard) (*model.BankCard, error)
+        // GetBankCard - return bank card for user
+        GetBankCard(ctx context.Context, userID string, cardID string) (*model.BankCard, error)
+        // GetBankCardList - return all bank cards for user
+        GetBankCardList(ctx context.Context, userID string) ([]model.BankCard, error)
+        // AddBinary - adds new binaey data for user
+        AddBinary(ctx context.Context, data *model.Binary) (*model.Binary, error)
+        // GetBinary - return binary data for user
+        GetBinary(ctx context.Context, userID string, binID string) (*model.Binary, error)
+        // GetBinaryList - return all binary data for user
+        GetBinaryList(ctx context.Context, userID string) ([]model.Binary, error)
+}
+
+// HttpHandler - handler for http router
+type HttpHandler struct {
+        auth    *auth.Auth
+        usecase Usecase
+}
+
+// NewHttpHandler - return new instance
+func NewHttpHandler(usecase Usecase) *HttpHandler <span class="cov0" title="0">{
+        return &amp;HttpHandler{
+                auth:    auth.NewAuth(),
+                usecase: usecase,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file35" style="display: none">package logger
+
+import "go.uber.org/zap"
+
+var Logger *zap.Logger
+
+func InitLogger() error <span class="cov0" title="0">{
+        logger, err := zap.NewProduction()
+
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+
+        <span class="cov0" title="0">Logger = logger
+
+        return nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file36" style="display: none">package model
+
+import "go.mongodb.org/mongo-driver/bson/primitive"
+
+// BankCard - structure of bank card
+type BankCard struct {
+        ID     string `json:"id,omitempty" bson:"id,omitempty"`
+        UserID string `json:"user_id,omitempty" bson:"user_id"`
+        Title  string `json:"title" bson:"title"`
+        Data   int    `json:"data" bson:"data"`
+        Meta   string `json:"meta" bson:"meta"`
+}
+
+// BankCardDocument - structure of bank card in repo
+type BankCardDocument struct {
+        ID     primitive.ObjectID `bson:"_id"`
+        UserID string             `bson:"user_id"`
+        Title  string             `bson:"title"`
+        Data   int                `bson:"data"`
+        Meta   string             `bson:"meta"`
+}
+
+// BankCardDocumentFromBankCard - create new bank card document from bank card
+func BankCardDocumentFromBankCard(card BankCard) (*BankCardDocument, error) <span class="cov0" title="0">{
+        id, err := primitive.ObjectIDFromHex(card.ID)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">return &amp;BankCardDocument{
+                ID:     id,
+                UserID: card.UserID,
+                Title:  card.Title,
+                Data:   card.Data,
+                Meta:   card.Meta,
+        }, nil</span>
+}
+
+// BankCardDocumentFromBankCard - create new bank card document from bank card
+func BankCardFromBankCardDocument(cardDoc BankCardDocument) *BankCard <span class="cov0" title="0">{
+
+        return &amp;BankCard{
+                ID:     cardDoc.ID.Hex(),
+                UserID: cardDoc.UserID,
+                Title:  cardDoc.Title,
+                Data:   cardDoc.Data,
+                Meta:   cardDoc.Meta,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file37" style="display: none">package model
+
+import "go.mongodb.org/mongo-driver/bson/primitive"
+
+// Binary - structure of binary type of data
+type Binary struct {
+        ID       string `json:"id,omitempty" bson:"id,omitempty"`
+        UserID   string `json:"user_id,omitempty" bson:"user_id"`
+        Title    string `json:"title" bson:"title"`
+        MimeType string `json:"mime_type" bson:"mime_type"`
+        Data     []byte `json:"data" bson:"data"`
+        Meta     string `json:"meta" bson:"meta"`
+}
+
+// BinaryDocument - structure of binary type of data document
+type BinaryDocument struct {
+        ID       primitive.ObjectID `bson:"_id"`
+        UserID   string             `bson:"user_id"`
+        Title    string             `bson:"title"`
+        MimeType string             `bson:"mime_type"`
+        Data     []byte             `bson:"data"`
+        Meta     string             `bson:"meta"`
+}
+
+// BinaryDocumentFromBinary - create new binary document from binary
+func BinaryDocumentFromBinary(binary Binary) (*BinaryDocument, error) <span class="cov0" title="0">{
+        id, err := primitive.ObjectIDFromHex(binary.ID)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">return &amp;BinaryDocument{
+                ID:       id,
+                UserID:   binary.UserID,
+                Title:    binary.Title,
+                MimeType: binary.MimeType,
+                Data:     binary.Data,
+                Meta:     binary.Meta,
+        }, nil</span>
+}
+
+// BinaryFromBinaryDocument - create new binary from binary document
+func BinaryFromBinaryDocument(binaryDoc BinaryDocument) *Binary <span class="cov0" title="0">{
+
+        return &amp;Binary{
+                ID:       binaryDoc.ID.Hex(),
+                UserID:   binaryDoc.UserID,
+                Title:    binaryDoc.Title,
+                MimeType: binaryDoc.MimeType,
+                Data:     binaryDoc.Data,
+                Meta:     binaryDoc.Meta,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file38" style="display: none">package model
+
+import "go.mongodb.org/mongo-driver/bson/primitive"
+
+// Credentials - structure of creds
+type Credentials struct {
+        ID     string `json:"id,omitempty" bson:"id,omitempty"`
+        UserID string `json:"user_id,omitempty" bson:"user_id"`
+        Title  string `json:"title" bson:"title"`
+        Data   Login  `json:"data" bson:"data"`
+        Meta   string `json:"meta" bson:"meta"`
+}
+
+// CredentialsDocument - structure of creds document
+type CredentialsDocument struct {
+        ID     primitive.ObjectID `bson:"_id"`
+        UserID string             `bson:"user_id"`
+        Title  string             `bson:"title"`
+        Data   Login              `bson:"data"`
+        Meta   string             `bson:"meta"`
+}
+
+// CredentialsDocumentFromCredentials - create
+// new credentials document from credentials
+func CredentialsDocumentFromCredentials(cred Credentials) (*CredentialsDocument, error) <span class="cov0" title="0">{
+        id, err := primitive.ObjectIDFromHex(cred.ID)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">return &amp;CredentialsDocument{
+                ID:     id,
+                UserID: cred.UserID,
+                Title:  cred.Title,
+                Data:   cred.Data,
+                Meta:   cred.Meta,
+        }, nil</span>
+}
+
+// CredentialsFromCredentialsDocument - create
+// new credentials from credentials document
+func CredentialsFromCredentialsDocument(credDoc CredentialsDocument) *Credentials <span class="cov0" title="0">{
+
+        return &amp;Credentials{
+                ID:     credDoc.ID.Hex(),
+                UserID: credDoc.UserID,
+                Title:  credDoc.Title,
+                Data:   credDoc.Data,
+                Meta:   credDoc.Meta,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file39" style="display: none">package model
+
+import "go.mongodb.org/mongo-driver/bson/primitive"
+
+// Note - structure of note
+type Note struct {
+        ID     string `json:"id,omitempty" bson:"id,omitempty"`
+        UserID string `json:"user_id,omitempty" bson:"user_id"`
+        Title  string `json:"title" bson:"title"`
+        Data   string `json:"data" bson:"data"`
+        Meta   string `json:"meta" bson:"meta"`
+}
+
+// NoteDocument - structure of note document
+type NoteDocument struct {
+        ID     primitive.ObjectID `bson:"_id"`
+        UserID string             `bson:"user_id"`
+        Title  string             `bson:"title"`
+        Data   string             `bson:"data"`
+        Meta   string             `bson:"meta"`
+}
+
+// NoteDocumentFromNote - create new note document from note
+func NoteDocumentFromNote(note Note) (*NoteDocument, error) <span class="cov0" title="0">{
+        id, err := primitive.ObjectIDFromHex(note.ID)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">return &amp;NoteDocument{
+                ID:     id,
+                UserID: note.UserID,
+                Title:  note.Title,
+                Data:   note.Data,
+                Meta:   note.Meta,
+        }, nil</span>
+}
+
+// NoteFromNoteDocument - create new note from note document
+func NoteFromNoteDocument(noteDocument NoteDocument) *Note <span class="cov0" title="0">{
+        return &amp;Note{
+                ID:     noteDocument.ID.Hex(),
+                UserID: noteDocument.UserID,
+                Title:  noteDocument.Title,
+                Data:   noteDocument.Data,
+                Meta:   noteDocument.Meta,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file40" style="display: none">package model
+
+import "go.mongodb.org/mongo-driver/bson/primitive"
+
+// User - structure of user
+type User struct {
+        ID       string `json:"id,omitempty" bson:"id"`
+        Username string `json:"username" bson:"username"`
+}
+
+// UserDocument - structure of user document
+type UserDocument struct {
+        ID       primitive.ObjectID `bson:"_id"`
+        Username string             `bson:"username"`
+}
+
+// UserDocumentFromUser - create new user document from user
+func UserDocumentFromUser(user User) (*UserDocument, error) <span class="cov0" title="0">{
+        id, err := primitive.ObjectIDFromHex(user.ID)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">return &amp;UserDocument{
+                ID:       id,
+                Username: user.Username,
+        }, nil</span>
+}
+
+// UserDocumentFromUser - create new user document from user
+func UserFromUserDocument(userDoc UserDocument) *User <span class="cov0" title="0">{
+
+        return &amp;User{
+                ID:       userDoc.ID.Hex(),
+                Username: userDoc.Username,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file41" style="display: none">package mongo
+
+import (
+        "context"
+        "errors"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "go.mongodb.org/mongo-driver/bson/primitive"
+)
+
+// AddBinary - adds new binaey data for user
+func (m *Mongo) AddBinary(ctx context.Context, data *model.Binary) (*model.Binary, error) <span class="cov0" title="0">{
+
+        insertedResult, err := m.client.Database(DataBase).Collection(BinaryCollection).InsertOne(ctx, data)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">if id, ok := insertedResult.InsertedID.(primitive.ObjectID); ok </span><span class="cov0" title="0">{
+                return &amp;model.Binary{
+                        ID:     id.Hex(),
+                        UserID: "",
+                        Data:   data.Data,
+                        Title:  data.Title,
+                        Meta:   data.Meta,
+                }, nil
+        }</span>
+        <span class="cov0" title="0">return nil, errors.New("credentials was not saved")</span>
+}
+</pre>
+		
+		<pre class="file" id="file42" style="display: none">package mongo
+
+import (
+        "context"
+        "errors"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "go.mongodb.org/mongo-driver/bson/primitive"
+)
+
+// AddBankCard - adds new bank card for user
+func (m *Mongo) AddBankCard(ctx context.Context, card *model.BankCard) (*model.BankCard, error) <span class="cov0" title="0">{
+
+        insertedResult, err := m.client.Database(DataBase).Collection(BankCardCollection).InsertOne(ctx, card)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">if id, ok := insertedResult.InsertedID.(primitive.ObjectID); ok </span><span class="cov0" title="0">{
+                return &amp;model.BankCard{
+                        ID:     id.Hex(),
+                        UserID: "",
+                        Data:   card.Data,
+                        Title:  card.Title,
+                        Meta:   card.Meta,
+                }, nil
+        }</span>
+        <span class="cov0" title="0">return nil, errors.New("credentials was not saved")</span>
+}
+</pre>
+		
+		<pre class="file" id="file43" style="display: none">package mongo
+
+import (
+        "context"
+        "errors"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "go.mongodb.org/mongo-driver/bson/primitive"
+)
+
+// AddCredentials - adds new credentials for user
+func (m *Mongo) AddCredentials(ctx context.Context, creds *model.Credentials) (*model.Credentials, error) <span class="cov0" title="0">{
+        insertedResult, err := m.client.Database(DataBase).Collection(CredentialsCollection).InsertOne(ctx, creds)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">if id, ok := insertedResult.InsertedID.(primitive.ObjectID); ok </span><span class="cov0" title="0">{
+                return &amp;model.Credentials{
+                        ID:     id.Hex(),
+                        UserID: "",
+                        Data:   creds.Data,
+                        Title:  creds.Title,
+                        Meta:   creds.Meta,
+                }, nil
+        }</span>
+        <span class="cov0" title="0">return nil, errors.New("credentials was not saved")</span>
+}
+</pre>
+		
+		<pre class="file" id="file44" style="display: none">package mongo
+
+import (
+        "context"
+        "errors"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "go.mongodb.org/mongo-driver/bson/primitive"
+)
+
+// AddNote - adds new note for user
+func (m *Mongo) AddNote(ctx context.Context, note *model.Note) (*model.Note, error) <span class="cov0" title="0">{
+        insertedResult, err := m.client.Database(DataBase).Collection(NoteCollection).InsertOne(ctx, note)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">if id, ok := insertedResult.InsertedID.(primitive.ObjectID); ok </span><span class="cov0" title="0">{
+                return &amp;model.Note{
+                        ID:     id.Hex(),
+                        UserID: "",
+                        Data:   note.Data,
+                        Title:  note.Title,
+                        Meta:   note.Meta,
+                }, nil
+        }</span>
+
+        <span class="cov0" title="0">return nil, errors.New("note was not saved")</span>
+}
+</pre>
+		
+		<pre class="file" id="file45" style="display: none">package mongo
+
+import (
+        "context"
+        "errors"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "go.mongodb.org/mongo-driver/bson/primitive"
+)
+
+// CreateUser - create new user
+func (m *Mongo) CreateUser(ctx context.Context, lg *model.Login) (*model.User, error) <span class="cov0" title="0">{
+        users := m.client.Database(DataBase).Collection(UserCollection)
+
+        res, err := users.InsertOne(ctx, lg)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">if userID, ok := res.InsertedID.(primitive.ObjectID); ok </span><span class="cov0" title="0">{
+                return &amp;model.User{
+                        ID:       userID.Hex(),
+                        Username: lg.Username,
+                }, nil
+        }</span>
+
+        <span class="cov0" title="0">return nil, errors.New("user was not created")</span>
+
+}
+</pre>
+		
+		<pre class="file" id="file46" style="display: none">package mongo
+
+import (
+        "context"
+        "fmt"
+
+        "github.com/alxrusinov/gophkeeper/internal/customerrors"
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "go.mongodb.org/mongo-driver/bson"
+        "go.mongodb.org/mongo-driver/bson/primitive"
+        "go.mongodb.org/mongo-driver/mongo/options"
+)
+
+// GetBinary - return binary data for user
+func (m *Mongo) GetBinary(ctx context.Context, userID string, binID string) (*model.Binary, error) <span class="cov0" title="0">{
+        result := new(model.BinaryDocument)
+
+        binFilter, err := primitive.ObjectIDFromHex(binID)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, &amp;customerrors.NotFound{Err: fmt.Errorf("data with id %s does not exist", binID)}
+        }</span>
+
+        <span class="cov0" title="0">filter := bson.D{{Key: "user_id", Value: userID}, {Key: "_id", Value: binFilter}}
+
+        err = m.client.Database(DataBase).Collection(BinaryCollection).FindOne(ctx, filter, options.FindOne().SetProjection(bson.M{"user_id": 0})).Decode(result)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, &amp;customerrors.NotFound{Err: fmt.Errorf("data with id %s does not exist", binID)}
+        }</span>
+
+        <span class="cov0" title="0">binData := model.BinaryFromBinaryDocument(*result)
+
+        return binData, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file47" style="display: none">package mongo
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "go.mongodb.org/mongo-driver/bson"
+        "go.mongodb.org/mongo-driver/mongo/options"
+)
+
+// GetBinaryList - return all binary data for user
+func (m *Mongo) GetBinaryList(ctx context.Context, userID string) ([]model.Binary, error) <span class="cov0" title="0">{
+        result := make([]model.Binary, 0)
+
+        filter := bson.D{{Key: "user_id", Value: userID}}
+
+        cursor, err := m.client.Database(DataBase).Collection(BinaryCollection).Find(ctx, filter, options.Find().SetProjection(bson.M{"user_id": 0}))
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">for cursor.Next(ctx) </span><span class="cov0" title="0">{
+                item := new(model.BinaryDocument)
+
+                err := cursor.Decode(item)
+
+                if err != nil </span><span class="cov0" title="0">{
+                        return nil, err
+                }</span>
+
+                <span class="cov0" title="0">binData := model.BinaryFromBinaryDocument(*item)
+
+                result = append(result, *binData)</span>
+        }
+
+        <span class="cov0" title="0">return result, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file48" style="display: none">package mongo
+
+import (
+        "context"
+        "fmt"
+
+        "github.com/alxrusinov/gophkeeper/internal/customerrors"
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "go.mongodb.org/mongo-driver/bson"
+        "go.mongodb.org/mongo-driver/bson/primitive"
+        "go.mongodb.org/mongo-driver/mongo/options"
+)
+
+// GetBankCard - return bank card for user
+func (m *Mongo) GetBankCard(ctx context.Context, userID string, cardID string) (*model.BankCard, error) <span class="cov0" title="0">{
+        result := new(model.BankCardDocument)
+
+        cardFilter, err := primitive.ObjectIDFromHex(cardID)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, &amp;customerrors.NotFound{Err: fmt.Errorf("card with id %s does not exist", cardID)}
+        }</span>
+
+        <span class="cov0" title="0">filter := bson.D{{Key: "user_id", Value: userID}, {Key: "_id", Value: cardFilter}}
+
+        err = m.client.Database(DataBase).Collection(BankCardCollection).FindOne(ctx, filter, options.FindOne().SetProjection(bson.M{"user_id": 0})).Decode(result)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, &amp;customerrors.NotFound{Err: fmt.Errorf("card with id %s does not exist", cardID)}
+        }</span>
+
+        <span class="cov0" title="0">card := model.BankCardFromBankCardDocument(*result)
+
+        return card, nil</span>
+
+}
+</pre>
+		
+		<pre class="file" id="file49" style="display: none">package mongo
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "go.mongodb.org/mongo-driver/bson"
+        "go.mongodb.org/mongo-driver/mongo/options"
+)
+
+// GetBankCardList - return all bank cards for user
+func (m *Mongo) GetBankCardList(ctx context.Context, userID string) ([]model.BankCard, error) <span class="cov0" title="0">{
+        result := make([]model.BankCard, 0)
+
+        filter := bson.D{{Key: "user_id", Value: userID}}
+
+        cursor, err := m.client.Database(DataBase).Collection(BankCardCollection).Find(ctx, filter, options.Find().SetProjection(bson.M{"user_id": 0}))
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">for cursor.Next(ctx) </span><span class="cov0" title="0">{
+                item := new(model.BankCardDocument)
+
+                err := cursor.Decode(item)
+
+                if err != nil </span><span class="cov0" title="0">{
+                        return nil, err
+                }</span>
+
+                <span class="cov0" title="0">card := model.BankCardFromBankCardDocument(*item)
+
+                result = append(result, *card)</span>
+        }
+
+        <span class="cov0" title="0">return result, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file50" style="display: none">package mongo
+
+import (
+        "context"
+        "fmt"
+
+        "github.com/alxrusinov/gophkeeper/internal/customerrors"
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "go.mongodb.org/mongo-driver/bson"
+        "go.mongodb.org/mongo-driver/bson/primitive"
+        "go.mongodb.org/mongo-driver/mongo/options"
+)
+
+// GetCredentials - return credentials for user
+func (m *Mongo) GetCredentials(ctx context.Context, userID string, credsID string) (*model.Credentials, error) <span class="cov0" title="0">{
+        result := new(model.CredentialsDocument)
+
+        credsIDFilter, err := primitive.ObjectIDFromHex(credsID)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, &amp;customerrors.NotFound{Err: fmt.Errorf("credentials with id %s does not exist", credsID)}
+        }</span>
+
+        <span class="cov0" title="0">filter := bson.D{{Key: "user_id", Value: userID}, {Key: "_id", Value: credsIDFilter}}
+
+        err = m.client.Database(DataBase).Collection(CredentialsCollection).FindOne(ctx, filter, options.FindOne().SetProjection(bson.M{"user_id": 0})).Decode(result)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, &amp;customerrors.NotFound{Err: fmt.Errorf("note with id %s does not exist", credsID)}
+        }</span>
+
+        <span class="cov0" title="0">credentials := model.CredentialsFromCredentialsDocument(*result)
+
+        return credentials, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file51" style="display: none">package mongo
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "go.mongodb.org/mongo-driver/bson"
+        "go.mongodb.org/mongo-driver/mongo/options"
+)
+
+// GetCredentialsList - return all credentials for user
+func (m *Mongo) GetCredentialsList(ctx context.Context, userID string) ([]model.Credentials, error) <span class="cov0" title="0">{
+        result := make([]model.Credentials, 0)
+
+        filter := bson.D{{Key: "user_id", Value: userID}}
+
+        cursor, err := m.client.Database(DataBase).Collection(CredentialsCollection).Find(ctx, filter, options.Find().SetProjection(bson.M{"user_id": 0}))
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">for cursor.Next(ctx) </span><span class="cov0" title="0">{
+                item := new(model.CredentialsDocument)
+
+                err := cursor.Decode(item)
+
+                if err != nil </span><span class="cov0" title="0">{
+                        return nil, err
+                }</span>
+
+                <span class="cov0" title="0">note := model.CredentialsFromCredentialsDocument(*item)
+
+                result = append(result, *note)</span>
+        }
+
+        <span class="cov0" title="0">return result, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file52" style="display: none">package mongo
+
+import (
+        "context"
+        "fmt"
+
+        "github.com/alxrusinov/gophkeeper/internal/customerrors"
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "go.mongodb.org/mongo-driver/bson"
+        "go.mongodb.org/mongo-driver/bson/primitive"
+        "go.mongodb.org/mongo-driver/mongo/options"
+)
+
+// GetNote - returns note for user by note id
+func (m *Mongo) GetNote(ctx context.Context, userID, noteID string) (*model.Note, error) <span class="cov0" title="0">{
+        result := new(model.NoteDocument)
+
+        noteIDFilter, err := primitive.ObjectIDFromHex(noteID)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, &amp;customerrors.NotFound{Err: fmt.Errorf("note with id %s does not exist", noteID)}
+        }</span>
+
+        <span class="cov0" title="0">filter := bson.D{{Key: "user_id", Value: userID}, {Key: "_id", Value: noteIDFilter}}
+
+        err = m.client.Database(DataBase).Collection(NoteCollection).FindOne(ctx, filter, options.FindOne().SetProjection(bson.M{"user_id": 0})).Decode(result)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, &amp;customerrors.NotFound{Err: fmt.Errorf("note with id %s does not exist", noteID)}
+        }</span>
+
+        <span class="cov0" title="0">note := model.NoteFromNoteDocument(*result)
+
+        return note, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file53" style="display: none">package mongo
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "go.mongodb.org/mongo-driver/bson"
+        "go.mongodb.org/mongo-driver/mongo/options"
+)
+
+// GetNoteList - return notes for user by note id
+func (m *Mongo) GetNoteList(ctx context.Context, userID string) ([]model.Note, error) <span class="cov0" title="0">{
+
+        result := make([]model.Note, 0)
+
+        filter := bson.D{{Key: "user_id", Value: userID}}
+
+        cursor, err := m.client.Database(DataBase).Collection(NoteCollection).Find(ctx, filter, options.Find().SetProjection(bson.M{"user_id": 0}))
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">for cursor.Next(ctx) </span><span class="cov0" title="0">{
+                item := new(model.NoteDocument)
+
+                err := cursor.Decode(item)
+
+                if err != nil </span><span class="cov0" title="0">{
+                        return nil, err
+                }</span>
+
+                <span class="cov0" title="0">note := model.NoteFromNoteDocument(*item)
+
+                result = append(result, *note)</span>
+        }
+
+        <span class="cov0" title="0">return result, nil</span>
+
+}
+</pre>
+		
+		<pre class="file" id="file54" style="display: none">package mongo
+
+import (
+        "context"
+
+        "go.mongodb.org/mongo-driver/mongo"
+        "go.mongodb.org/mongo-driver/mongo/options"
+)
+
+// Mongo - repository with MongoDB
+type Mongo struct {
+        client *mongo.Client
+}
+
+// Disconnect is a method closing mongo db connection
+func (m *Mongo) Disconnect(ctx context.Context) error <span class="cov0" title="0">{
+        return m.client.Disconnect(ctx)
+}</span>
+
+// NewMongo - create instance of MongoDB repository
+func NewMongo(ctx context.Context, address string) (*Mongo, error) <span class="cov0" title="0">{
+        client, err := mongo.Connect(ctx, options.Client().ApplyURI(address))
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">err = client.Ping(ctx, nil)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">return &amp;Mongo{
+                client: client,
+        }, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file55" style="display: none">package mongo
+
+import (
+        "context"
+        "errors"
+        "fmt"
+
+        "github.com/alxrusinov/gophkeeper/internal/customerrors"
+        "github.com/alxrusinov/gophkeeper/internal/model"
+        "go.mongodb.org/mongo-driver/bson"
+        "go.mongodb.org/mongo-driver/mongo"
+)
+
+// VerifyUser - checks if user exists and has valid password
+func (m *Mongo) VerifyUser(ctx context.Context, lg *model.Login) (*model.User, error) <span class="cov0" title="0">{
+        userDoc := new(model.UserDocument)
+        login := new(model.Login)
+
+        result := m.client.Database(DataBase).Collection(UserCollection).FindOne(ctx, bson.M{"username": lg.Username})
+
+        err := result.Decode(userDoc)
+
+        if err != nil </span><span class="cov0" title="0">{
+                if errors.Is(err, mongo.ErrNoDocuments) </span><span class="cov0" title="0">{
+                        return nil, &amp;customerrors.NonexistentUser{Err: fmt.Errorf("user winth %s does not exist", lg.Username)}
+                }</span>
+                <span class="cov0" title="0">return nil, err</span>
+        }
+
+        <span class="cov0" title="0">err = result.Decode(login)
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">if lg.Password != login.Password </span><span class="cov0" title="0">{
+                return nil, &amp;customerrors.UnverifiedUser{Err: fmt.Errorf("login or password is wrong")}
+        }</span>
+
+        <span class="cov0" title="0">user := model.UserFromUserDocument(*userDoc)
+
+        return user, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file56" style="display: none">package router
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/delivery/httphandler"
+        "github.com/kataras/iris/v12"
+)
+
+// Config - interface for routers config
+type Config interface {
+        GetBaseURL() string
+}
+
+// Router - router for server
+type Router struct {
+        app     *iris.Application
+        handler *httphandler.HttpHandler
+        baseURL string
+}
+
+// Run - runner for router
+func (r *Router) Run(ctx context.Context) (err error) <span class="cov0" title="0">{
+        r.app.Use(iris.Compression)
+        authRouter := r.app.Party(httphandler.AuthRouteGroup)
+
+        authRouter.Post(httphandler.RegisterRoute, r.handler.Register)
+        authRouter.Post(httphandler.LoginRoute, r.handler.Login)
+        authRouter.Post(httphandler.LogoutRoute, r.handler.Logout)
+
+        apiRouter := r.app.Party(httphandler.ApiRouteGroup)
+
+        apiRouter.Use(r.handler.AuthMiddleware())
+
+        apiRouter.Use(iris.Compression)
+
+        apiRouter.Get(httphandler.NotesRoute, r.handler.GetNoteList)
+        apiRouter.Get(httphandler.BinariesRoute, r.handler.GetBinaryList)
+        apiRouter.Get(httphandler.BankcardsRoute, r.handler.GetBankCardList)
+        apiRouter.Get(httphandler.CredentialsRoute, r.handler.GetCredentialsList)
+
+        apiRouter.Post(httphandler.NotesRoute, r.handler.SetNote)
+        apiRouter.Post(httphandler.BinariesRoute, r.handler.SetBinary)
+        apiRouter.Post(httphandler.BankcardsRoute, r.handler.SetBankCard)
+        apiRouter.Post(httphandler.CredentialsRoute, r.handler.SetCredentials)
+
+        apiRouter.Get(httphandler.NoteRoute, r.handler.GetNote)
+        apiRouter.Get(httphandler.BinaryRoute, r.handler.GetBinary)
+        apiRouter.Get(httphandler.BankcardRoute, r.handler.GetBankCard)
+        apiRouter.Get(httphandler.CredentialRoute, r.handler.GetCredentials)
+
+        apiRouter.Delete(httphandler.NotesRoute, r.handler.DeleteNote)
+        apiRouter.Delete(httphandler.BinariesRoute, r.handler.DeleteBinary)
+        apiRouter.Delete(httphandler.BankcardsRoute, r.handler.DeleteBankCard)
+        apiRouter.Delete(httphandler.CredentialsRoute, r.handler.DeleteCredentials)
+
+        err = r.app.Listen(r.baseURL)
+
+        return err
+}</span>
+
+// NewRouter - create new instance of Router
+func NewRouter(cfg Config, handler *httphandler.HttpHandler) *Router <span class="cov0" title="0">{
+        router := &amp;Router{
+                app:     iris.New(),
+                handler: handler,
+                baseURL: cfg.GetBaseURL(),
+        }
+
+        return router
+}</span>
+</pre>
+		
+		<pre class="file" id="file57" style="display: none">package usecase
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+)
+
+// AddBinary - adds new binaey data for user
+func (u *Usecase) AddBinary(ctx context.Context, data *model.Binary) (*model.Binary, error) <span class="cov0" title="0">{
+        return u.repository.AddBinary(ctx, data)
+}</span>
+</pre>
+		
+		<pre class="file" id="file58" style="display: none">package usecase
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+)
+
+// AddBankCard - adds new bank card for user
+func (u *Usecase) AddBankCard(ctx context.Context, card *model.BankCard) (*model.BankCard, error) <span class="cov0" title="0">{
+        return u.repository.AddBankCard(ctx, card)
+}</span>
+</pre>
+		
+		<pre class="file" id="file59" style="display: none">package usecase
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+)
+
+// AddCredentials - adds new credentials for user
+func (u *Usecase) AddCredentials(ctx context.Context, creds *model.Credentials) (*model.Credentials, error) <span class="cov0" title="0">{
+        return u.repository.AddCredentials(ctx, creds)
+}</span>
+</pre>
+		
+		<pre class="file" id="file60" style="display: none">package usecase
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+)
+
+// AddNote - adds new note for user
+func (u *Usecase) AddNote(ctx context.Context, note *model.Note) (*model.Note, error) <span class="cov0" title="0">{
+        return u.repository.AddNote(ctx, note)
+}</span>
+</pre>
+		
+		<pre class="file" id="file61" style="display: none">package usecase
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+)
+
+// CreateUser - create new user
+func (u *Usecase) CreateUser(ctx context.Context, lg *model.Login) (*model.User, error) <span class="cov0" title="0">{
+        return u.repository.CreateUser(ctx, lg)
+}</span>
+</pre>
+		
+		<pre class="file" id="file62" style="display: none">package usecase
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+)
+
+// GetBinary - return binary data for user
+func (u *Usecase) GetBinary(ctx context.Context, userID string, binID string) (*model.Binary, error) <span class="cov0" title="0">{
+        return u.repository.GetBinary(ctx, userID, binID)
+}</span>
+</pre>
+		
+		<pre class="file" id="file63" style="display: none">package usecase
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+)
+
+// GetBinaryList - return all binary data for user
+func (u *Usecase) GetBinaryList(ctx context.Context, userID string) ([]model.Binary, error) <span class="cov0" title="0">{
+        return u.repository.GetBinaryList(ctx, userID)
+}</span>
+</pre>
+		
+		<pre class="file" id="file64" style="display: none">package usecase
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+)
+
+// GetBankCard - return bank card for user
+func (u *Usecase) GetBankCard(ctx context.Context, userID string, cardID string) (*model.BankCard, error) <span class="cov0" title="0">{
+        return u.repository.GetBankCard(ctx, userID, cardID)
+}</span>
+</pre>
+		
+		<pre class="file" id="file65" style="display: none">package usecase
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+)
+
+// GetBankCardList - return all bank cards for user
+func (u *Usecase) GetBankCardList(ctx context.Context, userID string) ([]model.BankCard, error) <span class="cov0" title="0">{
+        return u.repository.GetBankCardList(ctx, userID)
+}</span>
+</pre>
+		
+		<pre class="file" id="file66" style="display: none">package usecase
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+)
+
+// GetCredentials - return credentials for user
+func (u *Usecase) GetCredentials(ctx context.Context, userID string, credsID string) (*model.Credentials, error) <span class="cov0" title="0">{
+
+        return u.repository.GetCredentials(ctx, userID, credsID)
+}</span>
+</pre>
+		
+		<pre class="file" id="file67" style="display: none">package usecase
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+)
+
+// GetCredentialsList - return all credentials for user
+func (u *Usecase) GetCredentialsList(ctx context.Context, userID string) ([]model.Credentials, error) <span class="cov0" title="0">{
+        return u.repository.GetCredentialsList(ctx, userID)
+}</span>
+</pre>
+		
+		<pre class="file" id="file68" style="display: none">package usecase
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+)
+
+// GetNote - returns note for user by note id
+func (u *Usecase) GetNote(ctx context.Context, userID, noteID string) (*model.Note, error) <span class="cov0" title="0">{
+        return u.repository.GetNote(ctx, userID, noteID)
+}</span>
+</pre>
+		
+		<pre class="file" id="file69" style="display: none">package usecase
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+)
+
+// GetNote - returns note for user by note id
+func (u *Usecase) GetNoteList(ctx context.Context, userID string) ([]model.Note, error) <span class="cov0" title="0">{
+        return u.repository.GetNoteList(ctx, userID)
+}</span>
+</pre>
+		
+		<pre class="file" id="file70" style="display: none">package usecase
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+)
+
+// Repository - interface of repository
+type Repository interface {
+        // CreateUser - create new user
+        CreateUser(ctx context.Context, lg *model.Login) (*model.User, error)
+        // VerifyUser - checks if user exists and has valid password
+        VerifyUser(ctx context.Context, lg *model.Login) (*model.User, error)
+        // AddNote - adds new note for user
+        AddNote(ctx context.Context, note *model.Note) (*model.Note, error)
+        // GetNote - returns note for user by note id
+        GetNote(ctx context.Context, userID, noteID string) (*model.Note, error)
+        // GetNotes - return notes for user by note id
+        GetNoteList(ctx context.Context, userID string) ([]model.Note, error)
+        // AddCredentials - adds new credentials for user
+        AddCredentials(ctx context.Context, creds *model.Credentials) (*model.Credentials, error)
+        // GetCredentilas - return credentials for user
+        GetCredentials(ctx context.Context, userID string, credsID string) (*model.Credentials, error)
+        // GetCredentialsList - return all credentials for user
+        GetCredentialsList(ctx context.Context, userID string) ([]model.Credentials, error)
+        // AddBankCard - adds new bank card for user
+        AddBankCard(ctx context.Context, card *model.BankCard) (*model.BankCard, error)
+        // GetBankCard - return bank card for user
+        GetBankCard(ctx context.Context, userID string, cardID string) (*model.BankCard, error)
+        // GetBankCardList - return all bank cards for user
+        GetBankCardList(ctx context.Context, userID string) ([]model.BankCard, error)
+        // AddBinary - adds new binaey data for user
+        AddBinary(ctx context.Context, data *model.Binary) (*model.Binary, error)
+        // GetBinary - return binary data for user
+        GetBinary(ctx context.Context, userID string, binID string) (*model.Binary, error)
+        // GetBinaryList - return all binary data for user
+        GetBinaryList(ctx context.Context, userID string) ([]model.Binary, error)
+}
+
+// Usecase implements httphandler.Usecase interface
+type Usecase struct {
+        repository Repository
+}
+
+// NewUsecase - create new instance of Usecase
+func NewUsecase(repository Repository) *Usecase <span class="cov0" title="0">{
+        uc := &amp;Usecase{repository: repository}
+
+        return uc
+}</span>
+</pre>
+		
+		<pre class="file" id="file71" style="display: none">package usecase
+
+import (
+        "context"
+
+        "github.com/alxrusinov/gophkeeper/internal/model"
+)
+
+// VerifyUser - checks if user exists and has valid password
+func (u *Usecase) VerifyUser(ctx context.Context, lg *model.Login) (*model.User, error) <span class="cov0" title="0">{
+        return u.repository.VerifyUser(ctx, lg)
+}</span>
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>

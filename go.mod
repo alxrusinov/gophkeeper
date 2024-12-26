@@ -4,6 +4,7 @@ go 1.23.4
 
 require (
 	github.com/kataras/iris/v12 v12.2.11
+	github.com/stretchr/testify v1.9.0
 	go.mongodb.org/mongo-driver v1.17.1
 	go.uber.org/zap v1.27.0
 )
@@ -16,6 +17,7 @@ require (
 	github.com/Shopify/goreferrer v0.0.0-20220729165902-8cddb4f5de06 // indirect
 	github.com/andybalholm/brotli v1.1.0 // indirect
 	github.com/aymerick/douceur v0.2.0 // indirect
+	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/flosch/pongo2/v4 v4.0.2 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
@@ -35,10 +37,12 @@ require (
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/microcosm-cc/bluemonday v1.0.26 // indirect
 	github.com/montanaflynn/stats v0.7.1 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/schollz/closestmatch v2.1.0+incompatible // indirect
 	github.com/sergi/go-diff v1.1.0 // indirect
 	github.com/sirupsen/logrus v1.8.1 // indirect
+	github.com/stretchr/objx v0.5.2 // indirect
 	github.com/tdewolff/minify/v2 v2.20.19 // indirect
 	github.com/tdewolff/parse/v2 v2.7.12 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
