@@ -115,3 +115,8 @@ func (rm *RepositoryMock) GetBinaryList(ctx context.Context, userID string) ([]m
 
 	return args.Get(indexZero).([]model.Binary), args.Error(indexFirst)
 }
+
+// NewRepositoryMock - returns new repository mock
+func NewRepositoryMock() *RepositoryMock {
+	return new(RepositoryMock)
+}
