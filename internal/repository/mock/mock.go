@@ -116,6 +116,38 @@ func (rm *RepositoryMock) GetBinaryList(ctx context.Context, userID string) ([]m
 	return args.Get(indexZero).([]model.Binary), args.Error(indexFirst)
 }
 
+// DeleteBankCard - delete bank card
+func (uc *RepositoryMock) DeleteBankCard(ctx context.Context, source *model.SourceID) (*model.SourceID, error) {
+	args := uc.Called(ctx, source)
+
+	return args.Get(indexZero).(*model.SourceID), args.Error(indexFirst)
+
+}
+
+// DeleteBankCard - delete binary
+func (uc *RepositoryMock) DeleteBinary(ctx context.Context, source *model.SourceID) (*model.SourceID, error) {
+
+	args := uc.Called(ctx, source)
+
+	return args.Get(indexZero).(*model.SourceID), args.Error(indexFirst)
+}
+
+// DeleteBankCard - delete note
+func (uc *RepositoryMock) DeleteNote(ctx context.Context, source *model.SourceID) (*model.SourceID, error) {
+	args := uc.Called(ctx, source)
+
+	return args.Get(indexZero).(*model.SourceID), args.Error(indexFirst)
+
+}
+
+// DeleteBankCard - delete credentials
+func (uc *RepositoryMock) DeleteCredentials(ctx context.Context, source *model.SourceID) (*model.SourceID, error) {
+	args := uc.Called(ctx, source)
+
+	return args.Get(indexZero).(*model.SourceID), args.Error(indexFirst)
+
+}
+
 // NewRepositoryMock - returns new repository mock
 func NewRepositoryMock() *RepositoryMock {
 	return new(RepositoryMock)

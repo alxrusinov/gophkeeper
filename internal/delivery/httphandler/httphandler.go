@@ -38,6 +38,14 @@ type Usecase interface {
 	GetBinary(ctx context.Context, userID string, binID string) (*model.Binary, error)
 	// GetBinaryList - return all binary data for user
 	GetBinaryList(ctx context.Context, userID string) ([]model.Binary, error)
+	// DeleteBankCard - delete bank card
+	DeleteBankCard(ctx context.Context, source *model.SourceID) (*model.SourceID, error)
+	// DeleteBankCard - delete binary
+	DeleteBinary(ctx context.Context, source *model.SourceID) (*model.SourceID, error)
+	// DeleteBankCard - delete note
+	DeleteNote(ctx context.Context, source *model.SourceID) (*model.SourceID, error)
+	// DeleteBankCard - delete credentials
+	DeleteCredentials(ctx context.Context, source *model.SourceID) (*model.SourceID, error)
 }
 
 // HttpHandler - handler for http router

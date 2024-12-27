@@ -116,6 +116,38 @@ func (uc *UsecaseMock) GetBinaryList(ctx context.Context, userID string) ([]mode
 	return args.Get(indexZero).([]model.Binary), args.Error(indexFirst)
 }
 
+// DeleteBankCard - delete bank card
+func (uc *UsecaseMock) DeleteBankCard(ctx context.Context, source *model.SourceID) (*model.SourceID, error) {
+	args := uc.Called(ctx, source)
+
+	return args.Get(indexZero).(*model.SourceID), args.Error(indexFirst)
+
+}
+
+// DeleteBankCard - delete binary
+func (uc *UsecaseMock) DeleteBinary(ctx context.Context, source *model.SourceID) (*model.SourceID, error) {
+
+	args := uc.Called(ctx, source)
+
+	return args.Get(indexZero).(*model.SourceID), args.Error(indexFirst)
+}
+
+// DeleteBankCard - delete note
+func (uc *UsecaseMock) DeleteNote(ctx context.Context, source *model.SourceID) (*model.SourceID, error) {
+	args := uc.Called(ctx, source)
+
+	return args.Get(indexZero).(*model.SourceID), args.Error(indexFirst)
+
+}
+
+// DeleteBankCard - delete credentials
+func (uc *UsecaseMock) DeleteCredentials(ctx context.Context, source *model.SourceID) (*model.SourceID, error) {
+	args := uc.Called(ctx, source)
+
+	return args.Get(indexZero).(*model.SourceID), args.Error(indexFirst)
+
+}
+
 // NewUsecaseMock - returns new usecase mock
 func NewUsecaseMock() *UsecaseMock {
 	return new(UsecaseMock)
