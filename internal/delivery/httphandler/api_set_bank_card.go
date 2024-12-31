@@ -33,6 +33,6 @@ func (h *HttpHandler) SetBankCard(ctx iris.Context) {
 		ctx.StopWithError(http.StatusInternalServerError, fmt.Errorf("card with title %s was not saved", card.Title))
 	}
 
-	ctx.StatusCode(http.StatusOK)
+	ctx.StatusCode(http.StatusCreated)
 	ctx.JSON(addedCard)
 }

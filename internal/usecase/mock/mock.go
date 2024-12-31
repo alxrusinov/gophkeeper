@@ -46,7 +46,7 @@ func (uc *UsecaseMock) GetNote(ctx context.Context, userID, noteID string) (*mod
 	return args.Get(indexZero).(*model.Note), args.Error(indexFirst)
 }
 
-// GetNotes - return notes for user by note id
+// GetNoteList - return notes for user by note id
 func (uc *UsecaseMock) GetNoteList(ctx context.Context, userID string) ([]model.Note, error) {
 	args := uc.Called(ctx, userID)
 
@@ -83,7 +83,7 @@ func (uc *UsecaseMock) AddBankCard(ctx context.Context, card *model.BankCard) (*
 
 // GetBankCard - return bank card for user
 func (uc *UsecaseMock) GetBankCard(ctx context.Context, userID string, cardID string) (*model.BankCard, error) {
-	args := uc.Called(ctx, userID)
+	args := uc.Called(ctx, userID, cardID)
 
 	return args.Get(indexZero).(*model.BankCard), args.Error(indexFirst)
 }
@@ -104,7 +104,7 @@ func (uc *UsecaseMock) AddBinary(ctx context.Context, data *model.Binary) (*mode
 
 // GetBinary - return binary data for user
 func (uc *UsecaseMock) GetBinary(ctx context.Context, userID string, binID string) (*model.Binary, error) {
-	args := uc.Called(ctx, userID)
+	args := uc.Called(ctx, userID, binID)
 
 	return args.Get(indexZero).(*model.Binary), args.Error(indexFirst)
 }

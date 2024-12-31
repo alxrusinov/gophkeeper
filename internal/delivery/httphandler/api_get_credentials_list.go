@@ -24,7 +24,7 @@ func (h *HttpHandler) GetCredentialsList(ctx iris.Context) {
 		notFoundErr := new(customerrors.NotFound)
 
 		if errors.As(err, &notFoundErr) {
-			ctx.StatusCode(http.StatusOK)
+			ctx.StatusCode(http.StatusNotFound)
 			ctx.JSON([]model.Credentials{})
 			return
 		}

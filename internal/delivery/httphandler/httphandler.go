@@ -2,9 +2,11 @@ package httphandler
 
 import (
 	"context"
+	"time"
 
-	"github.com/alxrusinov/gophkeeper/internal/auth"
 	"github.com/alxrusinov/gophkeeper/internal/model"
+	"github.com/kataras/iris/v12"
+	"github.com/kataras/iris/v12/middleware/jwt"
 )
 
 // Usecase - interface of Usecase
@@ -48,16 +50,36 @@ type Usecase interface {
 	DeleteCredentials(ctx context.Context, source *model.SourceID) (*model.SourceID, error)
 }
 
+// Auth - interface auth for handler
+type Auth interface {
+	// GetAccessTokenExp - return expiring of access token
+	GetAccessTokenExp() time.Duration
+	// GetAccessToken - generate access token
+	GetAccessToken(user *model.User) (string, error)
+	// GetAccessToken - generate access token
+	GetRefreshToken(user *model.User) (string, error)
+	// GetSigKey - returns sig aky  as []byte
+	GetSigKey() []byte
+	// GetTokenPair - return new token pair for user
+	GetTokenPair(user *model.User) (*model.TokenPair, error)
+	// GetVerifier - return custom jwt verifier
+	GetVerifier() *jwt.Verifier
+	// RefreshUserTokens refreshes access and refresh user tokens
+	RefreshUserTokens(ctx iris.Context) (*model.TokenPair, error)
+	// GetUserIDFromContext extracts userID from context
+	GetUserFromContext(ctx iris.Context) (*model.User, error)
+}
+
 // HttpHandler - handler for http router
 type HttpHandler struct {
-	auth    *auth.Auth
+	auth    Auth
 	usecase Usecase
 }
 
 // NewHttpHandler - return new instance
-func NewHttpHandler(usecase Usecase) *HttpHandler {
+func NewHttpHandler(usecase Usecase, auth Auth) *HttpHandler {
 	return &HttpHandler{
-		auth:    auth.NewAuth(),
+		auth:    auth,
 		usecase: usecase,
 	}
 }

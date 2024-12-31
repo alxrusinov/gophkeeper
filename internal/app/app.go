@@ -3,6 +3,7 @@ package app
 import (
 	"context"
 
+	"github.com/alxrusinov/gophkeeper/internal/auth"
 	"github.com/alxrusinov/gophkeeper/internal/delivery/httphandler"
 	"github.com/alxrusinov/gophkeeper/internal/logger"
 	"github.com/alxrusinov/gophkeeper/internal/model"
@@ -49,7 +50,9 @@ func (app *App) Run(ctx context.Context) (err error) {
 
 	currentUsecase := usecase.NewUsecase(repo)
 
-	handler := httphandler.NewHttpHandler(currentUsecase)
+	newAuth := auth.NewAuth()
+
+	handler := httphandler.NewHttpHandler(currentUsecase, newAuth)
 
 	server := router.NewRouter(app.config, handler)
 

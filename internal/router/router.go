@@ -19,8 +19,8 @@ type Router struct {
 	baseURL string
 }
 
-// Run - runner for router
-func (r *Router) Run(ctx context.Context) (err error) {
+// Init - initialize  router
+func (r *Router) init() error {
 	r.app.Use(iris.Compression)
 	authRouter := r.app.Party(httphandler.AuthRouteGroup)
 
@@ -54,6 +54,17 @@ func (r *Router) Run(ctx context.Context) (err error) {
 	apiRouter.Delete(httphandler.BankcardsRoute, r.handler.DeleteBankCard)
 	apiRouter.Delete(httphandler.CredentialsRoute, r.handler.DeleteCredentials)
 
+	return nil
+}
+
+// Run - run server
+func (r *Router) Run(ctx context.Context) (err error) {
+	err = r.init()
+
+	if err != nil {
+		return
+	}
+
 	err = r.app.Listen(r.baseURL)
 
 	return err
@@ -61,6 +72,7 @@ func (r *Router) Run(ctx context.Context) (err error) {
 
 // NewRouter - create new instance of Router
 func NewRouter(cfg Config, handler *httphandler.HttpHandler) *Router {
+
 	router := &Router{
 		app:     iris.New(),
 		handler: handler,

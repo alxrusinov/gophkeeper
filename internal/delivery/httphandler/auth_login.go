@@ -16,7 +16,7 @@ func (h *HttpHandler) Login(ctx iris.Context) {
 	err := ctx.ReadJSON(login)
 
 	if err != nil {
-		ctx.StopWithStatus(http.StatusInternalServerError)
+		ctx.StopWithStatus(http.StatusBadRequest)
 		return
 	}
 

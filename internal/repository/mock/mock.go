@@ -83,7 +83,7 @@ func (rm *RepositoryMock) AddBankCard(ctx context.Context, card *model.BankCard)
 
 // GetBankCard - return bank card for user
 func (rm *RepositoryMock) GetBankCard(ctx context.Context, userID string, cardID string) (*model.BankCard, error) {
-	args := rm.Called(ctx, userID)
+	args := rm.Called(ctx, userID, cardID)
 
 	return args.Get(indexZero).(*model.BankCard), args.Error(indexFirst)
 }
@@ -104,7 +104,7 @@ func (rm *RepositoryMock) AddBinary(ctx context.Context, data *model.Binary) (*m
 
 // GetBinary - return binary data for user
 func (rm *RepositoryMock) GetBinary(ctx context.Context, userID string, binID string) (*model.Binary, error) {
-	args := rm.Called(ctx, userID)
+	args := rm.Called(ctx, userID, binID)
 
 	return args.Get(indexZero).(*model.Binary), args.Error(indexFirst)
 }

@@ -18,13 +18,13 @@ func (h *HttpHandler) GetBinaryList(ctx iris.Context) {
 		return
 	}
 
-	binList, err := h.usecase.GetCredentialsList(ctx, user.ID)
+	binList, err := h.usecase.GetBinaryList(ctx, user.ID)
 
 	if err != nil {
 		notFoundErr := new(customerrors.NotFound)
 
 		if errors.As(err, &notFoundErr) {
-			ctx.StatusCode(http.StatusOK)
+			ctx.StatusCode(http.StatusNotFound)
 			ctx.JSON([]model.Binary{})
 			return
 		}
