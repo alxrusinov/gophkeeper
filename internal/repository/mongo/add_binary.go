@@ -19,11 +19,12 @@ func (m *Mongo) AddBinary(ctx context.Context, data *model.Binary) (*model.Binar
 
 	if id, ok := insertedResult.InsertedID.(primitive.ObjectID); ok {
 		return &model.Binary{
-			ID:     id.Hex(),
-			UserID: "",
-			Data:   data.Data,
-			Title:  data.Title,
-			Meta:   data.Meta,
+			ID:       id.Hex(),
+			UserID:   "",
+			Data:     data.Data,
+			Title:    data.Title,
+			Meta:     data.Meta,
+			MimeType: data.MimeType,
 		}, nil
 	}
 	return nil, errors.New("credentials was not saved")
