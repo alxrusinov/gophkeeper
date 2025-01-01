@@ -1,3 +1,4 @@
 {
-  "base_url": "http://localhost:8080"
+  "baseURL": "localhost:8080",
+  "dbbURL": "mongodb://localhost:3000"
 }
