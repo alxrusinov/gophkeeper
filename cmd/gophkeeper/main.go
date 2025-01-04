@@ -21,6 +21,6 @@ func main() {
 	defer stop()
 
 	if err := application.Run(signalCtx); err != nil {
-		log.Fatal("application was crashed")
+		log.Fatal("application was crashed", err)
 	}
 }

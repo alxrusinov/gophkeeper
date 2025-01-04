@@ -1,0 +1,29 @@
+version: "3.9"
+name: "gophkeeper"
+services:
+  mongo:
+    container_name: mongo
+    image: mongo
+    restart: always
+    # networks:
+    #   - net
+    ports:
+      - "27017:27017"
+  server:
+    build:
+      dockerfile: ./Dockerfile.server
+    # networks:
+    #   - net
+    command:
+      - server
+    ports:
+      - "8000:8000"
+    expose:
+      - "8000"
+    links:
+      - mongo
+    depends_on:
+      - mongo
+# networks:
+#   net:
+#     driver: bridge

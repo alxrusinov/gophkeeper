@@ -7,5 +7,8 @@ TEST_DIR = ./internal/...
 run-server:
 	go run $(SRC_SERVER)
 
+run:
+	docker-compose up
+
 test-server:
 	go test -count=1 -coverprofile c.out -coverpkg ./... $(TEST_DIR) &&  go tool cover -html c.out -o index.html

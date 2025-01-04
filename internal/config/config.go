@@ -7,9 +7,9 @@ import (
 
 const (
 	// defaultBaseURL - default value of base url for running server
-	defaultBaseURL string = "localhost:8080"
+	defaultBaseURL string = "0.0.0.0:8000"
 	// defaultDBURL - default value of address for runnimg data base
-	defaultDBURL string = "mongodb://localhost:3000"
+	defaultDBURL string = "mongodb://mongo:27017/?connect=direct"
 )
 
 const (
@@ -34,11 +34,7 @@ func (cfg *Config) Run() (err error) {
 	viper.SetDefault(baseURLField, defaultBaseURL)
 	viper.SetDefault(dbURLField, defaultDBURL)
 
-	err = viper.ReadInConfig()
-
-	if err != nil {
-		return err
-	}
+	viper.ReadInConfig()
 
 	pflag.String(baseURLField, defaultBaseURL, "address for running server")
 	pflag.String(dbURLField, defaultDBURL, "address for running data base")
