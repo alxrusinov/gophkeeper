@@ -37,7 +37,7 @@ func TestHttpHandler_GetBinary(t *testing.T) {
 
 	app := iris.New()
 
-	app.Get("/api/binaries/{id}", testHandler.GetBinary)
+	app.Get("/api/binary/{id}", testHandler.GetBinary)
 
 	app.Use(testHandler.AuthMiddleware())
 
@@ -49,7 +49,7 @@ func TestHttpHandler_GetBinary(t *testing.T) {
 
 	errApp := iris.New()
 
-	errApp.Get("/api/binaries/{id}", errHandler.GetBinary)
+	errApp.Get("/api/binary/{id}", errHandler.GetBinary)
 
 	errServer := httptest.New(t, app, httptest.URL("http://err-example.com"))
 
@@ -105,21 +105,21 @@ func TestHttpHandler_GetBinary(t *testing.T) {
 
 			switch tt.name {
 			case tests[0].name:
-				server.GET(fmt.Sprintf("/api/binaries/%s", tt.arg)).Expect().Status(tt.resCode)
+				server.GET(fmt.Sprintf("/api/binary/%s", tt.arg)).Expect().Status(tt.resCode)
 			case tests[1].name:
-				server.GET(fmt.Sprintf("/api/binaries/%s", tt.arg)).Expect().Status(tt.resCode)
+				server.GET(fmt.Sprintf("/api/binary/%s", tt.arg)).Expect().Status(tt.resCode)
 			case tests[2].name:
 				testAuth.On("GetUserFromContext", mock.Anything).Unset()
 				testAuth.On("GetUserFromContext", mock.Anything).Return(new(model.User), errors.New("error of context"))
-				errServer.GET(fmt.Sprintf("/api/binaries/%s", tt.arg)).Expect().Status(tt.resCode)
+				errServer.GET(fmt.Sprintf("/api/binary/%s", tt.arg)).Expect().Status(tt.resCode)
 			case tests[3].name:
 				testAuth.On("GetUserFromContext", mock.Anything).Unset()
 				testAuth.On("GetUserFromContext", mock.Anything).Return(successUser, nil)
-				server.GET(fmt.Sprintf("/api/binaries/%s", tt.arg)).Expect().Status(tt.resCode)
+				server.GET(fmt.Sprintf("/api/binary/%s", tt.arg)).Expect().Status(tt.resCode)
 			case tests[4].name:
 				testAuth.On("GetUserFromContext", mock.Anything).Unset()
 				testAuth.On("GetUserFromContext", mock.Anything).Return(successUser, nil)
-				server.GET(fmt.Sprintf("/api/binaries/%s", tt.arg)).Expect().Status(tt.resCode)
+				server.GET(fmt.Sprintf("/api/binary/%s", tt.arg)).Expect().Status(tt.resCode)
 
 			}
 

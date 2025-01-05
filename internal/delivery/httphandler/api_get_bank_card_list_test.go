@@ -41,7 +41,7 @@ func TestHttpHandler_GetBankCardList(t *testing.T) {
 
 	app := iris.New()
 
-	app.Get("/api/bankcards", testHandler.GetBankCardList)
+	app.Get("/api/bankcard", testHandler.GetBankCardList)
 
 	app.Use(testHandler.AuthMiddleware())
 
@@ -83,21 +83,21 @@ func TestHttpHandler_GetBankCardList(t *testing.T) {
 
 			switch tt.name {
 			case tests[0].name:
-				server.GET("/api/bankcards").Expect().Status(tt.resCode)
+				server.GET("/api/bankcard").Expect().Status(tt.resCode)
 			case tests[1].name:
 				testUsecase.On("GetBankCardList", mock.Anything, mock.Anything).Unset()
 				testUsecase.On("GetBankCardList", mock.Anything, mock.Anything).Return(tt.source, &customerrors.NotFound{})
-				server.GET("/api/bankcards").Expect().Status(tt.resCode)
+				server.GET("/api/bankcard").Expect().Status(tt.resCode)
 			case tests[2].name:
 				testAuth.On("GetUserFromContext", mock.Anything).Unset()
 				testAuth.On("GetUserFromContext", mock.Anything).Return(successUser, errors.New("error"))
-				server.GET("/api/bankcards").Expect().Status(tt.resCode)
+				server.GET("/api/bankcard").Expect().Status(tt.resCode)
 			case tests[3].name:
 				testAuth.On("GetUserFromContext", mock.Anything).Unset()
 				testAuth.On("GetUserFromContext", mock.Anything).Return(successUser, nil)
 				testUsecase.On("GetBankCardList", mock.Anything, mock.Anything).Unset()
 				testUsecase.On("GetBankCardList", mock.Anything, mock.Anything).Return(tt.source, errors.New("error"))
-				server.GET("/api/bankcards").Expect().Status(tt.resCode)
+				server.GET("/api/bankcard").Expect().Status(tt.resCode)
 
 			}
 		})

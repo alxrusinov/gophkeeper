@@ -16,19 +16,19 @@ const (
 	// LogoutRoute - route for logout
 	LogoutRoute string = "/logout"
 	// NotesRoute - route for  notes
-	NotesRoute string = "/notes"
+	NotesRoute string = "/note"
 	// BankcardsRoute - route for  bank cards
-	BankcardsRoute string = "/bankcards"
+	BankcardsRoute string = "/bankcard"
 	// BinariesRoute - route for  binary data
-	BinariesRoute string = "/binaries"
+	BinariesRoute string = "/binary"
 	// CredentialsRoute - route for  credentials
 	CredentialsRoute string = "/credentials"
 	// NoteRoute - route for  note
-	NoteRoute string = "/notes/{id}"
+	NoteRoute string = "/note/{id}"
 	// NotesRoute - route for bank card
-	BankcardRoute string = "/bankcards/{id}"
+	BankcardRoute string = "/bankcard/{id}"
 	// BinaryRoute - route for  binary data
-	BinaryRoute string = "/binaries/{id}"
+	BinaryRoute string = "/binarie/{id}"
 	// CredentialRoute - route for credentials
 	CredentialRoute string = "/credentials/{id}"
 )

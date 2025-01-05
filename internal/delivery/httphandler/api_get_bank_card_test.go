@@ -37,7 +37,7 @@ func TestHttpHandler_GetBankCard(t *testing.T) {
 
 	app := iris.New()
 
-	app.Get("/api/bankcards/{id}", testHandler.GetBankCard)
+	app.Get("/api/bankcard/{id}", testHandler.GetBankCard)
 
 	app.Use(testHandler.AuthMiddleware())
 
@@ -49,7 +49,7 @@ func TestHttpHandler_GetBankCard(t *testing.T) {
 
 	errApp := iris.New()
 
-	errApp.Get("/api/bankcards/{id}", errHandler.GetBankCard)
+	errApp.Get("/api/bankcard/{id}", errHandler.GetBankCard)
 
 	errServer := httptest.New(t, app, httptest.URL("http://err-example.com"))
 
@@ -105,21 +105,21 @@ func TestHttpHandler_GetBankCard(t *testing.T) {
 
 			switch tt.name {
 			case tests[0].name:
-				server.GET(fmt.Sprintf("/api/bankcards/%s", tt.arg)).Expect().Status(tt.resCode)
+				server.GET(fmt.Sprintf("/api/bankcard/%s", tt.arg)).Expect().Status(tt.resCode)
 			case tests[1].name:
-				server.GET(fmt.Sprintf("/api/bankcards/%s", tt.arg)).Expect().Status(tt.resCode)
+				server.GET(fmt.Sprintf("/api/bankcard/%s", tt.arg)).Expect().Status(tt.resCode)
 			case tests[2].name:
 				testAuth.On("GetUserFromContext", mock.Anything).Unset()
 				testAuth.On("GetUserFromContext", mock.Anything).Return(new(model.User), errors.New("error of context"))
-				errServer.GET(fmt.Sprintf("/api/bankcards/%s", tt.arg)).Expect().Status(tt.resCode)
+				errServer.GET(fmt.Sprintf("/api/bankcard/%s", tt.arg)).Expect().Status(tt.resCode)
 			case tests[3].name:
 				testAuth.On("GetUserFromContext", mock.Anything).Unset()
 				testAuth.On("GetUserFromContext", mock.Anything).Return(successUser, nil)
-				server.GET(fmt.Sprintf("/api/bankcards/%s", tt.arg)).Expect().Status(tt.resCode)
+				server.GET(fmt.Sprintf("/api/bankcard/%s", tt.arg)).Expect().Status(tt.resCode)
 			case tests[4].name:
 				testAuth.On("GetUserFromContext", mock.Anything).Unset()
 				testAuth.On("GetUserFromContext", mock.Anything).Return(successUser, nil)
-				server.GET(fmt.Sprintf("/api/bankcards/%s", tt.arg)).Expect().Status(tt.resCode)
+				server.GET(fmt.Sprintf("/api/bankcard/%s", tt.arg)).Expect().Status(tt.resCode)
 
 			}
 

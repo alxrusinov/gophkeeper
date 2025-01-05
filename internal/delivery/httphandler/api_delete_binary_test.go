@@ -37,7 +37,7 @@ func TestHttpHandler_DeleteBinary(t *testing.T) {
 
 	app := iris.New()
 
-	app.Delete("/api/binaries", testHandler.DeleteBinary)
+	app.Delete("/api/binary", testHandler.DeleteBinary)
 
 	app.Use(testHandler.AuthMiddleware())
 
@@ -75,19 +75,19 @@ func TestHttpHandler_DeleteBinary(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			switch tt.name {
 			case tests[0].name:
-				server.DELETE("/api/binaries").WithJSON(tt.source).Expect().Status(tt.resCode)
+				server.DELETE("/api/binary").WithJSON(tt.source).Expect().Status(tt.resCode)
 			case tests[1].name:
-				server.DELETE("/api/binaries").WithJSON("foo").Expect().Status(tt.resCode)
+				server.DELETE("/api/binary").WithJSON("foo").Expect().Status(tt.resCode)
 			case tests[2].name:
 				testAuth.On("GetUserFromContext", mock.Anything).Unset()
 				testAuth.On("GetUserFromContext", mock.Anything).Return(successUser, errors.New("error"))
-				server.DELETE("/api/binaries").WithJSON(tt.source).Expect().Status(tt.resCode)
+				server.DELETE("/api/binary").WithJSON(tt.source).Expect().Status(tt.resCode)
 			case tests[3].name:
 				testAuth.On("GetUserFromContext", mock.Anything).Unset()
 				testAuth.On("GetUserFromContext", mock.Anything).Return(successUser, nil)
 				testUsecase.On("DeleteBinary", mock.Anything, mock.Anything).Unset()
 				testUsecase.On("DeleteBinary", mock.Anything, mock.Anything).Return(tt.source, errors.New("error"))
-				server.DELETE("/api/binaries").WithJSON(tt.source).Expect().Status(tt.resCode)
+				server.DELETE("/api/binary").WithJSON(tt.source).Expect().Status(tt.resCode)
 			}
 		})
 	}

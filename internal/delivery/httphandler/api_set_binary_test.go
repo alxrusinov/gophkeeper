@@ -46,7 +46,7 @@ func TestHttpHandler_SetBinary(t *testing.T) {
 
 	app := iris.New()
 
-	app.Post("/api/binaries", testHandler.SetBinary)
+	app.Post("/api/binary", testHandler.SetBinary)
 
 	app.Use(testHandler.AuthMiddleware())
 
@@ -87,15 +87,15 @@ func TestHttpHandler_SetBinary(t *testing.T) {
 
 			switch tt.name {
 			case tests[0].name:
-				server.POST("/api/binaries").WithJSON(tt.arg).Expect().Status(tt.resCode)
+				server.POST("/api/binary").WithJSON(tt.arg).Expect().Status(tt.resCode)
 			case tests[1].name:
-				server.POST("/api/binaries").WithJSON("foo").Expect().Status(tt.resCode)
+				server.POST("/api/binary").WithJSON("foo").Expect().Status(tt.resCode)
 			case tests[2].name:
-				server.POST("/api/binaries").WithJSON(tt.arg).Expect().Status(tt.resCode)
+				server.POST("/api/binary").WithJSON(tt.arg).Expect().Status(tt.resCode)
 			case tests[3].name:
 				testAuth.On("GetUserFromContext", mock.Anything).Unset()
 				testAuth.On("GetUserFromContext", mock.Anything).Return(successUser, errors.New("err"))
-				server.POST("/api/binaries").WithJSON(tt.arg).Expect().Status(tt.resCode)
+				server.POST("/api/binary").WithJSON(tt.arg).Expect().Status(tt.resCode)
 
 			}
 

@@ -37,7 +37,7 @@ func TestHttpHandler_DeleteNote(t *testing.T) {
 
 	app := iris.New()
 
-	app.Delete("/api/notes", testHandler.DeleteNote)
+	app.Delete("/api/note", testHandler.DeleteNote)
 
 	app.Use(testHandler.AuthMiddleware())
 
@@ -74,19 +74,19 @@ func TestHttpHandler_DeleteNote(t *testing.T) {
 
 			switch tt.name {
 			case tests[0].name:
-				server.DELETE("/api/notes").WithJSON(tt.source).Expect().Status(tt.resCode)
+				server.DELETE("/api/note").WithJSON(tt.source).Expect().Status(tt.resCode)
 			case tests[1].name:
-				server.DELETE("/api/notes").WithJSON("foo").Expect().Status(tt.resCode)
+				server.DELETE("/api/note").WithJSON("foo").Expect().Status(tt.resCode)
 			case tests[2].name:
 				testAuth.On("GetUserFromContext", mock.Anything).Unset()
 				testAuth.On("GetUserFromContext", mock.Anything).Return(successUser, errors.New("error"))
-				server.DELETE("/api/notes").WithJSON(tt.source).Expect().Status(tt.resCode)
+				server.DELETE("/api/note").WithJSON(tt.source).Expect().Status(tt.resCode)
 			case tests[3].name:
 				testAuth.On("GetUserFromContext", mock.Anything).Unset()
 				testAuth.On("GetUserFromContext", mock.Anything).Return(successUser, nil)
 				testUsecase.On("DeleteNote", mock.Anything, mock.Anything).Unset()
 				testUsecase.On("DeleteNote", mock.Anything, mock.Anything).Return(tt.source, errors.New("error"))
-				server.DELETE("/api/notes").WithJSON(tt.source).Expect().Status(tt.resCode)
+				server.DELETE("/api/note").WithJSON(tt.source).Expect().Status(tt.resCode)
 
 			}
 		})

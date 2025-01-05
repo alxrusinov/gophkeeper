@@ -37,7 +37,7 @@ func TestHttpHandler_DeleteBankCard(t *testing.T) {
 
 	app := iris.New()
 
-	app.Delete("/api/bankcards", testHandler.DeleteBankCard)
+	app.Delete("/api/bankcard", testHandler.DeleteBankCard)
 
 	app.Use(testHandler.AuthMiddleware())
 
@@ -74,19 +74,19 @@ func TestHttpHandler_DeleteBankCard(t *testing.T) {
 
 			switch tt.name {
 			case tests[0].name:
-				server.DELETE("/api/bankcards").WithJSON(tt.source).Expect().Status(tt.resCode)
+				server.DELETE("/api/bankcard").WithJSON(tt.source).Expect().Status(tt.resCode)
 			case tests[1].name:
-				server.DELETE("/api/bankcards").WithJSON("foo").Expect().Status(tt.resCode)
+				server.DELETE("/api/bankcard").WithJSON("foo").Expect().Status(tt.resCode)
 			case tests[2].name:
 				testAuth.On("GetUserFromContext", mock.Anything).Unset()
 				testAuth.On("GetUserFromContext", mock.Anything).Return(successUser, errors.New("error"))
-				server.DELETE("/api/bankcards").WithJSON(tt.source).Expect().Status(tt.resCode)
+				server.DELETE("/api/bankcard").WithJSON(tt.source).Expect().Status(tt.resCode)
 			case tests[3].name:
 				testAuth.On("GetUserFromContext", mock.Anything).Unset()
 				testAuth.On("GetUserFromContext", mock.Anything).Return(successUser, nil)
 				testUsecase.On("DeleteBankCard", mock.Anything, mock.Anything).Unset()
 				testUsecase.On("DeleteBankCard", mock.Anything, mock.Anything).Return(tt.source, errors.New("error"))
-				server.DELETE("/api/bankcards").WithJSON(tt.source).Expect().Status(tt.resCode)
+				server.DELETE("/api/bankcard").WithJSON(tt.source).Expect().Status(tt.resCode)
 
 			}
 		})

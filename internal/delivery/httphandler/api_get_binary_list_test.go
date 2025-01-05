@@ -41,7 +41,7 @@ func TestHttpHandler_GetBinaryList(t *testing.T) {
 
 	app := iris.New()
 
-	app.Get("/api/binaries", testHandler.GetBinaryList)
+	app.Get("/api/binary", testHandler.GetBinaryList)
 
 	app.Use(testHandler.AuthMiddleware())
 
@@ -83,21 +83,21 @@ func TestHttpHandler_GetBinaryList(t *testing.T) {
 
 			switch tt.name {
 			case tests[0].name:
-				server.GET("/api/binaries").Expect().Status(tt.resCode)
+				server.GET("/api/binary").Expect().Status(tt.resCode)
 			case tests[1].name:
 				testUsecase.On("GetBinaryList", mock.Anything, mock.Anything).Unset()
 				testUsecase.On("GetBinaryList", mock.Anything, mock.Anything).Return(tt.source, &customerrors.NotFound{})
-				server.GET("/api/binaries").Expect().Status(tt.resCode)
+				server.GET("/api/binary").Expect().Status(tt.resCode)
 			case tests[2].name:
 				testAuth.On("GetUserFromContext", mock.Anything).Unset()
 				testAuth.On("GetUserFromContext", mock.Anything).Return(successUser, errors.New("error"))
-				server.GET("/api/binaries").Expect().Status(tt.resCode)
+				server.GET("/api/binary").Expect().Status(tt.resCode)
 			case tests[3].name:
 				testAuth.On("GetUserFromContext", mock.Anything).Unset()
 				testAuth.On("GetUserFromContext", mock.Anything).Return(successUser, nil)
 				testUsecase.On("GetBinaryList", mock.Anything, mock.Anything).Unset()
 				testUsecase.On("GetBinaryList", mock.Anything, mock.Anything).Return(tt.source, errors.New("error"))
-				server.GET("/api/binaries").Expect().Status(tt.resCode)
+				server.GET("/api/binary").Expect().Status(tt.resCode)
 
 			}
 		})

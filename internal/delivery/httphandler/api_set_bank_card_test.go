@@ -46,7 +46,7 @@ func TestHttpHandler_SetBankCard(t *testing.T) {
 
 	app := iris.New()
 
-	app.Post("/api/bankcards", testHandler.SetBankCard)
+	app.Post("/api/bankcard", testHandler.SetBankCard)
 
 	app.Use(testHandler.AuthMiddleware())
 
@@ -87,15 +87,15 @@ func TestHttpHandler_SetBankCard(t *testing.T) {
 
 			switch tt.name {
 			case tests[0].name:
-				server.POST("/api/bankcards").WithJSON(tt.arg).Expect().Status(tt.resCode)
+				server.POST("/api/bankcard").WithJSON(tt.arg).Expect().Status(tt.resCode)
 			case tests[1].name:
-				server.POST("/api/bankcards").WithJSON("foo").Expect().Status(tt.resCode)
+				server.POST("/api/bankcard").WithJSON("foo").Expect().Status(tt.resCode)
 			case tests[2].name:
-				server.POST("/api/bankcards").WithJSON(tt.arg).Expect().Status(tt.resCode)
+				server.POST("/api/bankcard").WithJSON(tt.arg).Expect().Status(tt.resCode)
 			case tests[3].name:
 				testAuth.On("GetUserFromContext", mock.Anything).Unset()
 				testAuth.On("GetUserFromContext", mock.Anything).Return(successUser, errors.New("err"))
-				server.POST("/api/bankcards").WithJSON(tt.arg).Expect().Status(tt.resCode)
+				server.POST("/api/bankcard").WithJSON(tt.arg).Expect().Status(tt.resCode)
 
 			}
 

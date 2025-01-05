@@ -41,7 +41,7 @@ func TestHttpHandler_GetNoteList(t *testing.T) {
 
 	app := iris.New()
 
-	app.Get("/api/notes", testHandler.GetNoteList)
+	app.Get("/api/note", testHandler.GetNoteList)
 
 	app.Use(testHandler.AuthMiddleware())
 
@@ -83,21 +83,21 @@ func TestHttpHandler_GetNoteList(t *testing.T) {
 
 			switch tt.name {
 			case tests[0].name:
-				server.GET("/api/notes").Expect().Status(tt.resCode)
+				server.GET("/api/note").Expect().Status(tt.resCode)
 			case tests[1].name:
 				testUsecase.On("GetNoteList", mock.Anything, mock.Anything).Unset()
 				testUsecase.On("GetNoteList", mock.Anything, mock.Anything).Return(tt.source, &customerrors.NotFound{})
-				server.GET("/api/notes").Expect().Status(tt.resCode)
+				server.GET("/api/note").Expect().Status(tt.resCode)
 			case tests[2].name:
 				testAuth.On("GetUserFromContext", mock.Anything).Unset()
 				testAuth.On("GetUserFromContext", mock.Anything).Return(successUser, errors.New("error"))
-				server.GET("/api/notes").Expect().Status(tt.resCode)
+				server.GET("/api/note").Expect().Status(tt.resCode)
 			case tests[3].name:
 				testAuth.On("GetUserFromContext", mock.Anything).Unset()
 				testAuth.On("GetUserFromContext", mock.Anything).Return(successUser, nil)
 				testUsecase.On("GetNoteList", mock.Anything, mock.Anything).Unset()
 				testUsecase.On("GetNoteList", mock.Anything, mock.Anything).Return(tt.source, errors.New("error"))
-				server.GET("/api/notes").Expect().Status(tt.resCode)
+				server.GET("/api/note").Expect().Status(tt.resCode)
 
 			}
 		})
