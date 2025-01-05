@@ -23,6 +23,8 @@ type Router struct {
 func (r *Router) init() error {
 	r.app.Use(iris.Compression)
 	authRouter := r.app.Party(httphandler.AuthRouteGroup)
+	authRouter.AllowMethods(iris.MethodOptions)
+	authRouter.Use(r.handler.CorsMiddleware())
 
 	authRouter.Post(httphandler.RegisterRoute, r.handler.Register)
 	authRouter.Post(httphandler.LoginRoute, r.handler.Login)
@@ -30,7 +32,9 @@ func (r *Router) init() error {
 
 	apiRouter := r.app.Party(httphandler.ApiRouteGroup)
 
+	apiRouter.AllowMethods(iris.MethodOptions)
 	apiRouter.Use(r.handler.AuthMiddleware())
+	apiRouter.Use(r.handler.CorsMiddleware())
 
 	apiRouter.Use(iris.Compression)
 
