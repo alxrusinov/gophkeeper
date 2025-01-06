@@ -148,6 +148,13 @@ func (uc *UsecaseMock) DeleteCredentials(ctx context.Context, source *model.Sour
 
 }
 
+// CheckUser - checks if user from token existss in repository
+func (uc *UsecaseMock) CheckUser(ctx context.Context, userID string) (bool, error) {
+	args := uc.Called(ctx, userID)
+
+	return args.Bool(indexZero), args.Error(indexFirst)
+}
+
 // NewUsecaseMock - returns new usecase mock
 func NewUsecaseMock() *UsecaseMock {
 	return new(UsecaseMock)

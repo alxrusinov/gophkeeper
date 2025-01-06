@@ -4,6 +4,9 @@ TEST_DIR = ./internal/...
 
 .PHONY: run-server test-server
 
+test-run:
+	go run ${SRC_SERVER} --dbURL mongodb://localhost:3000
+
 run-server:
 	go run $(SRC_SERVER)
 

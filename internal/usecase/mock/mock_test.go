@@ -787,3 +787,31 @@ func TestUsecaseMock_DeleteNote(t *testing.T) {
 		})
 	}
 }
+
+func TestUsecaseMock_CheckUser(t *testing.T) {
+	type args struct {
+		ctx    context.Context
+		userID string
+	}
+	tests := []struct {
+		name    string
+		uc      *UsecaseMock
+		args    args
+		want    bool
+		wantErr bool
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := tt.uc.CheckUser(tt.args.ctx, tt.args.userID)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("UsecaseMock.CheckUser() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if got != tt.want {
+				t.Errorf("UsecaseMock.CheckUser() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

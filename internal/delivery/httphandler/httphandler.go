@@ -48,6 +48,8 @@ type Usecase interface {
 	DeleteNote(ctx context.Context, source *model.SourceID) (*model.SourceID, error)
 	// DeleteBankCard - delete credentials
 	DeleteCredentials(ctx context.Context, source *model.SourceID) (*model.SourceID, error)
+	// CheckUser - checks if user from token existss in repository
+	CheckUser(ctx context.Context, userID string) (bool, error)
 }
 
 // Auth - interface auth for handler

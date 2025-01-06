@@ -2,6 +2,7 @@ package mock
 
 import (
 	"context"
+	"errors"
 	"reflect"
 	"testing"
 
@@ -783,6 +784,60 @@ func TestRepositoryMock_DeleteNote(t *testing.T) {
 			}
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("RepositoryMock.DeleteNote() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestRepositoryMock_CheckUser(t *testing.T) {
+	rp := NewRepositoryMock()
+
+	successUserID := primitive.NewObjectID().Hex()
+	errUserID := primitive.NewObjectID().Hex()
+	type args struct {
+		ctx    context.Context
+		userID string
+	}
+	tests := []struct {
+		name    string
+		rm      *RepositoryMock
+		args    args
+		want    bool
+		wantErr bool
+	}{
+		{
+			name: "1# success",
+			rm:   rp,
+			args: args{
+				ctx:    context.Background(),
+				userID: successUserID,
+			},
+			want:    true,
+			wantErr: false,
+		},
+		{
+			name: "2# error",
+			rm:   rp,
+			args: args{
+				ctx:    context.Background(),
+				userID: errUserID,
+			},
+			want:    false,
+			wantErr: true,
+		},
+	}
+
+	rp.On("CheckUser", mock.Anything, successUserID).Return(true, nil)
+	rp.On("CheckUser", mock.Anything, errUserID).Return(false, errors.New("err"))
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := tt.rm.CheckUser(tt.args.ctx, tt.args.userID)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("RepositoryMock.CheckUser() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if got != tt.want {
+				t.Errorf("RepositoryMock.CheckUser() = %v, want %v", got, tt.want)
 			}
 		})
 	}

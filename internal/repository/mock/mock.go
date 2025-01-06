@@ -117,35 +117,42 @@ func (rm *RepositoryMock) GetBinaryList(ctx context.Context, userID string) ([]m
 }
 
 // DeleteBankCard - delete bank card
-func (uc *RepositoryMock) DeleteBankCard(ctx context.Context, source *model.SourceID) (*model.SourceID, error) {
-	args := uc.Called(ctx, source)
+func (rm *RepositoryMock) DeleteBankCard(ctx context.Context, source *model.SourceID) (*model.SourceID, error) {
+	args := rm.Called(ctx, source)
 
 	return args.Get(indexZero).(*model.SourceID), args.Error(indexFirst)
 
 }
 
 // DeleteBankCard - delete binary
-func (uc *RepositoryMock) DeleteBinary(ctx context.Context, source *model.SourceID) (*model.SourceID, error) {
+func (rm *RepositoryMock) DeleteBinary(ctx context.Context, source *model.SourceID) (*model.SourceID, error) {
 
-	args := uc.Called(ctx, source)
+	args := rm.Called(ctx, source)
 
 	return args.Get(indexZero).(*model.SourceID), args.Error(indexFirst)
 }
 
 // DeleteBankCard - delete note
-func (uc *RepositoryMock) DeleteNote(ctx context.Context, source *model.SourceID) (*model.SourceID, error) {
-	args := uc.Called(ctx, source)
+func (rm *RepositoryMock) DeleteNote(ctx context.Context, source *model.SourceID) (*model.SourceID, error) {
+	args := rm.Called(ctx, source)
 
 	return args.Get(indexZero).(*model.SourceID), args.Error(indexFirst)
 
 }
 
 // DeleteBankCard - delete credentials
-func (uc *RepositoryMock) DeleteCredentials(ctx context.Context, source *model.SourceID) (*model.SourceID, error) {
-	args := uc.Called(ctx, source)
+func (rm *RepositoryMock) DeleteCredentials(ctx context.Context, source *model.SourceID) (*model.SourceID, error) {
+	args := rm.Called(ctx, source)
 
 	return args.Get(indexZero).(*model.SourceID), args.Error(indexFirst)
 
+}
+
+// CheckUser - checks if user from token existss in repository
+func (rm *RepositoryMock) CheckUser(ctx context.Context, userID string) (bool, error) {
+	args := rm.Called(ctx, userID)
+
+	return args.Bool(indexZero), args.Error(indexFirst)
 }
 
 // NewRepositoryMock - returns new repository mock

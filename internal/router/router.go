@@ -22,9 +22,10 @@ type Router struct {
 // Init - initialize  router
 func (r *Router) init() error {
 	r.app.Use(iris.Compression)
+	// r.app.UseRouter(r.handler.CorsMiddleware)
+	r.app.Use(r.handler.CorsMiddleware)
 	authRouter := r.app.Party(httphandler.AuthRouteGroup)
-	authRouter.AllowMethods(iris.MethodOptions)
-	authRouter.Use(r.handler.CorsMiddleware())
+	authRouter.AllowMethods(iris.MethodOptions, iris.MethodPost)
 
 	authRouter.Post(httphandler.RegisterRoute, r.handler.Register)
 	authRouter.Post(httphandler.LoginRoute, r.handler.Login)
@@ -32,11 +33,8 @@ func (r *Router) init() error {
 
 	apiRouter := r.app.Party(httphandler.ApiRouteGroup)
 
-	apiRouter.AllowMethods(iris.MethodOptions)
 	apiRouter.Use(r.handler.AuthMiddleware())
-	apiRouter.Use(r.handler.CorsMiddleware())
-
-	apiRouter.Use(iris.Compression)
+	apiRouter.Use(r.handler.VerifyMiddleware)
 
 	apiRouter.Get(httphandler.NotesRoute, r.handler.GetNoteList)
 	apiRouter.Get(httphandler.BinariesRoute, r.handler.GetBinaryList)
