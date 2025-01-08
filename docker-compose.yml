@@ -6,8 +6,6 @@ services:
     build:
       context: ./web/client
       dockerfile: ./Dockerfile.client
-    command:
-      - "nginx -g daemon off;"
     ports:
       - "8001:8001"
     expose:
