@@ -4,6 +4,7 @@ services:
   client:
     container_name: client
     build:
+      context: ./web/client
       dockerfile: ./Dockerfile.client
     command:
       - "nginx -g daemon off;"
