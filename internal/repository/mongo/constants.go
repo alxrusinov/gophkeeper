@@ -4,13 +4,15 @@ const (
 	// DataBase - name of database for keeper
 	DataBase string = "keeper"
 	// UserCollection - collection of user
-	UserCollection = "users"
+	UserCollection string = "users"
 	// NoteCollection - collection of note
-	NoteCollection = "notes"
+	NoteCollection string = "notes"
 	// CredentialsCollection - collection of logins/passwords
-	CredentialsCollection = "creds"
+	CredentialsCollection string = "creds"
 	// BinaryCollection - collection of binary data
-	BinaryCollection = "data"
+	BinaryCollection string = "data"
 	// BankCardCollection - collection of bank cards data
-	BankCardCollection = "cards"
+	BankCardCollection string = "cards"
+	// FileCollection - files collection
+	FileCollection string = "files"
 )

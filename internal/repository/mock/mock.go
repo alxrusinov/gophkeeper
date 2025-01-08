@@ -1,6 +1,7 @@
 package mock
 
 import (
+	"bytes"
 	"context"
 
 	"github.com/alxrusinov/gophkeeper/internal/model"
@@ -96,7 +97,7 @@ func (rm *RepositoryMock) GetBankCardList(ctx context.Context, userID string) ([
 }
 
 // AddBinary - adds new binaey data for user
-func (rm *RepositoryMock) AddBinary(ctx context.Context, data *model.Binary) (*model.Binary, error) {
+func (rm *RepositoryMock) AddBinary(ctx context.Context, data *model.BinaryUpload) (*model.Binary, error) {
 	args := rm.Called(ctx, data)
 
 	return args.Get(indexZero).(*model.Binary), args.Error(indexFirst)
@@ -153,6 +154,13 @@ func (rm *RepositoryMock) CheckUser(ctx context.Context, userID string) (bool, e
 	args := rm.Called(ctx, userID)
 
 	return args.Bool(indexZero), args.Error(indexFirst)
+}
+
+// DownloadFile - downloads file by ud
+func (rm *RepositoryMock) DownloadFile(ctx context.Context, fileID string) (*bytes.Buffer, error) {
+	args := rm.Called(ctx, fileID)
+
+	return args.Get(indexZero).(*bytes.Buffer), args.Error(indexFirst)
 }
 
 // NewRepositoryMock - returns new repository mock

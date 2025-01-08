@@ -1,6 +1,7 @@
 package mock
 
 import (
+	"bytes"
 	"context"
 
 	"github.com/alxrusinov/gophkeeper/internal/model"
@@ -96,7 +97,7 @@ func (uc *UsecaseMock) GetBankCardList(ctx context.Context, userID string) ([]mo
 }
 
 // AddBinary - adds new binaey data for user
-func (uc *UsecaseMock) AddBinary(ctx context.Context, data *model.Binary) (*model.Binary, error) {
+func (uc *UsecaseMock) AddBinary(ctx context.Context, data *model.BinaryUpload) (*model.Binary, error) {
 	args := uc.Called(ctx, data)
 
 	return args.Get(indexZero).(*model.Binary), args.Error(indexFirst)
@@ -153,6 +154,13 @@ func (uc *UsecaseMock) CheckUser(ctx context.Context, userID string) (bool, erro
 	args := uc.Called(ctx, userID)
 
 	return args.Bool(indexZero), args.Error(indexFirst)
+}
+
+// DownloadFile - downloads file by ud
+func (uc *UsecaseMock) DownloadFile(ctx context.Context, fileID string) (*bytes.Buffer, error) {
+	args := uc.Called(ctx, fileID)
+
+	return args.Get(indexZero).(*bytes.Buffer), args.Error(indexFirst)
 }
 
 // NewUsecaseMock - returns new usecase mock

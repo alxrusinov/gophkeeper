@@ -24,7 +24,7 @@ func TestHttpHandler_GetBinaryList(t *testing.T) {
 	successSource := []model.Binary{{
 		ID:     primitive.NewObjectID().Hex(),
 		UserID: primitive.NewObjectID().Hex(),
-		Data:   []byte("foo"),
+		FileID: primitive.NewObjectID().Hex(),
 		Title:  "title",
 		Meta:   "meta",
 	}}

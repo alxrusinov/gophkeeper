@@ -95,7 +95,7 @@ func TestHttpHandler_GetBinary(t *testing.T) {
 		ID:     successNoteID,
 		UserID: successUser.ID,
 		Title:  "Title",
-		Data:   []byte("foo"),
+		FileID: primitive.NewObjectID().Hex(),
 		Meta:   "Meta info",
 	}, nil)
 	testUsecase.On("GetBinary", mock.Anything, mock.Anything, errID).Return(new(model.Binary), errors.New("err"))

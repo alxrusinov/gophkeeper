@@ -57,6 +57,8 @@ func (r *Router) init() error {
 	apiRouter.Delete(httphandler.BankcardsRoute, r.handler.DeleteBankCard)
 	apiRouter.Delete(httphandler.CredentialsRoute, r.handler.DeleteCredentials)
 
+	apiRouter.Get(httphandler.DownloadFile, r.handler.DownloadFile)
+
 	return nil
 }
 

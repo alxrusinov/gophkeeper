@@ -1,6 +1,7 @@
 package httphandler
 
 import (
+	"bytes"
 	"context"
 	"time"
 
@@ -35,7 +36,7 @@ type Usecase interface {
 	// GetBankCardList - return all bank cards for user
 	GetBankCardList(ctx context.Context, userID string) ([]model.BankCard, error)
 	// AddBinary - adds new binaey data for user
-	AddBinary(ctx context.Context, data *model.Binary) (*model.Binary, error)
+	AddBinary(ctx context.Context, data *model.BinaryUpload) (*model.Binary, error)
 	// GetBinary - return binary data for user
 	GetBinary(ctx context.Context, userID string, binID string) (*model.Binary, error)
 	// GetBinaryList - return all binary data for user
@@ -50,6 +51,8 @@ type Usecase interface {
 	DeleteCredentials(ctx context.Context, source *model.SourceID) (*model.SourceID, error)
 	// CheckUser - checks if user from token existss in repository
 	CheckUser(ctx context.Context, userID string) (bool, error)
+	// DownloadFile - downloads file by ud
+	DownloadFile(ctx context.Context, fileID string) (*bytes.Buffer, error)
 }
 
 // Auth - interface auth for handler

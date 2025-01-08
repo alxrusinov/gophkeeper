@@ -468,15 +468,22 @@ func TestUsecaseMock_GetBankCardList(t *testing.T) {
 
 func TestUsecaseMock_AddBinary(t *testing.T) {
 	uc := NewUsecaseMock()
-	success := &model.Binary{
+	successWant := &model.Binary{
 		ID:     primitive.NewObjectID().Hex(),
 		UserID: primitive.NewObjectID().Hex(),
 		Title:  "Title",
-		Data:   []byte("foo"),
+		FileID: primitive.NewObjectID().Hex(),
+		Meta:   "meta",
+	}
+	success := &model.BinaryUpload{
+		ID:     primitive.NewObjectID().Hex(),
+		UserID: primitive.NewObjectID().Hex(),
+		Title:  "Title",
+		FileID: primitive.NewObjectID().Hex(),
 		Meta:   "meta",
 	}
 
-	uc.On("AddBinary", mock.Anything, success).Return(success, nil)
+	uc.On("AddBinary", mock.Anything, success).Return(successWant, nil)
 	type args struct {
 		ctx  context.Context
 		data *model.Binary
@@ -493,15 +500,15 @@ func TestUsecaseMock_AddBinary(t *testing.T) {
 			uc:   uc,
 			args: args{
 				ctx:  context.Background(),
-				data: success,
+				data: successWant,
 			},
-			want:    success,
+			want:    successWant,
 			wantErr: false,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := tt.uc.AddBinary(tt.args.ctx, tt.args.data)
+			got, err := tt.uc.AddBinary(tt.args.ctx, success)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("UsecaseMock.AddBinary() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -523,7 +530,7 @@ func TestUsecaseMock_GetBinary(t *testing.T) {
 		ID:     successID,
 		UserID: userID,
 		Title:  "Title",
-		Data:   []byte("foo"),
+		FileID: primitive.NewObjectID().Hex(),
 		Meta:   "meta",
 	}
 
@@ -572,7 +579,7 @@ func TestUsecaseMock_GetBinaryList(t *testing.T) {
 		ID:     primitive.NewObjectID().Hex(),
 		UserID: primitive.NewObjectID().Hex(),
 		Title:  "Title",
-		Data:   []byte("foo"),
+		FileID: primitive.NewObjectID().Hex(),
 		Meta:   "meta",
 	}}
 

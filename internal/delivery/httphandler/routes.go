@@ -31,4 +31,6 @@ const (
 	BinaryRoute string = "/binarie/{id}"
 	// CredentialRoute - route for credentials
 	CredentialRoute string = "/credentials/{id}"
+	// DownloadFile - route for downloading files
+	DownloadFile string = "/file/{id}"
 )

@@ -23,7 +23,7 @@ func TestMongo_GetBinaryList(t *testing.T) {
 		ID:       primitive.NewObjectID().Hex(),
 		UserID:   userID,
 		Title:    "title",
-		Data:     []byte("foo"),
+		FileID:   primitive.NewObjectID().Hex(),
 		MimeType: "application/pdf",
 		Meta:     "meta",
 	}}
@@ -50,7 +50,7 @@ func TestMongo_GetBinaryList(t *testing.T) {
 						Key: "title", Value: result[0].Title,
 					},
 					{
-						Key: "data", Value: result[0].Data,
+						Key: "file_id", Value: result[0].FileID,
 					},
 					{
 						Key: "mime_type", Value: result[0].MimeType,

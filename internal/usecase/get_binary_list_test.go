@@ -23,8 +23,7 @@ func TestUsecase_GetBinaryList(t *testing.T) {
 	successUserID := primitive.NewObjectID().Hex()
 
 	successResult := []model.Binary{
-		{ID: primitive.NewObjectID().Hex(), UserID: successUserID, Data: []byte("string"), Meta: "meta"},
-	}
+		{ID: primitive.NewObjectID().Hex(), UserID: successUserID, FileID: primitive.NewObjectID().Hex()}}
 
 	repo.On("GetBinaryList", mock.Anything, mock.Anything).Return(successResult, nil)
 

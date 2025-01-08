@@ -23,15 +23,21 @@ func TestUsecase_AddBinary(t *testing.T) {
 	errData := &model.Binary{
 		ID: primitive.NewObjectID().Hex(),
 	}
+	resDataUp := &model.BinaryUpload{
+		ID: primitive.NewObjectID().Hex(),
+	}
+	errDataUp := &model.BinaryUpload{
+		ID: primitive.NewObjectID().Hex(),
+	}
 
 	err := errors.New("err")
 
-	repo.On("AddBinary", mock.Anything, resData).Return(resData, nil)
-	repo.On("AddBinary", mock.Anything, errData).Return(errData, err)
+	repo.On("AddBinary", mock.Anything, resDataUp).Return(resData, nil)
+	repo.On("AddBinary", mock.Anything, errDataUp).Return(errData, err)
 
 	type args struct {
 		ctx  context.Context
-		data *model.Binary
+		data *model.BinaryUpload
 	}
 	tests := []struct {
 		name    string
@@ -45,7 +51,7 @@ func TestUsecase_AddBinary(t *testing.T) {
 			u:    testusecase,
 			args: args{
 				ctx:  context.Background(),
-				data: resData,
+				data: resDataUp,
 			},
 			want:    resData,
 			wantErr: false,
@@ -55,7 +61,7 @@ func TestUsecase_AddBinary(t *testing.T) {
 			u:    testusecase,
 			args: args{
 				ctx:  context.Background(),
-				data: errData,
+				data: errDataUp,
 			},
 			want:    errData,
 			wantErr: true,

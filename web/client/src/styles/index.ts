@@ -1,8 +1,6 @@
 import { createGlobalStyle } from "styled-components";
-import { reset } from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
-  ${reset}
 
   :root {
     box-sizing: border-box;
@@ -11,13 +9,12 @@ const GlobalStyle = createGlobalStyle`
 
   *, :before, :after {
     box-sizing: border-box;
-    font-family: Inter;
+
   }
 
   html {
     box-sizing: border-box;
-    font-family: Inter;
-
+    font-size: 14px;
   }
 `;
 

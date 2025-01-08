@@ -16,9 +16,16 @@ func (h *HttpHandler) SetBinary(ctx iris.Context) {
 		return
 	}
 
-	binary := new(model.Binary)
+	binary := new(model.BinaryUpload)
 
-	err = ctx.ReadJSON(binary)
+	err = ctx.ReadForm(binary)
+
+	if err != nil {
+		ctx.StopWithStatus(http.StatusBadRequest)
+		return
+	}
+
+	file, _, err := ctx.FormFile("data")
 
 	if err != nil {
 		ctx.StopWithStatus(http.StatusBadRequest)
@@ -26,6 +33,7 @@ func (h *HttpHandler) SetBinary(ctx iris.Context) {
 	}
 
 	binary.UserID = user.ID
+	binary.Data = file
 
 	added, err := h.usecase.AddBinary(ctx, binary)
 
