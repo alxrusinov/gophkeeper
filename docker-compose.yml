@@ -1,19 +1,30 @@
 version: "3.9"
 name: "gophkeeper"
 services:
+  client:
+    container_name: client
+    build:
+      dockerfile: ./Dockerfile.client
+    command:
+      - "nginx -g daemon off;"
+    ports:
+      - "8001:8001"
+    expose:
+      - "8001"
+    links:
+      - server
+    depends_on:
+      - mongo
+      - server
   mongo:
     container_name: mongo
     image: mongo
     restart: always
-    # networks:
-    #   - net
     ports:
       - "27017:27017"
   server:
     build:
       dockerfile: ./Dockerfile.server
-    # networks:
-    #   - net
     command:
       - server
     ports:
@@ -24,6 +35,3 @@ services:
       - mongo
     depends_on:
       - mongo
-# networks:
-#   net:
-#     driver: bridge
