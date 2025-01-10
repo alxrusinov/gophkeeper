@@ -3,9 +3,13 @@ package auth
 import (
 	"reflect"
 	"testing"
+
+	"github.com/alxrusinov/gophkeeper/internal/config"
 )
 
 func TestAuth_GetSigKey(t *testing.T) {
+	cfg := config.NewConfig()
+	cfg.RunMock()
 	tests := []struct {
 		name string
 		a    *Auth
@@ -13,8 +17,8 @@ func TestAuth_GetSigKey(t *testing.T) {
 	}{
 		{
 			name: "1# success",
-			a:    NewAuth(),
-			want: []byte(sigKey),
+			a:    NewAuth(*cfg),
+			want: []byte(cfg.Auth.SigKey),
 		},
 	}
 	for _, tt := range tests {

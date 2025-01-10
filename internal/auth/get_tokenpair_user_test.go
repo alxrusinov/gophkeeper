@@ -4,12 +4,15 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/alxrusinov/gophkeeper/internal/config"
 	"github.com/alxrusinov/gophkeeper/internal/model"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestAuth_GetTokenPair(t *testing.T) {
-	auth := NewAuth()
+	cfg := config.NewConfig()
+	cfg.RunMock()
+	auth := NewAuth(*cfg)
 	user := &model.User{
 		Username: "foo",
 		ID:       "111",
@@ -37,7 +40,7 @@ func TestAuth_GetTokenPair(t *testing.T) {
 			want: &model.TokenPair{
 				AccessToken:  access,
 				RefreshToken: refresh,
-				Exp:          int64(accessExpire.Seconds()),
+				Exp:          int64(cfg.Auth.AccessExpire.Seconds()),
 			},
 			wantErr: false,
 		},

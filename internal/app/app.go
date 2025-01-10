@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/alxrusinov/gophkeeper/internal/auth"
+	"github.com/alxrusinov/gophkeeper/internal/config"
 	"github.com/alxrusinov/gophkeeper/internal/delivery/httphandler"
 	"github.com/alxrusinov/gophkeeper/internal/logger"
 	"github.com/alxrusinov/gophkeeper/internal/model"
@@ -26,6 +27,10 @@ type Config interface {
 
 // Run - method of running application
 func (app *App) Run(ctx context.Context) (err error) {
+	cfg := config.NewConfig()
+
+	app.config = cfg
+
 	err = app.config.Run()
 
 	if err != nil {
@@ -50,7 +55,7 @@ func (app *App) Run(ctx context.Context) (err error) {
 
 	currentUsecase := usecase.NewUsecase(repo)
 
-	newAuth := auth.NewAuth()
+	newAuth := auth.NewAuth(*cfg)
 
 	handler := httphandler.NewHttpHandler(currentUsecase, newAuth)
 
@@ -62,8 +67,8 @@ func (app *App) Run(ctx context.Context) (err error) {
 }
 
 // NewApp - create new application
-func NewApp(config Config) *App {
-	application := &App{config: config}
+func NewApp() *App {
+	application := &App{}
 
 	return application
 }

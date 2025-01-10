@@ -19,7 +19,7 @@ func (a *Auth) GetTokenPair(user *model.User) (*model.TokenPair, error) {
 	tokenPair := &model.TokenPair{
 		AccessToken:  accessToken,
 		RefreshToken: refreshToken,
-		Exp:          int64(accessExpire.Seconds()),
+		Exp:          int64(a.config.Auth.AccessExpire.Seconds()),
 	}
 
 	return tokenPair, nil

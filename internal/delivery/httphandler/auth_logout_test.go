@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/alxrusinov/gophkeeper/internal/auth"
+	"github.com/alxrusinov/gophkeeper/internal/config"
 	usecasemock "github.com/alxrusinov/gophkeeper/internal/usecase/mock"
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/httptest"
@@ -12,7 +13,9 @@ import (
 
 func TestHttpHandler_Logout(t *testing.T) {
 	testUsecase := usecasemock.NewUsecaseMock()
-	testAuth := auth.NewAuth()
+	cfg := config.NewConfig()
+	cfg.RunMock()
+	testAuth := auth.NewAuth(*cfg)
 	testHandler := NewHttpHandler(testUsecase, testAuth)
 
 	app := iris.New()

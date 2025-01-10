@@ -3,11 +3,14 @@ package auth
 import (
 	"testing"
 
+	"github.com/alxrusinov/gophkeeper/internal/config"
 	"github.com/alxrusinov/gophkeeper/internal/model"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestAuth_GetAccessToken(t *testing.T) {
+	cfg := config.NewConfig()
+	cfg.RunMock()
 	user := &model.User{
 		Username: "foo",
 		ID:       "123",
@@ -25,7 +28,7 @@ func TestAuth_GetAccessToken(t *testing.T) {
 	}{
 		{
 			name: "1# success",
-			a:    NewAuth(),
+			a:    NewAuth(*cfg),
 			args: args{
 				user: user,
 			},

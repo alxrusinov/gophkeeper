@@ -4,5 +4,5 @@ import "time"
 
 // GetAccessTokenExp - return expiring of access token
 func (a *Auth) GetAccessTokenExp() time.Duration {
-	return accessExpire
+	return a.config.Auth.AccessExpire
 }

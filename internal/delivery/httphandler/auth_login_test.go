@@ -7,6 +7,7 @@ import (
 
 	"github.com/alxrusinov/gophkeeper/internal/auth"
 	authMock "github.com/alxrusinov/gophkeeper/internal/auth/mock"
+	"github.com/alxrusinov/gophkeeper/internal/config"
 	"github.com/alxrusinov/gophkeeper/internal/customerrors"
 	"github.com/alxrusinov/gophkeeper/internal/model"
 	usecasemock "github.com/alxrusinov/gophkeeper/internal/usecase/mock"
@@ -18,7 +19,9 @@ import (
 
 func TestHttpHandler_Login(t *testing.T) {
 	testUsecase := usecasemock.NewUsecaseMock()
-	testAuth := auth.NewAuth()
+	cfg := config.NewConfig()
+	cfg.RunMock()
+	testAuth := auth.NewAuth(*cfg)
 	testHandler := NewHttpHandler(testUsecase, testAuth)
 
 	app := iris.New()

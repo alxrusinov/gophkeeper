@@ -7,14 +7,11 @@ import (
 	"syscall"
 
 	"github.com/alxrusinov/gophkeeper/internal/app"
-	"github.com/alxrusinov/gophkeeper/internal/config"
 )
 
 func main() {
 
-	cfg := config.NewConfig()
-
-	application := app.NewApp(cfg)
+	application := app.NewApp()
 
 	signalCtx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
 

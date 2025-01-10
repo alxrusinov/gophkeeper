@@ -4,9 +4,15 @@ import (
 	"reflect"
 	"testing"
 	"time"
+
+	"github.com/alxrusinov/gophkeeper/internal/config"
 )
 
 func TestAuth_GetAccessTokenExp(t *testing.T) {
+	cfg := config.NewConfig()
+	cfg.RunMock()
+	testAuth := NewAuth(*cfg)
+
 	tests := []struct {
 		name string
 		a    *Auth
@@ -14,8 +20,8 @@ func TestAuth_GetAccessTokenExp(t *testing.T) {
 	}{
 		{
 			name: "1# success",
-			a:    NewAuth(),
-			want: accessExpire,
+			a:    testAuth,
+			want: testAuth.config.Auth.AccessExpire,
 		},
 	}
 	for _, tt := range tests {

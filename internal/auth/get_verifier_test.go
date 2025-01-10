@@ -4,11 +4,14 @@ import (
 	"reflect"
 	"testing"
 
+	"github.com/alxrusinov/gophkeeper/internal/config"
 	"github.com/kataras/iris/v12/middleware/jwt"
 )
 
 func TestAuth_GetVerifier(t *testing.T) {
-	testAuth := NewAuth()
+	cfg := config.NewConfig()
+	cfg.Run()
+	testAuth := NewAuth(*cfg)
 
 	tests := []struct {
 		name string
