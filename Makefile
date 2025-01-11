@@ -5,10 +5,10 @@ TEST_DIR = ./internal/...
 .PHONY: run-server test-server
 
 test-run:
-	go run ${SRC_SERVER} --dbURL mongodb://localhost:3000
+	go run ${SRC_SERVER} --mode=dev
 
 run-server:
-	go run $(SRC_SERVER)
+	go run $(SRC_SERVER) --mode=dev
 
 run:
 	docker-compose up

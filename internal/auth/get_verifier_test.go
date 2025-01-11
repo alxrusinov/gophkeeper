@@ -10,7 +10,7 @@ import (
 
 func TestAuth_GetVerifier(t *testing.T) {
 	cfg := config.NewConfig()
-	cfg.Run()
+	cfg.RunMock()
 	testAuth := NewAuth(*cfg)
 
 	tests := []struct {

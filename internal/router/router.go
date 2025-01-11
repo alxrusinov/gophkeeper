@@ -10,13 +10,15 @@ import (
 // Config - interface for routers config
 type Config interface {
 	GetBaseURL() string
+	GetFileSize() int64
 }
 
 // Router - router for server
 type Router struct {
-	app     *iris.Application
-	handler *httphandler.HttpHandler
-	baseURL string
+	app       *iris.Application
+	handler   *httphandler.HttpHandler
+	baseURL   string
+	fileSizeB int64 // linit of file size in bytes
 }
 
 // Init - initialize  router
@@ -36,6 +38,7 @@ func (r *Router) init() error {
 	apiRouter.Use(r.handler.CorsMiddleware)
 	apiRouter.Use(r.handler.AuthMiddleware())
 	apiRouter.Use(r.handler.VerifyMiddleware)
+	apiRouter.Use(r.handler.BodyLimitMiddleware(r.fileSizeB))
 
 	apiRouter.Get(httphandler.NotesRoute, r.handler.GetNoteList)
 	apiRouter.Get(httphandler.BinariesRoute, r.handler.GetBinaryList)
@@ -79,9 +82,10 @@ func (r *Router) Run(ctx context.Context) (err error) {
 func NewRouter(cfg Config, handler *httphandler.HttpHandler) *Router {
 
 	router := &Router{
-		app:     iris.New(),
-		handler: handler,
-		baseURL: cfg.GetBaseURL(),
+		app:       iris.New(),
+		handler:   handler,
+		baseURL:   cfg.GetBaseURL(),
+		fileSizeB: cfg.GetFileSize(),
 	}
 
 	return router

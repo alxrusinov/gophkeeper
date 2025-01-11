@@ -4,7 +4,17 @@ import (
 	"time"
 
 	"github.com/mitchellh/mapstructure"
+	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
+)
+
+const (
+	// appModeField - flag variable field setting mode of application
+	appModeField string = "mode"
+	// dev - develompent mode
+	dev string = "dev"
+	// prod - production mode
+	prod string = "prod"
 )
 
 const (
@@ -32,6 +42,9 @@ const (
 	sigKey               = "signature_hmac_secret_shared_key"
 )
 
+// fileSize - default linit of file size for uploading
+const fileSize int64 = 1024 * 1024 * 32
+
 // auth - struct configurations auth
 type Auth struct {
 	AccessSecret         string        `mapstructure:"accessSecret"`
@@ -45,9 +58,10 @@ type Auth struct {
 
 // Config - type config implements interface app.Config
 type Config struct {
-	baseURL string `mapstructure:"baseURL"`
-	dbURL   string `mapstructure:"dbURL"`
-	Auth    Auth
+	baseURL  string `mapstructure:"baseURL"`
+	dbURL    string `mapstructure:"dbURL"`
+	fileSize int64  `mapstructure:"fileSize"`
+	Auth     Auth
 }
 
 func errHandler(err error) error {
@@ -59,7 +73,20 @@ func errHandler(err error) error {
 
 // Run - parse config files, env and flags - initializes config
 func (cfg *Config) Run() (err error) {
-	viper.SetConfigName("config")
+
+	configName := "config.prod"
+
+	var mode string
+
+	pflag.StringVar(&mode, appModeField, prod, "mode of application")
+
+	pflag.Parse()
+
+	if mode == dev {
+		configName = "config.dev"
+	}
+
+	viper.SetConfigName(configName)
 	viper.SetConfigType("json")
 	viper.AddConfigPath(".")
 
@@ -105,6 +132,7 @@ func (cfg *Config) RunMock() {
 	}
 	cfg.baseURL = "0.0.0.0:8000"
 	cfg.dbURL = "mongodb://mongo:27017/?connect=direct"
+	cfg.fileSize = 33554432
 }
 
 // GetBaseURL - return base url
@@ -115,6 +143,11 @@ func (cfg *Config) GetBaseURL() string {
 // GetDbURL - return database url
 func (cfg *Config) GetDbURL() string {
 	return cfg.dbURL
+}
+
+// GetFileSize - return file size limit
+func (cfg *Config) GetFileSize() int64 {
+	return cfg.fileSize
 }
 
 // NewConfig - create new config

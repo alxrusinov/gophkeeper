@@ -5,15 +5,17 @@ import (
 	"testing"
 
 	authmock "github.com/alxrusinov/gophkeeper/internal/auth/mock"
-	cfgmock "github.com/alxrusinov/gophkeeper/internal/config/mock"
+	"github.com/alxrusinov/gophkeeper/internal/config"
+
 	"github.com/alxrusinov/gophkeeper/internal/delivery/httphandler"
 	usecasemock "github.com/alxrusinov/gophkeeper/internal/usecase/mock"
 	"github.com/kataras/iris/v12/middleware/jwt"
 )
 
 func TestRouter_init(t *testing.T) {
-	cfg := cfgmock.NewConfigMock()
-	cfg.On("GetBaseURL").Return(":8000")
+	cfg := config.NewConfig()
+	cfg.RunMock()
+
 	uc := usecasemock.NewUsecaseMock()
 	am := authmock.NewAuthMock()
 	am.On("GetVerifier").Return(new(jwt.Verifier))

@@ -36,6 +36,13 @@ func (cm *ConfigMock) GetDbURL() string {
 	return args.String(indexZero)
 }
 
+// GetFileSize - return file size limit
+func (cm *ConfigMock) GetFileSize() int64 {
+	args := cm.Called()
+
+	return args.Get(indexZero).(int64)
+}
+
 // NewConfigMock - return new mocked config
 func NewConfigMock() *ConfigMock {
 	return new(ConfigMock)

@@ -23,6 +23,7 @@ type Config interface {
 	model.Runner
 	GetBaseURL() string
 	GetDbURL() string
+	GetFileSize() int64
 }
 
 // Run - method of running application

@@ -1,11 +1,12 @@
 {
   "baseURL": "0.0.0.0:8000",
-  "dbbURL": "mongodb://mongo:27017",
+  "dbURL": "mongodb://mongo:27017",
   "accessSecret": "signature_hmac_secret_shared_key",
   "refreshSecret": "signature_hmac_secret_shared_keyh",
   "accessExpire": 86400000000000,
   "refreshExpire": 604800000000000,
   "accessEncriptionKey": "signature_hmac_secret_shared_key",
   "refreshEncriptionKey": "signature_hmac_secret_shared_key",
-  "sigKey": "signature_hmac_secret_shared_key"
+  "sigKey": "signature_hmac_secret_shared_key",
+  "filseSize": 33554432
 }
