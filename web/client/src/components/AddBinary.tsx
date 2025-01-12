@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { SubmitHandler, useController, useForm } from "react-hook-form";
 import { styled as styledMui } from "@mui/material/styles";
 import Button from "@mui/material/Button";
@@ -49,6 +49,8 @@ type Props = {
 };
 
 const AddBinary: FC<Props> = ({ open, onAddBinary, onClose }) => {
+  const [overLimit, setOverLimit] = useState(false);
+
   const { control, handleSubmit, reset, setValue } = useForm<SendBinary>({
     defaultValues: InitialValues,
   });
@@ -87,7 +89,14 @@ const AddBinary: FC<Props> = ({ open, onAddBinary, onClose }) => {
   };
 
   const onChangeFile: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    setValue("data", e.target.files?.[0] || undefined);
+    const fileInput = e.target.files?.[0];
+
+    if (fileInput && fileInput.size > 33554432) {
+      setOverLimit(true);
+    } else {
+      setOverLimit(false);
+      setValue("data", e.target.files?.[0] || undefined);
+    }
   };
 
   const onCloseHandle = () => {
@@ -122,6 +131,12 @@ const AddBinary: FC<Props> = ({ open, onAddBinary, onClose }) => {
             required
           />
         </Button>
+        {!overLimit && <Typography fontSize={10}>Не более 32 MB</Typography>}
+        {overLimit && (
+          <Typography fontSize={10} color="error">
+            Файл должен быть не более 32 MB
+          </Typography>
+        )}
       </Form>
     </Modal>
   );
