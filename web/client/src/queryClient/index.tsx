@@ -44,7 +44,6 @@ const AxiosProvider: FC<Props> = ({ children }) => {
 
         const originalRequest = err.config;
 
-        console.log("ERR", err);
         if (err.response?.status === 401 && originalRequest) {
           setUnAuth(true);
         } else {

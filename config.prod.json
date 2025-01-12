@@ -8,5 +8,5 @@
   "accessEncriptionKey": "signature_hmac_secret_shared_key",
   "refreshEncriptionKey": "signature_hmac_secret_shared_key",
   "sigKey": "signature_hmac_secret_shared_key",
-  "filseSize": 33554432
+  "fileSize": 33554432
 }

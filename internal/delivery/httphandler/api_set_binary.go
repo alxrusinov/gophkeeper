@@ -1,7 +1,9 @@
 package httphandler
 
 import (
+	"bytes"
 	"fmt"
+	"io"
 	"net/http"
 
 	"github.com/alxrusinov/gophkeeper/internal/model"
@@ -32,15 +34,27 @@ func (h *HttpHandler) SetBinary(ctx iris.Context) {
 		return
 	}
 
+	buf := bytes.NewBuffer(nil)
+
+	io.Copy(buf, file)
+
+	defer file.Close()
+
+	if err != nil {
+		ctx.StopWithStatus(http.StatusBadRequest)
+		return
+	}
+
 	binary.UserID = user.ID
-	binary.Data = file
+	binary.Data = buf.Bytes()
 
 	added, err := h.usecase.AddBinary(ctx, binary)
 
 	if err != nil {
-		ctx.StopWithError(http.StatusInternalServerError, fmt.Errorf("credentils with title %s was not saved", added.Title))
+		ctx.StopWithError(http.StatusInternalServerError, fmt.Errorf("binary with title %s was not saved", added.Title))
 	}
 
 	ctx.StatusCode(http.StatusCreated)
-	ctx.JSON(added)
+	ctx.Write(buf.Bytes())
+
 }

@@ -43,7 +43,7 @@ const (
 )
 
 // fileSize - default linit of file size for uploading
-const fileSize int64 = 1024 * 1024 * 32
+const filseSize int64 = 1024 * 1024 * 32
 
 // auth - struct configurations auth
 type Auth struct {
@@ -58,9 +58,9 @@ type Auth struct {
 
 // Config - type config implements interface app.Config
 type Config struct {
-	baseURL  string `mapstructure:"baseURL"`
-	dbURL    string `mapstructure:"dbURL"`
-	fileSize int64  `mapstructure:"fileSize"`
+	BaseURL  string `mapstructure:"baseURL"`
+	DBURL    string `mapstructure:"dbURL"`
+	FileSize int64  `mapstructure:"fileSize"`
 	Auth     Auth
 }
 
@@ -113,9 +113,6 @@ func (cfg *Config) Run() (err error) {
 
 	errHandler(err)
 
-	cfg.baseURL = viper.GetString(baseURLField)
-	cfg.dbURL = viper.GetString(dbURLField)
-
 	return err
 }
 
@@ -130,24 +127,24 @@ func (cfg *Config) RunMock() {
 		RefreshEncriptionKey: "signature_hmac_secret_shared_key",
 		SigKey:               "signature_hmac_secret_shared_key",
 	}
-	cfg.baseURL = "0.0.0.0:8000"
-	cfg.dbURL = "mongodb://mongo:27017/?connect=direct"
-	cfg.fileSize = 33554432
+	cfg.BaseURL = "0.0.0.0:8000"
+	cfg.DBURL = "mongodb://mongo:27017/?connect=direct"
+	cfg.FileSize = 33554432
 }
 
 // GetBaseURL - return base url
 func (cfg *Config) GetBaseURL() string {
-	return cfg.baseURL
+	return cfg.BaseURL
 }
 
 // GetDbURL - return database url
 func (cfg *Config) GetDbURL() string {
-	return cfg.dbURL
+	return cfg.DBURL
 }
 
 // GetFileSize - return file size limit
 func (cfg *Config) GetFileSize() int64 {
-	return cfg.fileSize
+	return cfg.FileSize
 }
 
 // NewConfig - create new config

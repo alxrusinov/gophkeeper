@@ -1,9 +1,7 @@
 package httphandler
 
 import (
-	"io"
 	"net/http"
-	"os"
 
 	"github.com/kataras/iris/v12"
 )
@@ -24,22 +22,9 @@ func (h *HttpHandler) DownloadFile(ctx iris.Context) {
 		return
 	}
 
-	newFile, err := os.OpenFile("file", os.O_CREATE|os.O_WRONLY, 0777)
+	contentType := http.DetectContentType(file.Bytes())
 
-	if err != nil {
-		ctx.StopWithStatus(http.StatusInternalServerError)
-		return
-	}
-
-	_, err = io.Copy(newFile, file)
-
-	if err != nil {
-		ctx.StopWithStatus(http.StatusInternalServerError)
-		return
-	}
-
+	ctx.ContentType(contentType)
 	ctx.StatusCode(http.StatusOK)
-	ctx.SendFile("file", "file")
-	// ctx.Write(file.Bytes())
-
+	ctx.Write(file.Bytes())
 }

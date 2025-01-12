@@ -55,7 +55,9 @@ const BinCard: FC<Props> = ({ item }) => {
   const downloadLink = useQuery({
     queryKey: ["download link"],
     queryFn: async () => {
-      const res = await apiClient.get<Blob>(`/file/${item.fileID}`);
+      const res = await apiClient.get<Blob>(`/file/${item.fileID}`, {
+        responseType: "blob",
+      });
 
       return res.data;
     },
@@ -68,19 +70,21 @@ const BinCard: FC<Props> = ({ item }) => {
 
   useEffect(() => {
     if (downloadLink.data && canDownload) {
-      const blob = new Blob([downloadLink.data], { type: item.mimeType });
+      const blob = new File([downloadLink.data], item.title, {
+        type: item.mimeType,
+      });
 
       const url = window.URL.createObjectURL(blob);
 
       const link = document.createElement("a");
       link.href = url;
-      link.setAttribute("download", "file");
+      link.setAttribute("download", item.title);
       document.body.appendChild(link);
       link.click();
       link.parentNode?.removeChild(link);
       setCanDownload(false);
     }
-  }, [canDownload, downloadLink.data, item.mimeType]);
+  }, [canDownload, downloadLink.data, item.mimeType, item.title]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);

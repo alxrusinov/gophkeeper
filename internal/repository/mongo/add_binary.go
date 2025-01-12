@@ -1,6 +1,7 @@
 package mongo
 
 import (
+	"bytes"
 	"context"
 	"errors"
 
@@ -27,11 +28,7 @@ func (m *Mongo) AddBinary(ctx context.Context, data *model.BinaryUpload) (*model
 
 	bucket, err := gridfs.NewBucket(m.client.Database(DataBase))
 
-	if err != nil {
-		return nil, err
-	}
-
-	fileID, err := bucket.UploadFromStream(data.Title, data.Data)
+	fileID, err := bucket.UploadFromStream(data.Title, bytes.NewBuffer(data.Data))
 
 	if err != nil {
 		return nil, err

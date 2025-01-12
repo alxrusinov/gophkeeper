@@ -1,8 +1,6 @@
 package model
 
 import (
-	"mime/multipart"
-
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
@@ -18,13 +16,13 @@ type Binary struct {
 
 // Binary - structure of binary type of data
 type BinaryUpload struct {
-	ID       string         `json:"id,omitempty" bson:"id,omitempty" form:"id,omitempty"`
-	UserID   string         `json:"user_id,omitempty" bson:"user_id" form:"user_id,omitempty"`
-	Title    string         `json:"title" bson:"title" form:"title"`
-	MimeType string         `json:"mime_type" bson:"mime_type" form:"mime_type"`
-	Data     multipart.File `json:"data" bson:"data" form:"data"`
-	FileID   string         `json:"file_id" bson:"file_id" form:"file_id"`
-	Meta     string         `json:"meta" bson:"meta" form:"meta"`
+	ID       string `json:"id,omitempty" bson:"id,omitempty" form:"id,omitempty"`
+	UserID   string `json:"user_id,omitempty" bson:"user_id" form:"user_id,omitempty"`
+	Title    string `json:"title" bson:"title" form:"title"`
+	MimeType string `json:"mime_type" bson:"mime_type" form:"mime_type"`
+	Data     []byte `json:"data" bson:"data" form:"data"`
+	FileID   string `json:"file_id" bson:"file_id" form:"file_id"`
+	Meta     string `json:"meta" bson:"meta" form:"meta"`
 }
 
 // BinaryDocument - structure of binary type of data document
