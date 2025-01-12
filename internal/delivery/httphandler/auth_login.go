@@ -10,6 +10,25 @@ import (
 	"github.com/kataras/iris/v12"
 )
 
+func isNonExistUserError(err error) (res bool) {
+	nonExistentErr := new(customerrors.NonexistentUser)
+
+	if err != nil && errors.As(err, &nonExistentErr) {
+		res = true
+	}
+
+	return res
+}
+
+func isUnverifiedUserError(err error) (res bool) {
+	unverifiedErr := new(customerrors.UnverifiedUser)
+
+	if err != nil && errors.As(err, &unverifiedErr) {
+		res = true
+	}
+	return res
+}
+
 // Login - method of loginng existing user
 func (h *HttpHandler) Login(ctx iris.Context) {
 	login := new(model.Login)
@@ -22,21 +41,12 @@ func (h *HttpHandler) Login(ctx iris.Context) {
 
 	user, err := h.usecase.VerifyUser(ctx, login)
 
-	if err != nil {
-		nonExistentErr := new(customerrors.NonexistentUser)
-
-		if ok := errors.As(err, &nonExistentErr); ok {
-			ctx.StopWithStatus(http.StatusUnauthorized)
-			return
-		}
-
-		unverifiedErr := new(customerrors.UnverifiedUser)
-
-		if ok := errors.As(err, &unverifiedErr); ok {
-			ctx.StopWithStatus(http.StatusUnauthorized)
-			return
-		}
-
+	switch {
+	case isNonExistUserError(err):
+	case isUnverifiedUserError(err):
+		ctx.StopWithStatus(http.StatusUnauthorized)
+		return
+	case err != nil:
 		ctx.StopWithStatus(http.StatusInternalServerError)
 		return
 	}
