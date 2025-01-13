@@ -23,44 +23,45 @@ type Router struct {
 
 // Init - initialize  router
 func (r *Router) init() error {
+
 	r.app.UseGlobal(iris.Compression)
 	authRouter := r.app.Party(httphandler.AuthRouteGroup)
-	authRouter.Use(r.handler.CorsMiddleware)
+	authRouter.Use(r.handler.Middleware.CorsMiddleware)
 	authRouter.AllowMethods(iris.MethodOptions)
 
-	authRouter.Post(httphandler.RegisterRoute, r.handler.Register)
-	authRouter.Post(httphandler.LoginRoute, r.handler.Login)
-	authRouter.Post(httphandler.LogoutRoute, r.handler.Logout)
+	authRouter.Post(httphandler.RegisterRoute, r.handler.AuthHandler.Register)
+	authRouter.Post(httphandler.LoginRoute, r.handler.AuthHandler.Login)
+	authRouter.Post(httphandler.LogoutRoute, r.handler.AuthHandler.Logout)
 
 	apiRouter := r.app.Party(httphandler.ApiRouteGroup)
 
 	apiRouter.AllowMethods(iris.MethodOptions)
-	apiRouter.Use(r.handler.CorsMiddleware)
-	apiRouter.Use(r.handler.AuthMiddleware())
-	apiRouter.Use(r.handler.VerifyMiddleware)
-	apiRouter.Use(r.handler.BodyLimitMiddleware(r.fileSizeB))
+	apiRouter.Use(r.handler.Middleware.CorsMiddleware)
+	apiRouter.Use(r.handler.Middleware.AuthMiddleware())
+	apiRouter.Use(r.handler.Middleware.VerifyMiddleware)
+	apiRouter.Use(r.handler.Middleware.BodyLimitMiddleware(r.fileSizeB))
 
-	apiRouter.Get(httphandler.NotesRoute, r.handler.GetNoteList)
-	apiRouter.Get(httphandler.BinariesRoute, r.handler.GetBinaryList)
-	apiRouter.Get(httphandler.BankcardsRoute, r.handler.GetBankCardList)
-	apiRouter.Get(httphandler.CredentialsRoute, r.handler.GetCredentialsList)
+	apiRouter.Get(httphandler.NotesRoute, r.handler.NoteHandler.GetNoteList)
+	apiRouter.Get(httphandler.BinariesRoute, r.handler.BinaryHandler.GetBinaryList)
+	apiRouter.Get(httphandler.BankcardsRoute, r.handler.BankCardHandler.GetBankCardList)
+	apiRouter.Get(httphandler.CredentialsRoute, r.handler.CredentialsHandler.GetCredentialsList)
 
-	apiRouter.Post(httphandler.NotesRoute, r.handler.SetNote)
-	apiRouter.Post(httphandler.BinariesRoute, r.handler.SetBinary)
-	apiRouter.Post(httphandler.BankcardsRoute, r.handler.SetBankCard)
-	apiRouter.Post(httphandler.CredentialsRoute, r.handler.SetCredentials)
+	apiRouter.Post(httphandler.NotesRoute, r.handler.NoteHandler.SetNote)
+	apiRouter.Post(httphandler.BinariesRoute, r.handler.BinaryHandler.SetBinary)
+	apiRouter.Post(httphandler.BankcardsRoute, r.handler.BankCardHandler.SetBankCard)
+	apiRouter.Post(httphandler.CredentialsRoute, r.handler.CredentialsHandler.SetCredentials)
 
-	apiRouter.Get(httphandler.NoteRoute, r.handler.GetNote)
-	apiRouter.Get(httphandler.BinaryRoute, r.handler.GetBinary)
-	apiRouter.Get(httphandler.BankcardRoute, r.handler.GetBankCard)
-	apiRouter.Get(httphandler.CredentialRoute, r.handler.GetCredentials)
+	apiRouter.Get(httphandler.NoteRoute, r.handler.NoteHandler.GetNote)
+	apiRouter.Get(httphandler.BinaryRoute, r.handler.BinaryHandler.GetBinary)
+	apiRouter.Get(httphandler.BankcardRoute, r.handler.BankCardHandler.GetBankCard)
+	apiRouter.Get(httphandler.CredentialRoute, r.handler.CredentialsHandler.GetCredentials)
 
-	apiRouter.Delete(httphandler.NotesRoute, r.handler.DeleteNote)
-	apiRouter.Delete(httphandler.BinariesRoute, r.handler.DeleteBinary)
-	apiRouter.Delete(httphandler.BankcardsRoute, r.handler.DeleteBankCard)
-	apiRouter.Delete(httphandler.CredentialsRoute, r.handler.DeleteCredentials)
+	apiRouter.Delete(httphandler.NotesRoute, r.handler.NoteHandler.DeleteNote)
+	apiRouter.Delete(httphandler.BinariesRoute, r.handler.BinaryHandler.DeleteBinary)
+	apiRouter.Delete(httphandler.BankcardsRoute, r.handler.BankCardHandler.DeleteBankCard)
+	apiRouter.Delete(httphandler.CredentialsRoute, r.handler.CredentialsHandler.DeleteCredentials)
 
-	apiRouter.Get(httphandler.DownloadFile, r.handler.DownloadFile)
+	apiRouter.Get(httphandler.DownloadFile, r.handler.BinaryHandler.DownloadFile)
 
 	return nil
 }
