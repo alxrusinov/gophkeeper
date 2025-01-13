@@ -1,0 +1,36 @@
+version: "3.9"
+name: "gophkeeper"
+services:
+  client:
+    container_name: client
+    build:
+      context: ./web/client
+      dockerfile: ./Dockerfile.client
+    ports:
+      - "8001:8001"
+    expose:
+      - "8001"
+    links:
+      - server
+    depends_on:
+      - mongo
+      - server
+  mongo:
+    container_name: mongo
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+  server:
+    build:
+      dockerfile: ./Dockerfile.server
+    command:
+      - server
+    ports:
+      - "8000:8000"
+    expose:
+      - "8000"
+    links:
+      - mongo
+    depends_on:
+      - mongo
